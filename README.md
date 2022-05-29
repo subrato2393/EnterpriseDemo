@@ -1,2 +1,1 @@
-# EnterpriseDemo
 # Enterprise Application Feature
