@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\subrato\\Desktop\\Enterprise Demo\\EnterpriseDemo\\EnterpriseDemo.Api\\EnterpriseDemo.Api.csproj",
+      "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\EnterpriseDemo.Api.csproj",
       "projectName": "EnterpriseDemo.Api",
-      "projectPath": "C:\\Users\\subrato\\Desktop\\Enterprise Demo\\EnterpriseDemo\\EnterpriseDemo.Api\\EnterpriseDemo.Api.csproj",
+      "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\EnterpriseDemo.Api.csproj",
       "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\subrato\\Desktop\\Enterprise Demo\\EnterpriseDemo\\EnterpriseDemo.Api\\obj\\",
+      "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
