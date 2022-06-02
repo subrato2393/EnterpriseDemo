@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>G:\TMS_05.04.22\New folder</_PublishTargetUrl>
+    <History>True|2022-04-06T09:13:21.5238709Z;True|2021-12-19T09:07:42.7462261+06:00;True|2021-12-18T11:37:07.7719179+06:00;</History>
+    <_PublishTargetUrl>D:\SMSPublish</_PublishTargetUrl>
+    <History>True|2022-04-26T17:28:01.3609056Z;True|2022-04-25T00:08:51.5452412+06:00;True|2022-04-25T00:03:18.7310004+06:00;True|2022-04-09T11:24:35.5542742+06:00;True|2022-04-06T13:50:58.0047688+06:00;True|2021-12-19T09:07:42.7462261+06:00;True|2021-12-18T11:37:07.7719179+06:00;</History>
+  </PropertyGroup>
+</Project>

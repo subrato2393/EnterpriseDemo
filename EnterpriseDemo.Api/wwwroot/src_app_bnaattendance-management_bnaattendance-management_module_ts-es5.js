@@ -1,0 +1,7375 @@
+(function () {
+  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  (self["webpackChunksmart"] = self["webpackChunksmart"] || []).push([["src_app_bnaattendance-management_bnaattendance-management_module_ts"], {
+    /***/
+    80445:
+    /*!***********************************************************!*\
+      !*** ./src/app/basic-setup/models/CodeValuePagination.ts ***!
+      \***********************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "CodeValuePagination": function CodeValuePagination() {
+          return (
+            /* binding */
+            _CodeValuePagination
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _CodeValuePagination = function _CodeValuePagination() {
+        _classCallCheck(this, _CodeValuePagination);
+
+        this.items = [];
+      };
+      /***/
+
+    },
+
+    /***/
+    88509:
+    /*!**********************************************************!*\
+      !*** ./src/app/basic-setup/service/codevalue.service.ts ***!
+      \**********************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "CodeValueService": function CodeValueService() {
+          return (
+            /* binding */
+            _CodeValueService
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      91841);
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/environments/environment */
+      92340);
+      /* harmony import */
+
+
+      var _models_CodeValuePagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../models/CodeValuePagination */
+      80445);
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      5207);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+
+      var _CodeValueService = /*#__PURE__*/function () {
+        function _CodeValueService(http) {
+          _classCallCheck(this, _CodeValueService);
+
+          this.http = http;
+          this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl;
+          this.CodeValues = [];
+          this.CodeValuePagination = new _models_CodeValuePagination__WEBPACK_IMPORTED_MODULE_1__.CodeValuePagination();
+        }
+
+        _createClass(_CodeValueService, [{
+          key: "getCodeValues",
+          value: function getCodeValues(pageNumber, pageSize, searchText) {
+            var _this = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString()); //params =params.append('searchText',searchText.toString());
+
+            return this.http.get(this.baseUrl + '/code-value/get-codeValues', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (response) {
+              _this.CodeValues = [].concat(_toConsumableArray(_this.CodeValues), _toConsumableArray(response.body.items));
+              _this.CodeValuePagination = response.body;
+              return _this.CodeValuePagination;
+            }));
+          }
+        }, {
+          key: "getCheckBoxSelectedCodeValueByTypeWithChecked",
+          value: function getCheckBoxSelectedCodeValueByTypeWithChecked(type) {
+            return this.http.get(this.baseUrl + '/code-value/get-selectedCodeValueByTypeWithChecked?type=' + type);
+          }
+        }, {
+          key: "getSelectedCodeValueByType",
+          value: function getSelectedCodeValueByType(type) {
+            return this.http.get(this.baseUrl + '/code-value/get-selectedCodeValueByType?type=' + type);
+          }
+        }, {
+          key: "getselectedcodevaluetype",
+          value: function getselectedcodevaluetype() {
+            return this.http.get(this.baseUrl + '/code-value-type/get-selectedCodeValueTypes');
+          }
+        }, {
+          key: "find",
+          value: function find(id) {
+            return this.http.get(this.baseUrl + '/code-value/get-codeValueDetail/' + id);
+          }
+        }, {
+          key: "update",
+          value: function update(id, model) {
+            return this.http.put(this.baseUrl + '/code-value/update-codeValue/' + id, model);
+          }
+        }, {
+          key: "submit",
+          value: function submit(model) {
+            return this.http.post(this.baseUrl + '/code-value/save-codeValue', model);
+          }
+        }, {
+          key: "delete",
+          value: function _delete(id) {
+            return this.http["delete"](this.baseUrl + '/code-value/delete-codeValue/' + id);
+          }
+        }]);
+
+        return _CodeValueService;
+      }();
+
+      _CodeValueService.ɵfac = function CodeValueService_Factory(t) {
+        return new (t || _CodeValueService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient));
+      };
+
+      _CodeValueService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+        token: _CodeValueService,
+        factory: _CodeValueService.ɵfac,
+        providedIn: 'root'
+      });
+      /***/
+    },
+
+    /***/
+    95980:
+    /*!**********************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/attendance/attendance-approved/attendance-approved.component.ts ***!
+      \**********************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "AttendanceApprovedComponent": function AttendanceApprovedComponent() {
+          return (
+            /* binding */
+            _AttendanceApprovedComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../../../../assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var _src_app_core_service_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../../../src/app/core/service/auth.service */
+      41782);
+      /* harmony import */
+
+
+      var _routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../../../routine-management/service/classroutine.service */
+      60616);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+      /* harmony import */
+
+
+      var _core_service_confirm_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../../../core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var _course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../../../course-management/service/traineenomination.service */
+      22247);
+      /* harmony import */
+
+
+      var _basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../../../basic-setup/service/codevalue.service */
+      88509);
+      /* harmony import */
+
+
+      var _service_attendance_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../../service/attendance.service */
+      73224);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/material/form-field */
+      98295);
+      /* harmony import */
+
+
+      var _angular_material_select__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! @angular/material/select */
+      67441);
+      /* harmony import */
+
+
+      var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @angular/material/core */
+      5015);
+      /* harmony import */
+
+
+      var _angular_material_input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @angular/material/input */
+      83166);
+      /* harmony import */
+
+
+      var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      /*! @angular/material/datepicker */
+      43220);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      /*! @angular/material/checkbox */
+      7539); // import { CodeValueService } from 'src/app/basic-setup/service/codevalue.service';
+
+
+      function AttendanceApprovedComponent_div_26_mat_option_5_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r7 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r7.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r7.text, " ");
+        }
+      }
+
+      function AttendanceApprovedComponent_div_26_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r9 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 22);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "mat-label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3, "School Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "mat-select", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function AttendanceApprovedComponent_div_26_Template_mat_select_selectionChange_4_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r9);
+
+            var ctx_r8 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+            return ctx_r8.onBaseSchoolNameSelectionChangeGetCourse($event.value);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](5, AttendanceApprovedComponent_div_26_mat_option_5_Template, 2, 2, "mat-option", 26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r0.selectedbaseschools);
+        }
+      }
+
+      function AttendanceApprovedComponent_mat_option_34_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r10 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r10.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r10.text, " ");
+        }
+      }
+
+      function AttendanceApprovedComponent_mat_option_50_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r11 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r11.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r11.text, " ");
+        }
+      }
+
+      function AttendanceApprovedComponent_h5_52_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "h5", 39);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Subject Name : ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "span");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r12 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](dropdown_r12.text);
+        }
+      }
+
+      function AttendanceApprovedComponent_div_53_tr_23_mat_option_18_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r18 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r18.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r18.text, " ");
+        }
+      }
+
+      function AttendanceApprovedComponent_div_53_tr_23_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "tr", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "th", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "td", 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "span", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "td", 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](9, "input", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "td", 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](11, "mat-checkbox", 52, 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "td", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](14, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "mat-select", 54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](16, "mat-option", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](17, "--Select--");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](18, AttendanceApprovedComponent_div_53_tr_23_mat_option_18_Template, 2, 2, "mat-option", 26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var unit_r14 = ctx.$implicit;
+          var i_r15 = ctx.index;
+
+          var ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("formGroup", unit_r14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](i_r15 + 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"](" ", ctx_r13.getControlLabel(i_r15, "rankPosition"), " - ", ctx_r13.getControlLabel(i_r15, "traineeName"), " - ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"]("(P No ", ctx_r13.getControlLabel(i_r15, "traineePNo"), ")");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngClass", "tbl-checkbox");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r13.selectedbnaattendanceremark);
+        }
+      }
+
+      function AttendanceApprovedComponent_div_53_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "div", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "div", 16);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "div", 41);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "table", 42);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "thead");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "tr");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "th", 43);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](9, "Ser");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "th", 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](11, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](12, "Name & Rank");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "th", 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](14, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](15, "Class Leader Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](16, "th", 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](17, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](18, "Attendance Status");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](19, "th", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](20, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](21, "Attendance Remarks");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](22, "tbody");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](23, AttendanceApprovedComponent_div_53_tr_23_Template, 19, 7, "tr", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r5.AttendanceForm.get("traineeListForm")["controls"]);
+        }
+      } // import { AuthService } from 'src/app/core/service/auth.service';
+
+
+      var _AttendanceApprovedComponent = /*#__PURE__*/function () {
+        function _AttendanceApprovedComponent(snackBar, authService, classRoutineService, datepipe, confirmService, traineeNominationService, CodeValueService, AttendanceService, fb, router, route) {
+          _classCallCheck(this, _AttendanceApprovedComponent);
+
+          this.snackBar = snackBar;
+          this.authService = authService;
+          this.classRoutineService = classRoutineService;
+          this.datepipe = datepipe;
+          this.confirmService = confirmService;
+          this.traineeNominationService = traineeNominationService;
+          this.CodeValueService = CodeValueService;
+          this.AttendanceService = AttendanceService;
+          this.fb = fb;
+          this.router = router;
+          this.route = route;
+          this.masterData = _assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.validationErrors = [];
+          this.isShown = false;
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+          this.searchText = ""; //checked = false;
+          // selection = new SelectionModel<Attendance>(true, []);
+
+          this.displayedColumns = ['ser', 'traineePNo', 'attendanceStatus', 'bnaAttendanceRemarksId'];
+        }
+
+        _createClass(_AttendanceApprovedComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this2 = this;
+
+            this.role = this.authService.currentUserValue.role.trim();
+            this.traineeId = this.authService.currentUserValue.traineeId.trim();
+            this.branchId = this.authService.currentUserValue.branchId.trim();
+            console.log(this.role, this.traineeId, this.branchId);
+            var id = this.route.snapshot.paramMap.get('attendanceId');
+
+            if (id) {
+              this.pageTitle = 'Edit Bna Attendance';
+              this.destination = "Edit";
+              this.buttonText = "Update";
+              this.AttendanceService.find(+id).subscribe(function (res) {
+                _this2.AttendanceForm.patchValue({
+                  attendanceId: res.attendanceId,
+                  classRoutineId: res.classRoutineId,
+                  baseSchoolNameId: res.baseSchoolNameId,
+                  courseNameId: res.courseNameId,
+                  bnaSubjectNameId: res.bnaSubjectNameId,
+                  classPeriodId: res.classPeriodId,
+                  attendanceDate: res.attendanceDate,
+                  classLeaderName: res.classLeaderName,
+                  isApproved: res.isApproved,
+                  approvedUser: res.approvedUser,
+                  approvedDate: res.approvedDate,
+                  status: res.status,
+                  menuPosition: res.menuPosition,
+                  isActive: res.isActive
+                });
+              });
+            } else {
+              this.pageTitle = 'Approve Attendance';
+              this.destination = "Add";
+              this.buttonText = "Save";
+            }
+
+            this.intitializeForm();
+
+            if (this.role === 'Super Admin') {
+              this.AttendanceForm.get('baseSchoolNameId').setValue(this.branchId);
+              this.onBaseSchoolNameSelectionChangeGetCourse(this.branchId);
+            }
+
+            this.getselectedclassroutine();
+            this.getselectedbaseschools();
+            this.getselectedcoursename();
+            this.getselectedbnasubjectname();
+            this.getselectedclassperiod();
+            this.getselectedbnaattendanceremark(); // this.getAttendanceListForUpdate();
+          }
+        }, {
+          key: "intitializeForm",
+          value: function intitializeForm() {
+            this.AttendanceForm = this.fb.group({
+              attendanceId: [0],
+              baseSchoolNameId: [''],
+              courseNameId: [''],
+              classPeriodId: [''],
+              attendanceDate: [],
+              traineeListForm: this.fb.array([this.createTraineeData()])
+            });
+          }
+        }, {
+          key: "getControlLabel",
+          value: function getControlLabel(index, type) {
+            return this.AttendanceForm.get('traineeListForm').at(index).get(type).value;
+          }
+        }, {
+          key: "createTraineeData",
+          value: function createTraineeData() {
+            return this.fb.group({
+              attendanceId: [],
+              baseSchoolNameId: [''],
+              courseNameId: [''],
+              classPeriodId: [''],
+              bnaSubjectNameId: [''],
+              classRoutineId: [''],
+              courseDurationId: [''],
+              attendanceDate: [],
+              attendanceStatus: [''],
+              bnaAttendanceRemarksId: [''],
+              traineeId: [''],
+              traineePNo: [''],
+              traineeName: [''],
+              classLeaderName: [''],
+              rankPosition: [''],
+              dateCreated: [],
+              createdBy: []
+            });
+          }
+        }, {
+          key: "clearList",
+          value: function clearList() {
+            var control = this.AttendanceForm.controls["traineeListForm"];
+
+            while (control.length) {
+              control.removeAt(control.length - 1);
+            }
+
+            control.clearValidators();
+          }
+        }, {
+          key: "getTraineeListonClick",
+          value: function getTraineeListonClick() {
+            var control = this.AttendanceForm.controls["traineeListForm"]; // console.log(this.dataSource)   
+
+            for (var i = 0; i < this.dataSource.length; i++) {
+              control.push(this.createTraineeData()); //  console.log(this.dataSource[i])
+            }
+
+            this.AttendanceForm.patchValue({
+              traineeListForm: this.dataSource
+            });
+          } // getAttendanceListForUpdate() {
+          //   this.AttendanceService.getAttendanceListForUpdate(this.paging.pageIndex, this.paging.pageSize,this.searchText,baseSchoolNameId,courseNameId,classPeriodId).subscribe(response => {
+          //   this.dataSource = response.items; 
+          //   this.paging.length = response.totalItemsCount    
+          //   this.getTraineeListonClick();
+          //    console.log(this.dataSource);
+          //   })
+          // }
+
+        }, {
+          key: "onBaseSchoolNameSelectionChangeGetCourse",
+          value: function onBaseSchoolNameSelectionChangeGetCourse(baseSchoolNameId) {
+            var _this3 = this;
+
+            this.AttendanceService.getCourseByBaseSchoolNameId(baseSchoolNameId).subscribe(function (res) {
+              _this3.selectedCourse = res;
+            });
+          }
+        }, {
+          key: "f",
+          get: function get() {
+            return this.AttendanceForm.controls;
+          }
+        }, {
+          key: "t",
+          get: function get() {
+            return this.f.traineeLists;
+          }
+        }, {
+          key: "onClassPeriodSelectionChangeGetCourseDuration",
+          value: function onClassPeriodSelectionChangeGetCourseDuration() {
+            var _this4 = this;
+
+            var baseSchoolNameId = this.AttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.AttendanceForm.value['courseNameId'];
+            var classPeriodId = this.AttendanceForm.value['classPeriodId'];
+            var date = this.AttendanceForm.value['attendanceDate'];
+            var formatedDate = this.datepipe.transform(date, 'MM/dd/yyyy'); // this.classRoutineService.getSubjectNameFromRoutine(baseSchoolNameId,courseNameId,formatedDate,classPeriodId).subscribe(res=>{
+            //   this.subjectNamefromClassRoutine=res;
+            //         for (let i =0; i < this.subjectNamefromClassRoutine.length; i++) {
+            //               this.bnaSubjectNameId= this.subjectNamefromClassRoutine[i].value
+            //              }  
+            // })
+
+            this.classRoutineService.getSelectedRoutineId(baseSchoolNameId, courseNameId, classPeriodId).subscribe(function (res) {
+              _this4.classRoutineId = res;
+            });
+
+            if (baseSchoolNameId != null && courseNameId != null && classPeriodId != null) {
+              this.AttendanceService.getSelectedCourseDurationByParameterRequestFromClassRoutine(baseSchoolNameId, courseNameId, classPeriodId).subscribe(function (res) {
+                _this4.selectedCourseDurationByParameterRequest = res;
+
+                _this4.traineeNominationService.getTraineeNominationByCourseDurationId(_this4.selectedCourseDurationByParameterRequest).subscribe(function (res) {
+                  _this4.traineeNominationListForAttendance = res;
+                });
+              });
+            }
+
+            this.isShown = true;
+            this.clearList();
+            this.AttendanceService.getAttendanceListForUpdate(this.paging.pageIndex, this.paging.pageSize, this.searchText, baseSchoolNameId, courseNameId, classPeriodId).subscribe(function (response) {
+              _this4.dataSource = response.items;
+              _this4.paging.length = response.totalItemsCount;
+
+              _this4.getTraineeListonClick();
+
+              console.log(_this4.dataSource);
+            });
+          }
+        }, {
+          key: "onDateSelectionChange",
+          value: function onDateSelectionChange(event) {
+            var _this5 = this;
+
+            var date = this.datepipe.transform(event.value, 'MM/dd/yyyy');
+            console.log(date);
+            var baseSchoolNameId = this.AttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.AttendanceForm.value['courseNameId'];
+            console.log(baseSchoolNameId + " -" + courseNameId);
+
+            if (baseSchoolNameId != null && courseNameId != null) {
+              this.AttendanceService.getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendances(baseSchoolNameId, courseNameId, date).subscribe(function (res) {
+                _this5.selectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendanceApprove = res;
+                console.log(_this5.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId);
+              });
+            }
+          }
+        }, {
+          key: "onCourseNameSelectionChangeGetClassPeriod",
+          value: function onCourseNameSelectionChangeGetClassPeriod() {}
+        }, {
+          key: "getselectedclassroutine",
+          value: function getselectedclassroutine() {
+            var _this6 = this;
+
+            this.AttendanceService.getselectedclassroutine().subscribe(function (res) {
+              _this6.selectedclassroutine = res;
+            });
+          }
+        }, {
+          key: "getselectedbaseschools",
+          value: function getselectedbaseschools() {
+            var _this7 = this;
+
+            this.AttendanceService.getselectedbaseschools().subscribe(function (res) {
+              _this7.selectedbaseschools = res;
+            });
+          }
+        }, {
+          key: "getselectedcoursename",
+          value: function getselectedcoursename() {
+            var _this8 = this;
+
+            this.AttendanceService.getselectedcoursename().subscribe(function (res) {
+              _this8.selectedcoursename = res;
+            });
+          }
+        }, {
+          key: "getselectedbnasubjectname",
+          value: function getselectedbnasubjectname() {
+            var _this9 = this;
+
+            this.AttendanceService.getselectedbnasubjectname().subscribe(function (res) {
+              _this9.selectedbnasubjectname = res;
+            });
+          }
+        }, {
+          key: "getselectedclassperiod",
+          value: function getselectedclassperiod() {
+            var _this10 = this;
+
+            this.AttendanceService.getselectedclassperiod().subscribe(function (res) {
+              _this10.selectedclassperiod = res;
+            });
+          }
+        }, {
+          key: "getselectedbnaattendanceremark",
+          value: function getselectedbnaattendanceremark() {
+            var _this11 = this;
+
+            this.AttendanceService.getselectedbnaattendanceremark().subscribe(function (res) {
+              _this11.selectedbnaattendanceremark = res;
+            });
+          }
+        }, {
+          key: "onSubmit",
+          value: function onSubmit() {
+            var _this12 = this;
+
+            var id = this.AttendanceForm.get('attendanceId').value; //console.log(this.AttendanceForm.value);
+            // var classLeaderName= this.AttendanceForm.value['classLeaderName'];
+            // var attendanceDate= this.AttendanceForm.value['attendanceDate'];
+            // var baseSchoolNameId=this.AttendanceForm.value['baseSchoolNameId'];
+            // var classPeriodId = this.AttendanceForm.value['classPeriodId'];
+            //  for (let i = 0; i < this.traineeNominationListForAttendance.length; i++) {
+            //   this.traineeNominationListForAttendance[i]["classLeaderName"] = classLeaderName;
+            //   this.traineeNominationListForAttendance[i]["attendanceDate"] = this.datepipe.transform((new Date), 'MM/dd/yyyy');
+            //   this.traineeNominationListForAttendance[i]["bnaSubjectNameId"] = this.bnaSubjectNameId; 
+            //   this.traineeNominationListForAttendance[i]["baseSchoolNameId"] = baseSchoolNameId;
+            //   this.traineeNominationListForAttendance[i]["classPeriodId"] = classPeriodId;
+            //   this.traineeNominationListForAttendance[i]["classRoutineId"] = this.classRoutineId;
+            // }
+
+            if (id) {
+              this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(function (result) {
+                // console.log(result);
+                if (result) {
+                  console.log("dd");
+
+                  _this12.AttendanceService.updateAttendanceList(JSON.stringify(_this12.AttendanceForm.value)).subscribe(function (response) {
+                    _this12.router.navigateByUrl('/bnaattendance-management/bnaattendance-approved');
+
+                    _this12.snackBar.open('Information Updated Successfully ', '', {
+                      duration: 2000,
+                      verticalPosition: 'bottom',
+                      horizontalPosition: 'right',
+                      panelClass: 'snackbar-success'
+                    });
+                  }, function (error) {
+                    _this12.validationErrors = error;
+                  });
+                }
+              });
+            } else {
+              this.AttendanceService.updateAttendanceList(JSON.stringify(this.AttendanceForm.value)).subscribe(function (response) {
+                // this.router.navigateByUrl('/attendance-management/add-attendance');
+                // this.AttendanceForm.reset();
+                // this.AttendanceForm.get('attendanceId').setValue(0);
+                // this.AttendanceForm.get('isActive').setValue(true);
+                _this12.snackBar.open('Information Inserted Successfully ', '', {
+                  duration: 2000,
+                  verticalPosition: 'bottom',
+                  horizontalPosition: 'right',
+                  panelClass: 'snackbar-success'
+                });
+              }, function (error) {
+                _this12.validationErrors = error;
+              });
+            }
+          }
+        }]);
+
+        return _AttendanceApprovedComponent;
+      }();
+
+      _AttendanceApprovedComponent.ɵfac = function AttendanceApprovedComponent_Factory(t) {
+        return new (t || _AttendanceApprovedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_src_app_core_service_auth_service__WEBPACK_IMPORTED_MODULE_1__.AuthService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_2__.ClassRoutineService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_9__.DatePipe), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_3__.ConfirmService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_4__.TraineeNominationService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_5__.CodeValueService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_service_attendance_service__WEBPACK_IMPORTED_MODULE_6__.AttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute));
+      };
+
+      _AttendanceApprovedComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({
+        type: _AttendanceApprovedComponent,
+        selectors: [["app-attendance-approved"]],
+        decls: 58,
+        vars: 11,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "row", "clearfix"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12"], [1, "card"], [1, "header"], [1, "body"], [1, "m-4", 3, "formGroup", "ngSubmit"], [1, "form-border-design", "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["class", "col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2", 4, "ngIf"], [1, "col-xl-3", "col-lg-3", "col-md-3", "col-sm-12", "mb-2"], ["appearance", "outline", 1, "example-full-width", "mb-3"], ["formControlName", "courseNameId", 3, "selectionChange"], ["value", "0"], [3, "value", 4, "ngFor", "ngForOf"], ["matInput", "", "formControlName", "attendanceDate", 3, "matDatepicker", "dateChange"], ["matSuffix", "", 3, "for"], ["atpicker", ""], ["formControlName", "classPeriodId", 3, "selectionChange"], [1, "col-xl-6", "col-lg-6", "col-md-6", "col-sm-12", "mb-2"], ["class", "cls-header", 4, "ngFor", "ngForOf"], ["class", "row clearfix", 4, "ngIf"], [1, "row", "mt-2"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["mat-raised-button", "", "color", "primary", 1, "btn-space", 3, "disabled"], ["formControlName", "baseSchoolNameId", 3, "selectionChange"], [3, "value"], [1, "cls-header"], [1, "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12", "p-0", "ex-mrk-entry-li"], [1, "body", "table-responsive"], [1, "table", "ex-mrk-entry"], [1, "cl-srl"], [1, "cl-nm-rnk"], [1, "cl-mrk"], [1, "cl-mrk-rmrk"], [3, "formGroup", 4, "ngFor", "ngForOf"], [3, "formGroup"], ["scope", "row", 1, "cl-srl"], [1, "t-n-pno-d"], ["matInput", "", "type", "text", "formControlName", "classLeaderName"], ["formControlName", "attendanceStatus", 3, "ngClass"], ["checkBox", ""], ["formControlName", "bnaAttendanceRemarksId"], ["value", ""]],
+        template: function AttendanceApprovedComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](14, "Bna Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](17, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](18, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](19, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](20, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](21, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](22, "form", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngSubmit", function AttendanceApprovedComponent_Template_form_ngSubmit_22_listener() {
+              return ctx.onSubmit();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](24, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](25, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](26, AttendanceApprovedComponent_div_26_Template, 6, 1, "div", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](28, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](29, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](30, "Course Name");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](31, "mat-select", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function AttendanceApprovedComponent_Template_mat_select_selectionChange_31_listener() {
+              return ctx.onCourseNameSelectionChangeGetClassPeriod();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](32, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](33, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](34, AttendanceApprovedComponent_mat_option_34_Template, 2, 2, "mat-option", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](35, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](36, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](37, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](38, "Attendance Date");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](39, "input", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("dateChange", function AttendanceApprovedComponent_Template_input_dateChange_39_listener($event) {
+              return ctx.onDateSelectionChange($event);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](40, "mat-datepicker-toggle", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](41, "mat-datepicker", null, 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](43, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](44, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](45, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](46, "Class Period");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](47, "mat-select", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function AttendanceApprovedComponent_Template_mat_select_selectionChange_47_listener() {
+              return ctx.onClassPeriodSelectionChangeGetCourseDuration();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](48, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](49, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](50, AttendanceApprovedComponent_mat_option_50_Template, 2, 2, "mat-option", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](51, "div", 31);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](52, AttendanceApprovedComponent_h5_52_Template, 4, 1, "h5", 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](53, AttendanceApprovedComponent_div_53_Template, 24, 1, "div", 33);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](54, "div", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](55, "div", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](56, "button", 36);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](57, "Approved");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            var _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵreference"](42);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](ctx.pageTitle);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](ctx.destination);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("formGroup", ctx.AttendanceForm);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.role != "Super Admin");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.selectedCourse);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matDatepicker", _r2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("for", _r2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.selectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendanceApprove);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.subjectNamefromClassRoutine);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.isShown);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("disabled", !ctx.AttendanceForm.valid);
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormGroupDirective, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgIf, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_13__.MatSelect, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormControlName, _angular_material_core__WEBPACK_IMPORTED_MODULE_14__.MatOption, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_material_input__WEBPACK_IMPORTED_MODULE_15__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.DefaultValueAccessor, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepickerInput, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepickerToggle, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatSuffix, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepicker, _angular_material_button__WEBPACK_IMPORTED_MODULE_17__.MatButton, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__.MatCheckbox, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgClass],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    39669:
+    /*!**************************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/attendance/attendance-instructor/attendance-instructor.component.ts ***!
+      \**************************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "AttendanceInstructorComponent": function AttendanceInstructorComponent() {
+          return (
+            /* binding */
+            _AttendanceInstructorComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ../../../../../src/assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var _src_app_routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../../../../src/app/routine-management/service/classroutine.service */
+      60616);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+      /* harmony import */
+
+
+      var _src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../../../../../src/app/core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var _src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../../../../../src/app/course-management/service/traineenomination.service */
+      22247);
+      /* harmony import */
+
+
+      var _basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../../../basic-setup/service/codevalue.service */
+      88509);
+      /* harmony import */
+
+
+      var _service_attendance_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../../service/attendance.service */
+      73224);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/material/form-field */
+      98295);
+      /* harmony import */
+
+
+      var _angular_material_select__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/material/select */
+      67441);
+      /* harmony import */
+
+
+      var _angular_material_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! @angular/material/core */
+      5015);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095); // import { CodeValueService } from 'src/app/basic-setup/service/codevalue.service';
+
+
+      function AttendanceInstructorComponent_mat_option_33_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 31);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("onSelectionChange", function AttendanceInstructorComponent_mat_option_33_Template_mat_option_onSelectionChange_0_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵrestoreView"](_r5);
+
+            var ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+            return ctx_r4.onClassPeriodSelectionChangeGetCourseDuration($event);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r3 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate2"](" ", dropdown_r3.periodName + "_", " ", dropdown_r3.subjectName, " ");
+        }
+      }
+
+      function AttendanceInstructorComponent_h5_35_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "h5", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Subject Name : ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "span");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r6 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](dropdown_r6.text);
+        }
+      }
+
+      function AttendanceInstructorComponent_div_36_tr_23_mat_option_14_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r11 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r11.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r11.text, " ");
+        }
+      }
+
+      function AttendanceInstructorComponent_div_36_tr_23_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "tr", 42);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "th", 43);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](3, "td", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](5, "span", 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](7, "td", 39);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](8, "input", 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](9, "td", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](10, "mat-form-field", 22);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](11, "mat-select", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](12, "mat-option", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](13, "--Select--");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](14, AttendanceInstructorComponent_div_36_tr_23_mat_option_14_Template, 2, 2, "mat-option", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var unit_r8 = ctx.$implicit;
+          var i_r9 = ctx.index;
+
+          var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("formGroup", unit_r8);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](i_r9 + 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate2"](" ", ctx_r7.getControlLabel(i_r9, "rankPosition"), " - ", ctx_r7.getControlLabel(i_r9, "traineeName"), " - ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"]("(P No ", ctx_r7.getControlLabel(i_r9, "traineePNo"), ")");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx_r7.selectedbnaattendanceremark);
+        }
+      }
+
+      function AttendanceInstructorComponent_div_36_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "div", 14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "h3", 33);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](3, "Trainee List");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](4, "div", 34);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](5, "div", 16);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](6, "div", 35);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](7, "table", 36);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](8, "thead");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](9, "tr");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](10, "th", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](11, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](12, "Ser");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](13, "th", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](14, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](15, "Name & Rank");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](16, "th", 39);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](17, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](18, "Attendance Status");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](19, "th", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](20, "h5");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](21, "Attendance Remarks");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](22, "tbody");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](23, AttendanceInstructorComponent_div_36_tr_23_Template, 15, 6, "tr", 41);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx_r2.AttendanceForm.get("traineeListForm")["controls"]);
+        }
+      }
+
+      var _c0 = function _c0(a1) {
+        return ["/admin/dashboard/instructor-dashboard", a1];
+      };
+
+      var _AttendanceInstructorComponent = /*#__PURE__*/function () {
+        function _AttendanceInstructorComponent(snackBar, classRoutineService, datepipe, confirmService, traineeNominationService, CodeValueService, AttendanceService, fb, router, route) {
+          _classCallCheck(this, _AttendanceInstructorComponent);
+
+          this.snackBar = snackBar;
+          this.classRoutineService = classRoutineService;
+          this.datepipe = datepipe;
+          this.confirmService = confirmService;
+          this.traineeNominationService = traineeNominationService;
+          this.CodeValueService = CodeValueService;
+          this.AttendanceService = AttendanceService;
+          this.fb = fb;
+          this.router = router;
+          this.route = route;
+          this.masterData = _src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.validationErrors = [];
+          this.isShown = false;
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+          this.searchText = ""; //checked = false;
+          // selection = new SelectionModel<Attendance>(true, []);
+
+          this.displayedColumns = ['ser', 'traineePNo', 'attendanceStatus', 'bnaAttendanceRemarksId'];
+        }
+
+        _createClass(_AttendanceInstructorComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this13 = this;
+
+            this.traineeId = this.route.snapshot.paramMap.get('traineeId');
+            var id = this.route.snapshot.paramMap.get('attendanceId');
+
+            if (id) {
+              this.pageTitle = 'Edit Attendance Instructor';
+              this.destination = "Edit";
+              this.buttonText = "Update";
+              this.AttendanceService.find(+id).subscribe(function (res) {
+                _this13.AttendanceForm.patchValue({
+                  attendanceId: res.attendanceId,
+                  classRoutineId: res.classRoutineId,
+                  baseSchoolNameId: res.baseSchoolNameId,
+                  courseNameId: res.courseNameId,
+                  bnaSubjectNameId: res.bnaSubjectNameId,
+                  classPeriodId: res.classPeriodId,
+                  attendanceDate: res.attendanceDate,
+                  classLeaderName: res.classLeaderName,
+                  isApproved: res.isApproved,
+                  approvedUser: res.approvedUser,
+                  approvedDate: res.approvedDate,
+                  status: res.status,
+                  menuPosition: res.menuPosition,
+                  isActive: res.isActive
+                });
+              });
+            } else {
+              this.pageTitle = 'Attendance Instructor';
+              this.destination = "Add";
+              this.buttonText = "Save";
+            }
+
+            this.intitializeForm(); //  this.getselectedclassroutine();
+            //  this.getselectedbaseschools();
+            //  this.getselectedcoursename();
+            //  this.getselectedbnasubjectname();
+
+            this.getselectedclassperiod(this.traineeId);
+            this.getselectedbnaattendanceremark(); // this.getAttendanceListForUpdate();
+          }
+        }, {
+          key: "intitializeForm",
+          value: function intitializeForm() {
+            this.AttendanceForm = this.fb.group({
+              attendanceId: [0],
+              baseSchoolNameId: [''],
+              courseDurationId: [''],
+              classPeriodIds: [''],
+              bnaSubjectNameId: [''],
+              classRoutineId: [''],
+              courseNameId: [''],
+              attendanceDate: [],
+              traineeListForm: this.fb.array([this.createTraineeData()])
+            });
+          }
+        }, {
+          key: "getControlLabel",
+          value: function getControlLabel(index, type) {
+            return this.AttendanceForm.get('traineeListForm').at(index).get(type).value;
+          }
+        }, {
+          key: "createTraineeData",
+          value: function createTraineeData() {
+            return this.fb.group({
+              attendanceId: [],
+              baseSchoolNameId: [''],
+              courseNameId: [''],
+              classPeriodId: [''],
+              //  bnaSubjectNameId:[''],
+              classRoutineId: [''],
+              courseDurationId: [''],
+              attendanceDate: [],
+              attendanceStatus: [''],
+              bnaAttendanceRemarksId: [''],
+              traineeId: [''],
+              traineePNo: [''],
+              traineeName: [''],
+              classLeaderName: [''],
+              rankPosition: [''],
+              dateCreated: [],
+              createdBy: []
+            });
+          }
+        }, {
+          key: "clearList",
+          value: function clearList() {
+            var control = this.AttendanceForm.controls["traineeListForm"];
+
+            while (control.length) {
+              control.removeAt(control.length - 1);
+            }
+
+            control.clearValidators();
+          }
+        }, {
+          key: "getTraineeListonClick",
+          value: function getTraineeListonClick() {
+            var control = this.AttendanceForm.controls["traineeListForm"]; // console.log(this.dataSource)   
+
+            for (var i = 0; i < this.traineeNominationListForAttendance.length; i++) {
+              control.push(this.createTraineeData()); //  console.log(this.dataSource[i])
+            }
+
+            this.AttendanceForm.patchValue({
+              traineeListForm: this.traineeNominationListForAttendance
+            });
+          }
+        }, {
+          key: "getselectedclassperiod",
+          value: function getselectedclassperiod(traineeId) {
+            var _this14 = this;
+
+            this.AttendanceService.getSelectedClassPeriodForAttendanceInstructorBySpRequest(traineeId).subscribe(function (res) {
+              _this14.selectedclassperiod = res;
+              console.log("Seleted Class period");
+              console.log(_this14.selectedclassperiod);
+            });
+          } // getAttendanceListForUpdate() {
+          //   this.AttendanceService.getAttendanceListForUpdate(this.paging.pageIndex, this.paging.pageSize,this.searchText,baseSchoolNameId,courseNameId,classPeriodId).subscribe(response => {
+          //   this.dataSource = response.items; 
+          //   this.paging.length = response.totalItemsCount    
+          //   this.getTraineeListonClick();
+          //    console.log(this.dataSource);
+          //   })
+          // }
+          // onBaseSchoolNameSelectionChangeGetCourse(baseSchoolNameId){
+          //     this.AttendanceService.getCourseByBaseSchoolNameId(baseSchoolNameId).subscribe(res=>{
+          //       this.selectedCourse=res
+          //     });
+          //    }
+          // get f() { return this.AttendanceForm.controls; }
+          // get t() { return this.f.traineeLists as FormArray; }
+
+        }, {
+          key: "onClassPeriodSelectionChangeGetCourseDuration",
+          value: function onClassPeriodSelectionChangeGetCourseDuration(dropdown) {
+            var _this15 = this;
+
+            if (dropdown.isUserInput) {
+              // var courseNameArr = dropdown.source.value.value.split('_');
+              // var courseNameTextArr = dropdown.source.value.text.split('_');
+              // var courseName = courseNameTextArr[0];
+              // var coursetitle = courseNameTextArr[1];
+              // var courseDurationId=courseNameArr[0];
+              // var courseNameId=courseNameArr[1];
+              var courseDurationId = dropdown.source.value.courseDurationId;
+              var classPeriodId = dropdown.source.value.classPeriodId;
+              var classRoutineId = dropdown.source.value.classRoutineId;
+              var baseSchoolNameId = dropdown.source.value.baseSchoolNameId;
+              var courseNameId = dropdown.source.value.courseNameId;
+              var bnaSubjectNameId = dropdown.source.value.bnaSubjectNameId; //set value to form
+
+              this.AttendanceForm.get('courseDurationId').setValue(courseDurationId);
+              this.AttendanceForm.get('classPeriodIds').setValue(classPeriodId);
+              this.AttendanceForm.get('classRoutineId').setValue(classRoutineId);
+              this.AttendanceForm.get('courseNameId').setValue(courseNameId);
+              this.AttendanceForm.get('baseSchoolNameId').setValue(baseSchoolNameId);
+              this.AttendanceForm.get('bnaSubjectNameId').setValue(bnaSubjectNameId);
+              console.log("Class period Id");
+              console.log(baseSchoolNameId);
+              this.isShown = true;
+              this.clearList();
+              this.traineeNominationService.getTraineeNominationByCourseDurationId(courseDurationId).subscribe(function (res) {
+                _this15.traineeNominationListForAttendance = res;
+
+                _this15.getTraineeListonClick();
+
+                console.log("Trainee Nomination list");
+                console.log(_this15.traineeNominationListForAttendance);
+              }); // var baseSchoolNameId=this.AttendanceForm.value['baseSchoolNameId'];
+              // var courseNameId=this.AttendanceForm.value['courseNameId']; 
+              // var classPeriodId=this.AttendanceForm.value['classPeriodId']; 
+              // var date=this.AttendanceForm.value['attendanceDate']; 
+              // var  formatedDate=this.datepipe.transform((date), 'MM/dd/yyyy');
+              // this.classRoutineService.getSubjectNameFromRoutine(baseSchoolNameId,courseNameId,formatedDate,classPeriodId).subscribe(res=>{
+              //   this.subjectNamefromClassRoutine=res;
+              //         for (let i =0; i < this.subjectNamefromClassRoutine.length; i++) {
+              //               this.bnaSubjectNameId= this.subjectNamefromClassRoutine[i].value
+              //              }  
+              // })
+              // this.classRoutineService.getSelectedRoutineId(baseSchoolNameId,courseNameId,classPeriodId).subscribe(res=>{
+              //   this.classRoutineId=res;
+              // })
+              //  if(baseSchoolNameId != null && courseNameId != null && classPeriodId !=null){
+              //   this.AttendanceService.getSelectedCourseDurationByParameterRequestFromClassRoutine(baseSchoolNameId,courseNameId,classPeriodId).subscribe(res=>{
+              //     this.selectedCourseDurationByParameterRequest=res;  
+              //    this.traineeNominationService.getTraineeNominationByCourseDurationId(this.selectedCourseDurationByParameterRequest).subscribe(res=>{
+              //     this.traineeNominationListForAttendance=res; 
+              //    });
+              //   });
+              // }  
+              // this.isShown=true;
+              // this.clearList();
+              //   this.AttendanceService.getAttendanceListForUpdate(this.paging.pageIndex, this.paging.pageSize,this.searchText,baseSchoolNameId,courseNameId,classPeriodId).subscribe(response => {
+              //   this.dataSource = response.items; 
+              //   this.paging.length = response.totalItemsCount    
+              //   this.getTraineeListonClick();
+              //    console.log(this.dataSource);
+              //   })
+            }
+          } //  onDateSelectionChange(event){
+          //   var date=this.datepipe.transform((event.value), 'MM/dd/yyyy');
+          //        console.log(date);
+          //        var baseSchoolNameId=this.AttendanceForm.value['baseSchoolNameId'];
+          //        var courseNameId=this.AttendanceForm.value['courseNameId'];
+          //         console.log(baseSchoolNameId +" -"+courseNameId);
+          //         if(baseSchoolNameId != null && courseNameId != null){
+          //           this.AttendanceService.getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendances(baseSchoolNameId,courseNameId,date).subscribe(res=>{
+          //             this.selectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendanceApprove=res;     
+          //             console.log( this.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId); 
+          //           });
+          //         }  
+          //  }
+          //  onCourseNameSelectionChangeGetClassPeriod(){
+          //  }
+          // getselectedclassroutine(){
+          //   this.AttendanceService.getselectedclassroutine().subscribe(res=>{
+          //     this.selectedclassroutine=res
+          //   });
+          // } 
+          // getselectedbaseschools(){
+          //   this.AttendanceService.getselectedbaseschools().subscribe(res=>{
+          //     this.selectedbaseschools=res
+          //   });
+          // } 
+          // getselectedcoursename(){
+          //   this.AttendanceService.getselectedcoursename().subscribe(res=>{
+          //     this.selectedcoursename=res
+          //   });
+          // }
+          // getselectedbnasubjectname(){
+          //   this.AttendanceService.getselectedbnasubjectname().subscribe(res=>{
+          //     this.selectedbnasubjectname=res
+          //   });
+          // }
+
+        }, {
+          key: "getselectedbnaattendanceremark",
+          value: function getselectedbnaattendanceremark() {
+            var _this16 = this;
+
+            this.AttendanceService.getselectedbnaattendanceremark().subscribe(function (res) {
+              _this16.selectedbnaattendanceremark = res;
+            });
+          }
+        }, {
+          key: "onSubmit",
+          value: function onSubmit() {
+            var _this17 = this;
+
+            var id = this.AttendanceForm.get('attendanceId').value; // if(this.AttendanceForm.get('attendanceStatus').value === null){
+            //   this.AttendanceForm.get('attendanceStatus').setValue(false);
+            // }
+
+            console.log(this.AttendanceForm.value); //console.log(this.AttendanceForm.value);
+            // var classLeaderName= this.AttendanceForm.value['classLeaderName'];
+            // var attendanceDate= this.AttendanceForm.value['attendanceDate'];
+            // var baseSchoolNameId=this.AttendanceForm.value['baseSchoolNameId'];
+            // var classPeriodId = this.AttendanceForm.value['classPeriodId'];
+            //  for (let i = 0; i < this.traineeNominationListForAttendance.length; i++) {
+            //   this.traineeNominationListForAttendance[i]["classLeaderName"] = classLeaderName;
+            //   this.traineeNominationListForAttendance[i]["attendanceDate"] = this.datepipe.transform((new Date), 'MM/dd/yyyy');
+            //   this.traineeNominationListForAttendance[i]["bnaSubjectNameId"] = this.bnaSubjectNameId; 
+            //   this.traineeNominationListForAttendance[i]["baseSchoolNameId"] = baseSchoolNameId;
+            //   this.traineeNominationListForAttendance[i]["classPeriodId"] = classPeriodId;
+            //   this.traineeNominationListForAttendance[i]["classRoutineId"] = this.classRoutineId;
+            // }
+
+            if (id) {
+              this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(function (result) {
+                console.log(result);
+
+                if (result) {
+                  console.log("dd");
+
+                  _this17.AttendanceService.updateAttendanceList(JSON.stringify(_this17.AttendanceForm.value)).subscribe(function (response) {
+                    _this17.router.navigateByUrl('/attendance-management/add-attendance');
+
+                    _this17.snackBar.open('Information Updated Successfully ', '', {
+                      duration: 2000,
+                      verticalPosition: 'bottom',
+                      horizontalPosition: 'right',
+                      panelClass: 'snackbar-success'
+                    });
+                  }, function (error) {
+                    _this17.validationErrors = error;
+                  });
+                }
+              });
+            } else {
+              this.AttendanceService.submitAttendance(this.AttendanceForm.value).subscribe(function (response) {
+                // this.router.navigateByUrl('/attendance-management/add-attendance');
+                // this.AttendanceForm.reset();
+                // this.AttendanceForm.get('attendanceId').setValue(0);
+                // this.AttendanceForm.get('isActive').setValue(true);
+                _this17.snackBar.open('Information Inserted Successfully ', '', {
+                  duration: 2000,
+                  verticalPosition: 'bottom',
+                  horizontalPosition: 'right',
+                  panelClass: 'snackbar-success'
+                });
+              }, function (error) {
+                _this17.validationErrors = error;
+              });
+            }
+          }
+        }]);
+
+        return _AttendanceInstructorComponent;
+      }();
+
+      _AttendanceInstructorComponent.ɵfac = function AttendanceInstructorComponent_Factory(t) {
+        return new (t || _AttendanceInstructorComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_src_app_routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_1__.ClassRoutineService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_8__.DatePipe), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__.ConfirmService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_3__.TraineeNominationService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_4__.CodeValueService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_service_attendance_service__WEBPACK_IMPORTED_MODULE_5__.AttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_10__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_10__.ActivatedRoute));
+      };
+
+      _AttendanceInstructorComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineComponent"]({
+        type: _AttendanceInstructorComponent,
+        selectors: [["app-attendance-instructor"]],
+        decls: 43,
+        vars: 10,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "row", "clearfix"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12"], [1, "card"], [1, "header"], [1, "body"], [1, "m-4", 3, "formGroup", "ngSubmit"], [1, "form-border-design", "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], [1, "col-xl-6", "col-lg-6", "col-md-6", "col-sm-12", "mb-2"], ["appearance", "outline", 1, "example-full-width", "mb-3"], ["formControlName", "classPeriodId"], ["value", "0"], [3, "value", "onSelectionChange", 4, "ngFor", "ngForOf"], ["class", "cls-header", 4, "ngFor", "ngForOf"], ["class", "row clearfix", 4, "ngIf"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["mat-raised-button", "", "color", "primary", 1, "btn-space", 3, "disabled"], ["mat-raised-button", "", "color", "warn", 1, "btn-space", 3, "routerLink"], [3, "value", "onSelectionChange"], [1, "cls-header"], [1, "mt-2"], [1, "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12", "p-0", "ex-mrk-entry-li"], [1, "body", "table-responsive"], [1, "table", "ex-mrk-entry"], [1, "cl-srl"], [1, "cl-nm-rnk"], [1, "cl-mrk"], [1, "cl-mrk-rmrk"], [3, "formGroup", 4, "ngFor", "ngForOf"], [3, "formGroup"], ["scope", "row", 1, "cl-srl"], [1, "t-n-pno-d"], ["type", "checkbox", "formControlName", "attendanceStatus"], ["formControlName", "bnaAttendanceRemarksId"], ["value", ""], [3, "value", 4, "ngFor", "ngForOf"], [3, "value"]],
+        template: function AttendanceInstructorComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](14, " Attendance Instructor");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](17, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](18, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](19, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](20, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](21, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](22, "form", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("ngSubmit", function AttendanceInstructorComponent_Template_form_ngSubmit_22_listener() {
+              return ctx.onSubmit();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](24, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](25, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](26, "div", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](27, "mat-form-field", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](28, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](29, "Class Period");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](30, "mat-select", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](31, "mat-option", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](32, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](33, AttendanceInstructorComponent_mat_option_33_Template, 2, 3, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](34, "div", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](35, AttendanceInstructorComponent_h5_35_Template, 4, 1, "h5", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](36, AttendanceInstructorComponent_div_36_Template, 24, 1, "div", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](37, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](38, "div", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](39, "button", 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](40, "Save");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](41, "button", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](42, "Back");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](ctx.pageTitle);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](ctx.destination);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("formGroup", ctx.AttendanceForm);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.selectedclassperiod);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.subjectNamefromClassRoutine);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngIf", ctx.isShown);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("disabled", !ctx.AttendanceForm.valid);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpureFunction1"](8, _c0, ctx.traineeId));
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_10__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormGroupDirective, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_12__.MatSelect, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormControlName, _angular_material_core__WEBPACK_IMPORTED_MODULE_13__.MatOption, _angular_common__WEBPACK_IMPORTED_MODULE_8__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_8__.NgIf, _angular_material_button__WEBPACK_IMPORTED_MODULE_14__.MatButton, _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouterLink, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.CheckboxControlValueAccessor],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    13102:
+    /*!**************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/attendance/attendance-list/attendance-list.component.ts ***!
+      \**************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "AttendanceListComponent": function AttendanceListComponent() {
+          return (
+            /* binding */
+            _AttendanceListComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/material/table */
+      32091);
+      /* harmony import */
+
+
+      var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/cdk/collections */
+      38345);
+      /* harmony import */
+
+
+      var src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var _service_attendance_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../service/attendance.service */
+      73224);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/material/icon */
+      76627);
+      /* harmony import */
+
+
+      var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/material/paginator */
+      99692);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+
+      function AttendanceListComponent_mat_header_cell_46_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " Ser: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_47_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var i_r21 = ctx.index;
+
+          var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", (ctx_r3.paging.pageIndex - 1) * ctx_r3.paging.pageSize + i_r21 + 1, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_49_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Class Routine ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_50_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](2, "date");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r22 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind2"](2, 1, element_r22.classRoutine, "mediumDate"), " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_52_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "School Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_53_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r23 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r23.baseSchoolName, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_55_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Course ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_56_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r24 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r24.courseName, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_58_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " Subject");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_59_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r25 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r25.bnaSubjectName, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_61_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Remarks ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_62_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r26 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r26.bnaAttendanceRemarks, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_64_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Attendance ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function AttendanceListComponent_mat_cell_65_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r27 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r27.attendanceStatus, " ");
+        }
+      }
+
+      function AttendanceListComponent_mat_header_cell_67_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Actions");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      var _c0 = function _c0(a1) {
+        return ["/attendance-management/update-attendance", a1];
+      };
+
+      function AttendanceListComponent_mat_cell_68_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r32 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](1, "button", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "mat-icon", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3, "edit");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function AttendanceListComponent_mat_cell_68_Template_button_click_4_listener($event) {
+            return $event.stopPropagation();
+          })("click", function AttendanceListComponent_mat_cell_68_Template_button_click_4_listener() {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r32);
+
+            var row_r28 = restoredCtx.$implicit;
+
+            var ctx_r31 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+
+            return ctx_r31.deleteItem(row_r28);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](5, "mat-icon", 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](6, "delete");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var row_r28 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpureFunction1"](1, _c0, row_r28.attendanceId));
+        }
+      }
+
+      function AttendanceListComponent_mat_header_row_69_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "mat-header-row");
+        }
+      }
+
+      function AttendanceListComponent_mat_row_70_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "mat-row");
+        }
+      }
+
+      var _AttendanceListComponent = /*#__PURE__*/function () {
+        function _AttendanceListComponent(snackBar, AttendanceService, router, confirmService) {
+          _classCallCheck(this, _AttendanceListComponent);
+
+          this.snackBar = snackBar;
+          this.AttendanceService = AttendanceService;
+          this.router = router;
+          this.confirmService = confirmService;
+          this.masterData = src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.ELEMENT_DATA = [];
+          this.isLoading = false;
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+          this.searchText = "";
+          this.displayedColumns = ['ser', 'classRoutine', 'baseSchoolName', 'courseName', 'bnaSubjectName', 'bnaAttendanceRemarks', 'attendanceStatus', 'actions'];
+          this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatTableDataSource();
+          this.selection = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_5__.SelectionModel(true, []);
+        }
+
+        _createClass(_AttendanceListComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            this.getAttendances();
+          }
+        }, {
+          key: "getAttendances",
+          value: function getAttendances() {
+            var _this18 = this;
+
+            this.isLoading = true;
+            this.AttendanceService.getAttendances(this.paging.pageIndex, this.paging.pageSize, this.searchText).subscribe(function (response) {
+              _this18.dataSource.data = response.items;
+              _this18.paging.length = response.totalItemsCount;
+              _this18.isLoading = false;
+            });
+          }
+        }, {
+          key: "pageChanged",
+          value: function pageChanged(event) {
+            this.paging.pageIndex = event.pageIndex;
+            this.paging.pageSize = event.pageSize;
+            this.paging.pageIndex = this.paging.pageIndex + 1;
+            this.getAttendances();
+          }
+        }, {
+          key: "applyFilter",
+          value: function applyFilter(searchText) {
+            this.searchText = searchText;
+            this.getAttendances();
+          }
+        }, {
+          key: "deleteItem",
+          value: function deleteItem(row) {
+            var _this19 = this;
+
+            var id = row.attendanceId;
+            this.confirmService.confirm('Confirm delete message', 'Are You Sure Delete This Item?').subscribe(function (result) {
+              console.log(result);
+
+              if (result) {
+                _this19.AttendanceService["delete"](id).subscribe(function () {
+                  _this19.getAttendances();
+
+                  _this19.snackBar.open('Information Deleted Successfully ', '', {
+                    duration: 3000,
+                    verticalPosition: 'bottom',
+                    horizontalPosition: 'right',
+                    panelClass: 'snackbar-danger'
+                  });
+                });
+              }
+            });
+          }
+        }]);
+
+        return _AttendanceListComponent;
+      }();
+
+      _AttendanceListComponent.ɵfac = function AttendanceListComponent_Factory(t) {
+        return new (t || _AttendanceListComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_6__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_service_attendance_service__WEBPACK_IMPORTED_MODULE_1__.AttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__.ConfirmService));
+      };
+
+      _AttendanceListComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({
+        type: _AttendanceListComponent,
+        selectors: [["app-attendance-list"]],
+        decls: 72,
+        vars: 8,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12"], [1, "card"], [1, "body"], [1, "responsive_table"], [1, "materialTableHeader"], [1, "col-8"], [1, "header-buttons-left", "ml-0"], [1, "dropdown"], ["placeholder", "Search", "type", "text", "aria-label", "Search box", 1, "browser-default", "search-field", 3, "ngModel", "ngModelChange"], ["filter", ""], [1, "icon-button-demo", "m-l-10"], ["mat-mini-fab", "", "color", "accent", 3, "click"], [1, "col-white"], [1, "col-4"], [1, "header-buttons"], [1, "icon-button-demo"], ["mat-raised-button", "", "color", "primary", "routerLink", "/attendance-management/add-attendance", 1, "btn-space"], ["matSort", "", 1, "mat-cell", 3, "dataSource"], ["table", ""], ["matColumnDef", "ser"], ["mat-sort-header", "", 4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "classRoutine"], ["matColumnDef", "baseSchoolName"], ["matColumnDef", "courseName"], ["matColumnDef", "bnaSubjectName"], ["matColumnDef", "bnaAttendanceRemarks"], ["matColumnDef", "attendanceStatus"], ["matColumnDef", "actions"], ["class", "pr-0", 4, "matHeaderCellDef"], ["class", "pr-0", 4, "matCellDef"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [3, "length", "showFirstLastButtons", "pageSize", "pageSizeOptions", "page"], ["mat-sort-header", ""], [1, "pr-0"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-edit", 3, "routerLink"], ["aria-label", "Edit", 1, "col-white"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-delete", 3, "click"], ["aria-label", "Delete", 1, "col-white"]],
+        template: function AttendanceListComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](8, " Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](14, " Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](16, "All");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](17, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](18, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](19, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](20, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](21, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](22, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](24, "div", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](25, "ul", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](26, "li", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](27, "li", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](28, "input", 22, 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("ngModelChange", function AttendanceListComponent_Template_input_ngModelChange_28_listener($event) {
+              return ctx.searchText = $event;
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](30, "li");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](31, "div", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](32, "button", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function AttendanceListComponent_Template_button_click_32_listener() {
+              return ctx.applyFilter(ctx.searchText);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](33, "mat-icon", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](34, "search");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](35, "div", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](36, "ul", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](37, "li");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](38, "div", 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](39, "button", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](40, " Add ");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](41, "mat-icon", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](42, "add");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](43, "mat-table", 31, 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](45, 33);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](46, AttendanceListComponent_mat_header_cell_46_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](47, AttendanceListComponent_mat_cell_47_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](48, 36);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](49, AttendanceListComponent_mat_header_cell_49_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](50, AttendanceListComponent_mat_cell_50_Template, 3, 4, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](51, 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](52, AttendanceListComponent_mat_header_cell_52_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](53, AttendanceListComponent_mat_cell_53_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](54, 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](55, AttendanceListComponent_mat_header_cell_55_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](56, AttendanceListComponent_mat_cell_56_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](57, 39);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](58, AttendanceListComponent_mat_header_cell_58_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](59, AttendanceListComponent_mat_cell_59_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](60, 40);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](61, AttendanceListComponent_mat_header_cell_61_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](62, AttendanceListComponent_mat_cell_62_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](63, 41);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](64, AttendanceListComponent_mat_header_cell_64_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](65, AttendanceListComponent_mat_cell_65_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](66, 42);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](67, AttendanceListComponent_mat_header_cell_67_Template, 2, 0, "mat-header-cell", 43);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](68, AttendanceListComponent_mat_cell_68_Template, 7, 3, "mat-cell", 44);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](69, AttendanceListComponent_mat_header_row_69_Template, 1, 0, "mat-header-row", 45);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](70, AttendanceListComponent_mat_row_70_Template, 1, 0, "mat-row", 46);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](71, "mat-paginator", 47);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("page", function AttendanceListComponent_Template_mat_paginator_page_71_listener($event) {
+              return ctx.pageChanged($event);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngModel", ctx.searchText);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("dataSource", ctx.dataSource);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("length", ctx.paging.length)("showFirstLastButtons", ctx.masterData.paging.showFirstLastButtons)("pageSize", ctx.paging.pageSize)("pageSizeOptions", ctx.masterData.paging.pageSizeOptions);
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgModel, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButton, _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__.MatIcon, _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterLink, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatRowDef, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_11__.MatPaginator, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatRow],
+        pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.DatePipe],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    59318:
+    /*!************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/attendance/new-attendance/new-attendance.component.ts ***!
+      \************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "NewAttendanceComponent": function NewAttendanceComponent() {
+          return (
+            /* binding */
+            _NewAttendanceComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var src_app_core_service_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! src/app/core/service/auth.service */
+      41782);
+      /* harmony import */
+
+
+      var src_app_routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/routine-management/service/classroutine.service */
+      60616);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+      /* harmony import */
+
+
+      var src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/course-management/service/traineenomination.service */
+      22247);
+      /* harmony import */
+
+
+      var src_app_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/basic-setup/service/codevalue.service */
+      88509);
+      /* harmony import */
+
+
+      var _service_attendance_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../../service/attendance.service */
+      73224);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/material/form-field */
+      98295);
+      /* harmony import */
+
+
+      var _angular_material_select__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! @angular/material/select */
+      67441);
+      /* harmony import */
+
+
+      var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @angular/material/core */
+      5015);
+      /* harmony import */
+
+
+      var _angular_material_input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @angular/material/input */
+      83166);
+      /* harmony import */
+
+
+      var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      /*! @angular/material/datepicker */
+      43220);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      /*! @angular/material/table */
+      32091);
+      /* harmony import */
+
+
+      var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+      /*! @angular/material/checkbox */
+      7539);
+
+      function NewAttendanceComponent_div_26_mat_option_7_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r8 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r8.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r8.text, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_26_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 22);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "mat-label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3, "School Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "mat-select", 36);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function NewAttendanceComponent_div_26_Template_mat_select_selectionChange_4_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r10);
+
+            var ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+            return ctx_r9.onBaseSchoolNameSelectionChangeGetCourse($event.value);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "mat-option", 25);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6, "--Select--");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](7, NewAttendanceComponent_div_26_mat_option_7_Template, 2, 2, "mat-option", 26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r0.selectedbaseschools);
+        }
+      }
+
+      function NewAttendanceComponent_mat_option_34_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r11 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r11.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r11.text, " ");
+        }
+      }
+
+      function NewAttendanceComponent_mat_option_50_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r12 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r12.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r12.text, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_51_h5_1_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "h5", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Subject Name : ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "span");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r14 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](dropdown_r14.text);
+        }
+      }
+
+      function NewAttendanceComponent_div_51_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, NewAttendanceComponent_div_51_h5_1_Template, 4, 1, "h5", 39);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r4.subjectNamefromClassRoutine);
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_header_cell_6_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Ser: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_cell_7_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var i_r27 = ctx.index;
+
+          var ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", (ctx_r17.paging.pageIndex - 1) * ctx_r17.paging.pageSize + i_r27 + 1, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_header_cell_9_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 56);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Rank & Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_cell_10_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell", 57);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "span", 58);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r28 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"]("", element_r28.rankPosition, " ", element_r28.traineeName, " ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" - ( P No ", element_r28.traineePNo, ")");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_header_cell_12_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Attendance Remarks");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_cell_13_mat_option_5_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r32 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r32.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r32.text, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_cell_13_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r34 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "mat-select", 59);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function NewAttendanceComponent_div_52_mat_cell_13_Template_mat_select_selectionChange_2_listener($event) {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r34);
+
+            var i_r30 = restoredCtx.index;
+
+            var ctx_r33 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+            return ctx_r33.onOptionsSelected(i_r30, $event.value);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "mat-option", 25);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4, "--Select--");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](5, NewAttendanceComponent_div_52_mat_cell_13_mat_option_5_Template, 2, 2, "mat-option", 26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r21.selectedbnaattendanceremark);
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_header_cell_15_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Attendance");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_cell_16_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r39 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-checkbox", 60, 61);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("change", function NewAttendanceComponent_div_52_mat_cell_16_Template_mat_checkbox_change_1_listener($event) {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r39);
+
+            var i_r36 = restoredCtx.index;
+
+            var ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+            return ctx_r38.onCheckboxChange(i_r36, $event);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r35 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("checked", element_r35.attendanceStatus)("ngClass", "tbl-checkbox");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_header_row_17_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "mat-header-row");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_mat_row_18_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "mat-row");
+        }
+      }
+
+      function NewAttendanceComponent_div_52_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 41);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "h4", 42);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Trainee List");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "mat-table", 43, 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](5, 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](6, NewAttendanceComponent_div_52_mat_header_cell_6_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](7, NewAttendanceComponent_div_52_mat_cell_7_Template, 2, 1, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](8, 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](9, NewAttendanceComponent_div_52_mat_header_cell_9_Template, 2, 0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](10, NewAttendanceComponent_div_52_mat_cell_10_Template, 4, 3, "mat-cell", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](11, 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](12, NewAttendanceComponent_div_52_mat_header_cell_12_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](13, NewAttendanceComponent_div_52_mat_cell_13_Template, 6, 1, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](14, 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](15, NewAttendanceComponent_div_52_mat_header_cell_15_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](16, NewAttendanceComponent_div_52_mat_cell_16_Template, 3, 2, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](17, NewAttendanceComponent_div_52_mat_header_row_17_Template, 1, 0, "mat-header-row", 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](18, NewAttendanceComponent_div_52_mat_row_18_Template, 1, 0, "mat-row", 54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("dataSource", ctx_r5.traineeNominationListForAttendance);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matHeaderRowDef", ctx_r5.displayedColumns);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matRowDefColumns", ctx_r5.displayedColumns);
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_header_cell_6_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Ser: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_cell_7_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var i_r53 = ctx.index;
+
+          var ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", (ctx_r43.paging.pageIndex - 1) * ctx_r43.paging.pageSize + i_r53 + 1, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_header_cell_9_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 56);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Rank & Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_cell_10_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell", 57);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "span", 58);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r54 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"]("", element_r54.rankPosition, " ", element_r54.traineeName, " ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" - ( P No ", element_r54.traineePNo, ")");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_header_cell_12_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Attendance Remarks");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_cell_13_mat_option_5_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 37);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r58 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", dropdown_r58.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", dropdown_r58.text, " ");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_cell_13_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r60 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-form-field", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "mat-select", 59);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function NewAttendanceComponent_div_53_mat_cell_13_Template_mat_select_selectionChange_2_listener($event) {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r60);
+
+            var i_r56 = restoredCtx.index;
+
+            var ctx_r59 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+            return ctx_r59.onOptionsSelected(i_r56, $event.value);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "mat-option", 25);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4, "--Select--");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](5, NewAttendanceComponent_div_53_mat_cell_13_mat_option_5_Template, 2, 2, "mat-option", 26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r47.selectedbnaattendanceremark);
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_header_cell_15_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-header-cell", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Attendance");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_cell_16_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r65 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "mat-checkbox", 60, 61);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("change", function NewAttendanceComponent_div_53_mat_cell_16_Template_mat_checkbox_change_1_listener($event) {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r65);
+
+            var i_r62 = restoredCtx.index;
+
+            var ctx_r64 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+
+            return ctx_r64.onCheckboxChange(i_r62, $event);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r61 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("checked", element_r61.attendanceStatus)("ngClass", "tbl-checkbox");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_header_row_17_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "mat-header-row");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_mat_row_18_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "mat-row");
+        }
+      }
+
+      function NewAttendanceComponent_div_53_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 41);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "h4", 42);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Trainee List");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "mat-table", 43, 44);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](5, 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](6, NewAttendanceComponent_div_53_mat_header_cell_6_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](7, NewAttendanceComponent_div_53_mat_cell_7_Template, 2, 1, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](8, 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](9, NewAttendanceComponent_div_53_mat_header_cell_9_Template, 2, 0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](10, NewAttendanceComponent_div_53_mat_cell_10_Template, 4, 3, "mat-cell", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](11, 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](12, NewAttendanceComponent_div_53_mat_header_cell_12_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](13, NewAttendanceComponent_div_53_mat_cell_13_Template, 6, 1, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](14, 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](15, NewAttendanceComponent_div_53_mat_header_cell_15_Template, 2, 0, "mat-header-cell", 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](16, NewAttendanceComponent_div_53_mat_cell_16_Template, 3, 2, "mat-cell", 47);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](17, NewAttendanceComponent_div_53_mat_header_row_17_Template, 1, 0, "mat-header-row", 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](18, NewAttendanceComponent_div_53_mat_row_18_Template, 1, 0, "mat-row", 54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("dataSource", ctx_r6.traineeNominationListForAttendance);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matHeaderRowDef", ctx_r6.displayedColumns);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matRowDefColumns", ctx_r6.displayedColumns);
+        }
+      }
+
+      var _NewAttendanceComponent = /*#__PURE__*/function () {
+        function _NewAttendanceComponent(snackBar, authService, classRoutineService, datepipe, confirmService, traineeNominationService, CodeValueService, AttendanceService, fb, router, route) {
+          _classCallCheck(this, _NewAttendanceComponent);
+
+          this.snackBar = snackBar;
+          this.authService = authService;
+          this.classRoutineService = classRoutineService;
+          this.datepipe = datepipe;
+          this.confirmService = confirmService;
+          this.traineeNominationService = traineeNominationService;
+          this.CodeValueService = CodeValueService;
+          this.AttendanceService = AttendanceService;
+          this.fb = fb;
+          this.router = router;
+          this.route = route;
+          this.masterData = src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.myModel = true;
+          this.validationErrors = [];
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+          this.checked = false;
+          this.isShown = false;
+          this.isShowSubjectName = false;
+          this.isShownForTraineeList = false;
+          this.displayedColumns = ['ser', 'traineePNo', 'attendanceStatus', 'bnaAttendanceRemarksId'];
+        }
+
+        _createClass(_NewAttendanceComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this20 = this;
+
+            this.role = this.authService.currentUserValue.role.trim();
+            this.traineeId = this.authService.currentUserValue.traineeId.trim();
+            this.branchId = this.authService.currentUserValue.branchId.trim();
+            console.log(this.role, this.traineeId, this.branchId);
+            var id = this.route.snapshot.paramMap.get('attendanceId');
+
+            if (id) {
+              this.pageTitle = 'Edit Bna Attendance';
+              this.destination = "Edit";
+              this.buttonText = "Update";
+              this.AttendanceService.find(+id).subscribe(function (res) {
+                _this20.AttendanceForm.patchValue({
+                  attendanceId: res.attendanceId,
+                  classRoutineId: res.classRoutineId,
+                  baseSchoolNameId: res.baseSchoolNameId,
+                  courseNameId: res.courseNameId,
+                  bnaSubjectNameId: res.bnaSubjectNameId,
+                  classPeriodId: res.classPeriodId,
+                  bnaAttendanceRemarksId: res.bnaAttendanceRemarksId,
+                  attendanceDate: res.attendanceDate,
+                  classLeaderName: res.classLeaderName,
+                  attendanceStatus: res.attendanceStatus,
+                  isApproved: res.isApproved,
+                  approvedUser: res.approvedUser,
+                  approvedDate: res.approvedDate,
+                  status: res.status,
+                  menuPosition: res.menuPosition,
+                  isActive: res.isActive
+                });
+              });
+            } else {
+              this.pageTitle = 'Create Bna Attendance';
+              this.destination = "Add";
+              this.buttonText = "Save";
+            }
+
+            this.intitializeForm();
+
+            if (this.role === 'Super Admin') {
+              this.AttendanceForm.get('baseSchoolNameId').setValue(this.branchId);
+              this.onBaseSchoolNameSelectionChangeGetCourse(this.branchId);
+            }
+
+            this.getselectedclassroutine();
+            this.getselectedbaseschools();
+            this.getselectedcoursename();
+            this.getselectedbnasubjectname();
+            this.getselectedclassperiod();
+            this.getselectedbnaattendanceremark();
+          }
+        }, {
+          key: "intitializeForm",
+          value: function intitializeForm() {
+            this.AttendanceForm = this.fb.group({
+              attendanceId: [0],
+              baseSchoolNameId: [''],
+              courseNameId: [''],
+              courseDurationId: [''],
+              classPeriodId: [''],
+              attendanceDate: [],
+              classLeaderName: [''],
+              attendanceStatus: [true],
+              traineeList: this.fb.array([this.createTraineeData()])
+            });
+          }
+        }, {
+          key: "onOptionsSelected",
+          value: function onOptionsSelected(index, value) {
+            this.traineeNominationListForAttendance[index]["bnaAttendanceRemarksId"] = value;
+          }
+        }, {
+          key: "onCheckboxChange",
+          value: function onCheckboxChange(index, event) {
+            this.traineeNominationListForAttendance[index]["attendanceStatus"] = event.checked;
+          }
+        }, {
+          key: "createTraineeData",
+          value: function createTraineeData() {
+            return this.fb.group({
+              bnaAttendanceRemarksId: [''],
+              courseDurationId: [''],
+              traineeId: ['']
+            });
+          }
+        }, {
+          key: "onBaseSchoolNameSelectionChangeGetCourse",
+          value: function onBaseSchoolNameSelectionChangeGetCourse(baseSchoolNameId) {
+            var _this21 = this;
+
+            this.AttendanceService.getCourseByBaseSchoolNameId(baseSchoolNameId).subscribe(function (res) {
+              _this21.selectedCourse = res;
+            });
+          }
+        }, {
+          key: "f",
+          get: function get() {
+            return this.AttendanceForm.controls;
+          }
+        }, {
+          key: "t",
+          get: function get() {
+            return this.f.traineeLists;
+          }
+        }, {
+          key: "onClassPeriodSelectionChangeGetCourseDuration",
+          value: function onClassPeriodSelectionChangeGetCourseDuration() {
+            var _this22 = this;
+
+            this.isShown = true;
+            this.isShowSubjectName = true;
+            var baseSchoolNameId = this.AttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.AttendanceForm.value['courseNameId'];
+            var classPeriodId = this.AttendanceForm.value['classPeriodId'];
+            var date = this.AttendanceForm.value['attendanceDate'];
+            var courseNameArr = courseNameId.split('_');
+            this.courseDurationId = courseNameArr[0];
+            var courseNameId = courseNameArr[1];
+            var formatedDate = this.datepipe.transform(date, 'MM/dd/yyyy');
+            this.classRoutineService.getSubjectNameFromRoutine(baseSchoolNameId, courseNameId, formatedDate, classPeriodId, this.courseDurationId).subscribe(function (res) {
+              _this22.subjectNamefromClassRoutine = res;
+
+              for (var i = 0; i < _this22.subjectNamefromClassRoutine.length; i++) {
+                _this22.bnaSubjectNameId = _this22.subjectNamefromClassRoutine[i].value;
+              }
+            });
+            this.classRoutineService.getSelectedRoutineIdFilter(baseSchoolNameId, courseNameId, classPeriodId, this.courseDurationId, formatedDate).subscribe(function (res) {
+              _this22.classRoutineId = res;
+              console.log("Class routine id");
+              console.log(_this22.classRoutineId);
+            });
+
+            if (baseSchoolNameId != null && courseNameId != null && this.courseDurationId != null && classPeriodId != null) {
+              this.traineeNominationService.getTraineeNominationByCourseDurationId(this.courseDurationId).subscribe(function (res) {
+                _this22.traineeNominationListForAttendance = res;
+
+                for (var i = 0; i <= _this22.traineeNominationListForAttendance.length; i++) {
+                  _this22.traineeNominationListForAttendance[i].attendanceStatus = true;
+                }
+              });
+            }
+          }
+        }, {
+          key: "onDateSelectionChange",
+          value: function onDateSelectionChange(event) {
+            var _this23 = this;
+
+            var date = this.datepipe.transform(event.value, 'MM/dd/yyyy');
+            var baseSchoolNameId = this.AttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.AttendanceForm.value['courseNameId'];
+            var courseNameArr = courseNameId.split('_');
+            var courseDurationId = courseNameArr[0];
+            var courseNameId = courseNameArr[1];
+
+            if (baseSchoolNameId != null && courseNameId != null && courseDurationId != null) {
+              this.AttendanceService.getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameId(baseSchoolNameId, courseNameId, courseDurationId, date).subscribe(function (res) {
+                _this23.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId = res;
+                console.log(_this23.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId);
+              });
+            }
+          }
+        }, {
+          key: "onCourseNameSelectionChangeGetClassPeriod",
+          value: function onCourseNameSelectionChangeGetClassPeriod() {}
+        }, {
+          key: "getselectedclassroutine",
+          value: function getselectedclassroutine() {
+            var _this24 = this;
+
+            this.AttendanceService.getselectedclassroutine().subscribe(function (res) {
+              _this24.selectedclassroutine = res;
+            });
+          }
+        }, {
+          key: "getselectedbaseschools",
+          value: function getselectedbaseschools() {
+            var _this25 = this;
+
+            this.AttendanceService.getselectedbaseschools().subscribe(function (res) {
+              _this25.selectedbaseschools = res;
+            });
+          }
+        }, {
+          key: "getselectedcoursename",
+          value: function getselectedcoursename() {
+            var _this26 = this;
+
+            this.AttendanceService.getselectedcoursename().subscribe(function (res) {
+              _this26.selectedcoursename = res;
+            });
+          }
+        }, {
+          key: "getselectedbnasubjectname",
+          value: function getselectedbnasubjectname() {
+            var _this27 = this;
+
+            this.AttendanceService.getselectedbnasubjectname().subscribe(function (res) {
+              _this27.selectedbnasubjectname = res;
+            });
+          }
+        }, {
+          key: "getselectedclassperiod",
+          value: function getselectedclassperiod() {
+            var _this28 = this;
+
+            this.AttendanceService.getselectedclassperiod().subscribe(function (res) {
+              _this28.selectedclassperiod = res;
+            });
+          }
+        }, {
+          key: "getselectedbnaattendanceremark",
+          value: function getselectedbnaattendanceremark() {
+            var _this29 = this;
+
+            this.AttendanceService.getselectedbnaattendanceremark().subscribe(function (res) {
+              _this29.selectedbnaattendanceremark = res;
+            });
+          }
+        }, {
+          key: "onSubmit",
+          value: function onSubmit() {
+            var _this30 = this;
+
+            var id = this.AttendanceForm.get('attendanceId').value;
+            this.isShowSubjectName = false;
+            var classLeaderName = this.AttendanceForm.value['classLeaderName'];
+            var attendanceDate = this.AttendanceForm.value['attendanceDate'];
+            var baseSchoolNameId = this.AttendanceForm.value['baseSchoolNameId'];
+            var classPeriodId = this.AttendanceForm.value['classPeriodId'];
+
+            for (var i = 0; i < this.traineeNominationListForAttendance.length; i++) {
+              this.traineeNominationListForAttendance[i]["classLeaderName"] = classLeaderName;
+              this.traineeNominationListForAttendance[i]["attendanceDate"] = this.datepipe.transform(new Date(), 'MM/dd/yyyy');
+              this.traineeNominationListForAttendance[i]["bnaSubjectNameId"] = this.bnaSubjectNameId;
+              this.traineeNominationListForAttendance[i]["baseSchoolNameId"] = baseSchoolNameId;
+              this.traineeNominationListForAttendance[i]["classPeriodId"] = classPeriodId;
+              this.traineeNominationListForAttendance[i]["classRoutineId"] = this.classRoutineId;
+            }
+
+            console.log(this.AttendanceForm.value);
+
+            if (id) {
+              this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(function (result) {
+                console.log(result);
+
+                if (result) {
+                  _this30.AttendanceService.update(+id, JSON.stringify(_this30.traineeNominationListForAttendance)).subscribe(function (response) {
+                    _this30.router.navigateByUrl('/attendance-management/add-attendance');
+
+                    _this30.snackBar.open('Information Updated Successfully ', '', {
+                      duration: 2000,
+                      verticalPosition: 'bottom',
+                      horizontalPosition: 'right',
+                      panelClass: 'snackbar-success'
+                    });
+                  }, function (error) {
+                    _this30.validationErrors = error;
+                  });
+                }
+              });
+            } else {
+              this.AttendanceService.submit(JSON.stringify(this.traineeNominationListForAttendance)).subscribe(function (response) {
+                _this30.AttendanceForm.reset();
+
+                _this30.AttendanceForm.get('attendanceId').setValue(0);
+
+                _this30.isShown = false;
+
+                _this30.snackBar.open('Information Inserted Successfully ', '', {
+                  duration: 2000,
+                  verticalPosition: 'bottom',
+                  horizontalPosition: 'right',
+                  panelClass: 'snackbar-success'
+                });
+              }, function (error) {
+                _this30.validationErrors = error;
+              });
+            }
+          }
+        }]);
+
+        return _NewAttendanceComponent;
+      }();
+
+      _NewAttendanceComponent.ɵfac = function NewAttendanceComponent_Factory(t) {
+        return new (t || _NewAttendanceComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](src_app_core_service_auth_service__WEBPACK_IMPORTED_MODULE_1__.AuthService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](src_app_routine_management_service_classroutine_service__WEBPACK_IMPORTED_MODULE_2__.ClassRoutineService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_9__.DatePipe), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_3__.ConfirmService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_4__.TraineeNominationService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](src_app_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_5__.CodeValueService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_service_attendance_service__WEBPACK_IMPORTED_MODULE_6__.AttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute));
+      };
+
+      _NewAttendanceComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({
+        type: _NewAttendanceComponent,
+        selectors: [["app-new-attendance"]],
+        decls: 58,
+        vars: 13,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "row", "clearfix"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12"], [1, "card"], [1, "header"], [1, "body"], [1, "m-4", 3, "formGroup", "ngSubmit"], [1, "form-border-design", "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["class", "col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-2", 4, "ngIf"], [1, "col-xl-3", "col-lg-3", "col-md-3", "col-sm-12", "mb-2"], ["appearance", "outline", 1, "example-full-width", "mb-3"], ["formControlName", "courseNameId"], ["value", "0"], [3, "value", 4, "ngFor", "ngForOf"], ["matInput", "", "formControlName", "attendanceDate", 3, "matDatepicker", "dateChange"], ["matSuffix", "", 3, "for"], ["atpicker", ""], ["formControlName", "classPeriodId", 3, "selectionChange"], ["class", "col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2", 4, "ngIf"], ["class", "container mt-2 att-tbl", 4, "ngIf"], [1, "row", "mt-2"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["mat-raised-button", "", "color", "primary", 1, "btn-space", 3, "disabled"], ["formControlName", "baseSchoolNameId", 3, "selectionChange"], [3, "value"], [1, "col-xl-6", "col-lg-6", "col-md-6", "col-sm-12", "mb-2"], ["class", "cls-header", 4, "ngFor", "ngForOf"], [1, "cls-header"], [1, "container", "mt-2", "att-tbl"], [1, "text-center"], ["matSort", "", 1, "mat-cell", "db-li-n", 3, "dataSource"], ["table", ""], ["matColumnDef", "ser"], ["mat-sort-header", "", 4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "traineePNo"], ["class", "t-nm-cl", "mat-sort-header", "", 4, "matHeaderCellDef"], ["class", "t-nm-cl", 4, "matCellDef"], ["matColumnDef", "bnaAttendanceRemarksId"], ["matColumnDef", "attendanceStatus"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], ["mat-sort-header", ""], ["mat-sort-header", "", 1, "t-nm-cl"], [1, "t-nm-cl"], [1, "t-n-pno-d"], [3, "selectionChange"], [3, "checked", "ngClass", "change"], ["checkBox", ""]],
+        template: function NewAttendanceComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](14, "Bna Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](17, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](18, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](19, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](20, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](21, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](22, "form", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngSubmit", function NewAttendanceComponent_Template_form_ngSubmit_22_listener() {
+              return ctx.onSubmit();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](24, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](25, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](26, NewAttendanceComponent_div_26_Template, 8, 1, "div", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](28, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](29, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](30, "Course Name");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](31, "mat-select", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](32, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](33, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](34, NewAttendanceComponent_mat_option_34_Template, 2, 2, "mat-option", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](35, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](36, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](37, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](38, "Attendance Date");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](39, "input", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("dateChange", function NewAttendanceComponent_Template_input_dateChange_39_listener($event) {
+              return ctx.onDateSelectionChange($event);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](40, "mat-datepicker-toggle", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](41, "mat-datepicker", null, 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](43, "div", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](44, "mat-form-field", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](45, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](46, "Class Period");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](47, "mat-select", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("selectionChange", function NewAttendanceComponent_Template_mat_select_selectionChange_47_listener() {
+              return ctx.onClassPeriodSelectionChangeGetCourseDuration();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](48, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](49, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](50, NewAttendanceComponent_mat_option_50_Template, 2, 2, "mat-option", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](51, NewAttendanceComponent_div_51_Template, 2, 1, "div", 31);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](52, NewAttendanceComponent_div_52_Template, 19, 3, "div", 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](53, NewAttendanceComponent_div_53_Template, 19, 3, "div", 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](54, "div", 33);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](55, "div", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](56, "button", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](57);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            var _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵreference"](42);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](ctx.pageTitle);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](ctx.destination);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("formGroup", ctx.AttendanceForm);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.role != "Super Admin");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.selectedCourse);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matDatepicker", _r2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("for", _r2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.isShowSubjectName);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.isShown);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.isShownForTraineeList);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("disabled", !ctx.AttendanceForm.valid);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](ctx.buttonText);
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormGroupDirective, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgIf, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_13__.MatSelect, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormControlName, _angular_material_core__WEBPACK_IMPORTED_MODULE_14__.MatOption, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_material_input__WEBPACK_IMPORTED_MODULE_15__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.DefaultValueAccessor, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepickerInput, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepickerToggle, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_12__.MatSuffix, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepicker, _angular_material_button__WEBPACK_IMPORTED_MODULE_17__.MatButton, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatCell, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_19__.MatCheckbox, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgClass, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_18__.MatRow],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    37331:
+    /*!*************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/bnaattendance-management-routing.module.ts ***!
+      \*************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "BnaAttendanceManagementRoutingModule": function BnaAttendanceManagementRoutingModule() {
+          return (
+            /* binding */
+            _BnaAttendanceManagementRoutingModule
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var _attendance_attendance_approved_attendance_approved_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./attendance/attendance-approved/attendance-approved.component */
+      95980);
+      /* harmony import */
+
+
+      var _attendance_attendance_list_attendance_list_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./attendance/attendance-list/attendance-list.component */
+      13102);
+      /* harmony import */
+
+
+      var _attendance_new_attendance_new_attendance_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./attendance/new-attendance/new-attendance.component */
+      59318);
+      /* harmony import */
+
+
+      var _bnaexamattendance_bnaexamattendance_list_bnaexamattendance_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./bnaexamattendance/bnaexamattendance-list/bnaexamattendance-list.component */
+      11337);
+      /* harmony import */
+
+
+      var _bnaexamattendance_new_bnaexamattendance_new_bnaexamattendance_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ./bnaexamattendance/new-bnaexamattendance/new-bnaexamattendance.component */
+      77229);
+      /* harmony import */
+
+
+      var _attendance_attendance_instructor_attendance_instructor_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ./attendance/attendance-instructor/attendance-instructor.component */
+      39669);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+
+      var routes = [{
+        path: '',
+        redirectTo: 'signin',
+        pathMatch: 'full'
+      }, {
+        path: 'bnaattendance-approved',
+        component: _attendance_attendance_approved_attendance_approved_component__WEBPACK_IMPORTED_MODULE_0__.AttendanceApprovedComponent
+      }, // {
+      //   path: 'attendance-approved', 
+      //   component: AttendanceApprovedComponent,
+      // },
+      {
+        path: 'bnaexamattendance-list',
+        component: _bnaexamattendance_bnaexamattendance_list_bnaexamattendance_list_component__WEBPACK_IMPORTED_MODULE_3__.BNAExamAttendanceListComponent
+      }, {
+        path: 'update-bnaexamattendance/:bnaExamAttendanceId',
+        component: _bnaexamattendance_new_bnaexamattendance_new_bnaexamattendance_component__WEBPACK_IMPORTED_MODULE_4__.NewBNAExamAttendanceComponent
+      }, {
+        path: 'add-bnaexamattendance',
+        component: _bnaexamattendance_new_bnaexamattendance_new_bnaexamattendance_component__WEBPACK_IMPORTED_MODULE_4__.NewBNAExamAttendanceComponent
+      }, {
+        path: 'attendance-list',
+        component: _attendance_attendance_list_attendance_list_component__WEBPACK_IMPORTED_MODULE_1__.AttendanceListComponent
+      }, {
+        path: 'attendance-instructor/:traineeId',
+        component: _attendance_attendance_instructor_attendance_instructor_component__WEBPACK_IMPORTED_MODULE_5__.AttendanceInstructorComponent
+      }, {
+        path: 'update-attendance/:attendanceId',
+        component: _attendance_new_attendance_new_attendance_component__WEBPACK_IMPORTED_MODULE_2__.NewAttendanceComponent
+      }, {
+        path: 'add-bnaclassattendance',
+        component: _attendance_new_attendance_new_attendance_component__WEBPACK_IMPORTED_MODULE_2__.NewAttendanceComponent
+      } // {
+      //   path: 'add-attendance',
+      //   component: NewAttendanceComponent,
+      // },
+      ];
+
+      var _BnaAttendanceManagementRoutingModule = function _BnaAttendanceManagementRoutingModule() {
+        _classCallCheck(this, _BnaAttendanceManagementRoutingModule);
+      };
+
+      _BnaAttendanceManagementRoutingModule.ɵfac = function BnaAttendanceManagementRoutingModule_Factory(t) {
+        return new (t || _BnaAttendanceManagementRoutingModule)();
+      };
+
+      _BnaAttendanceManagementRoutingModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineNgModule"]({
+        type: _BnaAttendanceManagementRoutingModule
+      });
+      _BnaAttendanceManagementRoutingModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({
+        imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule.forChild(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule]
+      });
+
+      (function () {
+        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](_BnaAttendanceManagementRoutingModule, {
+          imports: [_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule],
+          exports: [_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule]
+        });
+      })();
+      /***/
+
+    },
+
+    /***/
+    36775:
+    /*!*****************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/bnaattendance-management.module.ts ***!
+      \*****************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "BnaAttendanceManagementModule": function BnaAttendanceManagementModule() {
+          return (
+            /* binding */
+            _BnaAttendanceManagementModule
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @swimlane/ngx-datatable */
+      38550);
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/material/table */
+      32091);
+      /* harmony import */
+
+
+      var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/material/paginator */
+      99692);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      /*! @angular/material/icon */
+      76627);
+      /* harmony import */
+
+
+      var _angular_material_select__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+      /*! @angular/material/select */
+      67441);
+      /* harmony import */
+
+
+      var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! @angular/material/form-field */
+      98295);
+      /* harmony import */
+
+
+      var _angular_material_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @angular/material/input */
+      83166);
+      /* harmony import */
+
+
+      var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @angular/material/stepper */
+      94553);
+      /* harmony import */
+
+
+      var ngx_material_file_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+      /*! ngx-material-file-input */
+      4904);
+      /* harmony import */
+
+
+      var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+      /*! @angular/material/datepicker */
+      43220);
+      /* harmony import */
+
+
+      var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
+      /*! @angular/material/checkbox */
+      7539);
+      /* harmony import */
+
+
+      var _bnaattendance_management_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./bnaattendance-management-routing.module */
+      37331);
+      /* harmony import */
+
+
+      var _bnaexamattendance_bnaexamattendance_list_bnaexamattendance_list_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./bnaexamattendance/bnaexamattendance-list/bnaexamattendance-list.component */
+      11337);
+      /* harmony import */
+
+
+      var _bnaexamattendance_new_bnaexamattendance_new_bnaexamattendance_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./bnaexamattendance/new-bnaexamattendance/new-bnaexamattendance.component */
+      77229);
+      /* harmony import */
+
+
+      var _attendance_attendance_list_attendance_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./attendance/attendance-list/attendance-list.component */
+      13102);
+      /* harmony import */
+
+
+      var _attendance_new_attendance_new_attendance_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ./attendance/new-attendance/new-attendance.component */
+      59318);
+      /* harmony import */
+
+
+      var _attendance_attendance_approved_attendance_approved_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ./attendance/attendance-approved/attendance-approved.component */
+      95980);
+      /* harmony import */
+
+
+      var _attendance_attendance_instructor_attendance_instructor_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ./attendance/attendance-instructor/attendance-instructor.component */
+      39669);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/core */
+      37716); //import { AttendanceManagementRoutingModule } from './bnaattendance-management-routing.module';
+
+
+      var _BnaAttendanceManagementModule = function _BnaAttendanceManagementModule() {
+        _classCallCheck(this, _BnaAttendanceManagementModule);
+      };
+
+      _BnaAttendanceManagementModule.ɵfac = function BnaAttendanceManagementModule_Factory(t) {
+        return new (t || _BnaAttendanceManagementModule)();
+      };
+
+      _BnaAttendanceManagementModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineNgModule"]({
+        type: _BnaAttendanceManagementModule
+      });
+      _BnaAttendanceManagementModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector"]({
+        imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, // AttendanceManagementRoutingModule,
+        _bnaattendance_management_routing_module__WEBPACK_IMPORTED_MODULE_0__.BnaAttendanceManagementRoutingModule, _angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.ReactiveFormsModule, _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_10__.NgxDatatableModule, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatTableModule, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_12__.MatPaginatorModule, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormFieldModule, _angular_material_input__WEBPACK_IMPORTED_MODULE_14__.MatInputModule, _angular_material_stepper__WEBPACK_IMPORTED_MODULE_15__.MatStepperModule, _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_16__.MatSnackBarModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_17__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_18__.MatIconModule, _angular_material_select__WEBPACK_IMPORTED_MODULE_19__.MatSelectModule, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_20__.MatDatepickerModule, ngx_material_file_input__WEBPACK_IMPORTED_MODULE_21__.MaterialFileInputModule, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_22__.MatCheckboxModule]]
+      });
+
+      (function () {
+        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵsetNgModuleScope"](_BnaAttendanceManagementModule, {
+          declarations: [_bnaexamattendance_bnaexamattendance_list_bnaexamattendance_list_component__WEBPACK_IMPORTED_MODULE_1__.BNAExamAttendanceListComponent, _bnaexamattendance_new_bnaexamattendance_new_bnaexamattendance_component__WEBPACK_IMPORTED_MODULE_2__.NewBNAExamAttendanceComponent, _attendance_attendance_list_attendance_list_component__WEBPACK_IMPORTED_MODULE_3__.AttendanceListComponent, _attendance_new_attendance_new_attendance_component__WEBPACK_IMPORTED_MODULE_4__.NewAttendanceComponent, _attendance_attendance_approved_attendance_approved_component__WEBPACK_IMPORTED_MODULE_5__.AttendanceApprovedComponent, _attendance_attendance_instructor_attendance_instructor_component__WEBPACK_IMPORTED_MODULE_6__.AttendanceInstructorComponent],
+          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, // AttendanceManagementRoutingModule,
+          _bnaattendance_management_routing_module__WEBPACK_IMPORTED_MODULE_0__.BnaAttendanceManagementRoutingModule, _angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.ReactiveFormsModule, _swimlane_ngx_datatable__WEBPACK_IMPORTED_MODULE_10__.NgxDatatableModule, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatTableModule, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_12__.MatPaginatorModule, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormFieldModule, _angular_material_input__WEBPACK_IMPORTED_MODULE_14__.MatInputModule, _angular_material_stepper__WEBPACK_IMPORTED_MODULE_15__.MatStepperModule, _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_16__.MatSnackBarModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_17__.MatButtonModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_18__.MatIconModule, _angular_material_select__WEBPACK_IMPORTED_MODULE_19__.MatSelectModule, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_20__.MatDatepickerModule, ngx_material_file_input__WEBPACK_IMPORTED_MODULE_21__.MaterialFileInputModule, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_22__.MatCheckboxModule]
+        });
+      })();
+      /***/
+
+    },
+
+    /***/
+    11337:
+    /*!***********************************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/bnaexamattendance/bnaexamattendance-list/bnaexamattendance-list.component.ts ***!
+      \***********************************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "BNAExamAttendanceListComponent": function BNAExamAttendanceListComponent() {
+          return (
+            /* binding */
+            _BNAExamAttendanceListComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/material/table */
+      32091);
+      /* harmony import */
+
+
+      var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/cdk/collections */
+      38345);
+      /* harmony import */
+
+
+      var src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var _service_bnaexamattendance_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../../service/bnaexamattendance.service */
+      19811);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/material/icon */
+      76627);
+      /* harmony import */
+
+
+      var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/material/paginator */
+      99692);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+
+      function BNAExamAttendanceListComponent_mat_header_cell_46_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " Ser: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_47_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var i_r23 = ctx.index;
+
+          var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", (ctx_r3.paging.pageIndex - 1) * ctx_r3.paging.pageSize + i_r23 + 1, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_49_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "BNA Semester Duration ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_50_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r24 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r24.bnaSemesterDurationId, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_52_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "BNA Semester");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_53_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r25 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r25.bnaSemester, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_55_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "BNA Batch ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_56_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r26 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r26.bnaBatch, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_58_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " BNA Subject Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_59_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r27 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r27.bnaSubjectName, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_61_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Trainee ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_62_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r28 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r28.traineeId, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_64_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Exam Type ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_65_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r29 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", element_r29.examType, " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_67_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Exam Date ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_cell_68_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipe"](2, "date");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r30 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpipeBind2"](2, 1, element_r30.examDate, "mediumDate"), " ");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_cell_70_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-header-cell", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "Actions");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+      }
+
+      var _c0 = function _c0(a1) {
+        return ["/attendance-management/update-bnaexamattendance", a1];
+      };
+
+      function BNAExamAttendanceListComponent_mat_cell_71_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r35 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "mat-cell", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](1, "button", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "mat-icon", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3, "edit");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function BNAExamAttendanceListComponent_mat_cell_71_Template_button_click_4_listener($event) {
+            return $event.stopPropagation();
+          })("click", function BNAExamAttendanceListComponent_mat_cell_71_Template_button_click_4_listener() {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r35);
+
+            var row_r31 = restoredCtx.$implicit;
+
+            var ctx_r34 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+
+            return ctx_r34.deleteItem(row_r31);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](5, "mat-icon", 54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](6, "delete");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var row_r31 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpureFunction1"](1, _c0, row_r31.bnaExamAttendanceId));
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_header_row_72_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "mat-header-row");
+        }
+      }
+
+      function BNAExamAttendanceListComponent_mat_row_73_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "mat-row");
+        }
+      }
+
+      var _BNAExamAttendanceListComponent = /*#__PURE__*/function () {
+        function _BNAExamAttendanceListComponent(snackBar, BNAExamAttendanceService, router, confirmService) {
+          _classCallCheck(this, _BNAExamAttendanceListComponent);
+
+          this.snackBar = snackBar;
+          this.BNAExamAttendanceService = BNAExamAttendanceService;
+          this.router = router;
+          this.confirmService = confirmService;
+          this.masterData = src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.ELEMENT_DATA = [];
+          this.isLoading = false;
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+          this.searchText = "";
+          this.displayedColumns = ['ser', 'bnaSemesterDurationId', 'bnaSemester', 'bnaBatch', 'bnaSubjectName', 'traineeId', 'examType', 'examDate', 'actions'];
+          this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatTableDataSource();
+          this.selection = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_5__.SelectionModel(true, []);
+        }
+
+        _createClass(_BNAExamAttendanceListComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            this.getBNAExamAttendances();
+          }
+        }, {
+          key: "getBNAExamAttendances",
+          value: function getBNAExamAttendances() {
+            var _this31 = this;
+
+            this.isLoading = true;
+            this.BNAExamAttendanceService.getBNAExamAttendances(this.paging.pageIndex, this.paging.pageSize, this.searchText).subscribe(function (response) {
+              _this31.dataSource.data = response.items;
+              _this31.paging.length = response.totalItemsCount;
+              _this31.isLoading = false;
+            });
+          }
+        }, {
+          key: "pageChanged",
+          value: function pageChanged(event) {
+            this.paging.pageIndex = event.pageIndex;
+            this.paging.pageSize = event.pageSize;
+            this.paging.pageIndex = this.paging.pageIndex + 1;
+            this.getBNAExamAttendances();
+          }
+        }, {
+          key: "applyFilter",
+          value: function applyFilter(searchText) {
+            this.searchText = searchText;
+            this.getBNAExamAttendances();
+          }
+        }, {
+          key: "deleteItem",
+          value: function deleteItem(row) {
+            var _this32 = this;
+
+            var id = row.bnaExamAttendanceId;
+            this.confirmService.confirm('Confirm delete message', 'Are You Sure Delete This Item').subscribe(function (result) {
+              console.log(result);
+
+              if (result) {
+                _this32.BNAExamAttendanceService["delete"](id).subscribe(function () {
+                  _this32.getBNAExamAttendances();
+
+                  _this32.snackBar.open('Information Deleted Successfully ', '', {
+                    duration: 3000,
+                    verticalPosition: 'bottom',
+                    horizontalPosition: 'right',
+                    panelClass: 'snackbar-danger'
+                  });
+                });
+              }
+            });
+          }
+        }]);
+
+        return _BNAExamAttendanceListComponent;
+      }();
+
+      _BNAExamAttendanceListComponent.ɵfac = function BNAExamAttendanceListComponent_Factory(t) {
+        return new (t || _BNAExamAttendanceListComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_6__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_service_bnaexamattendance_service__WEBPACK_IMPORTED_MODULE_1__.BNAExamAttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_2__.ConfirmService));
+      };
+
+      _BNAExamAttendanceListComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({
+        type: _BNAExamAttendanceListComponent,
+        selectors: [["app-bnaexamattendance-list"]],
+        decls: 75,
+        vars: 8,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "col-lg-12", "col-md-12", "col-sm-12", "col-xs-12"], [1, "card"], [1, "body"], [1, "responsive_table"], [1, "materialTableHeader"], [1, "col-8"], [1, "header-buttons-left", "ml-0"], [1, "dropdown"], ["placeholder", "Search", "type", "text", "aria-label", "Search box", 1, "browser-default", "search-field", 3, "ngModel", "ngModelChange"], ["filter", ""], [1, "icon-button-demo", "m-l-10"], ["mat-mini-fab", "", "color", "accent", 3, "click"], [1, "col-white"], [1, "col-4"], [1, "header-buttons"], [1, "icon-button-demo"], ["mat-raised-button", "", "color", "primary", "routerLink", "/attendance-management/add-bnaexamattendance", 1, "btn-space"], ["matSort", "", 1, "mat-cell", 3, "dataSource"], ["table", ""], ["matColumnDef", "ser"], ["mat-sort-header", "", 4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "bnaSemesterDurationId"], ["matColumnDef", "bnaSemester"], ["matColumnDef", "bnaBatch"], ["matColumnDef", "bnaSubjectName"], ["matColumnDef", "traineeId"], ["matColumnDef", "examType"], ["matColumnDef", "examDate"], ["matColumnDef", "actions"], ["class", "pr-0", 4, "matHeaderCellDef"], ["class", "pr-0", 4, "matCellDef"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [3, "length", "showFirstLastButtons", "pageSize", "pageSizeOptions", "page"], ["mat-sort-header", ""], [1, "pr-0"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-edit", 3, "routerLink"], ["aria-label", "Edit", 1, "col-white"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-delete", 3, "click"], ["aria-label", "Delete", 1, "col-white"]],
+        template: function BNAExamAttendanceListComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](8, "BNA Exam Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](14, "BNA Exam Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](16, "All");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](17, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](18, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](19, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](20, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](21, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](22, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](24, "div", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](25, "ul", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](26, "li", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](27, "li", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](28, "input", 22, 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("ngModelChange", function BNAExamAttendanceListComponent_Template_input_ngModelChange_28_listener($event) {
+              return ctx.searchText = $event;
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](30, "li");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](31, "div", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](32, "button", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function BNAExamAttendanceListComponent_Template_button_click_32_listener() {
+              return ctx.applyFilter(ctx.searchText);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](33, "mat-icon", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](34, "search");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](35, "div", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](36, "ul", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](37, "li");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](38, "div", 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](39, "button", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](40, " Add ");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](41, "mat-icon", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](42, "add");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](43, "mat-table", 31, 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](45, 33);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](46, BNAExamAttendanceListComponent_mat_header_cell_46_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](47, BNAExamAttendanceListComponent_mat_cell_47_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](48, 36);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](49, BNAExamAttendanceListComponent_mat_header_cell_49_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](50, BNAExamAttendanceListComponent_mat_cell_50_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](51, 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](52, BNAExamAttendanceListComponent_mat_header_cell_52_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](53, BNAExamAttendanceListComponent_mat_cell_53_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](54, 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](55, BNAExamAttendanceListComponent_mat_header_cell_55_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](56, BNAExamAttendanceListComponent_mat_cell_56_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](57, 39);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](58, BNAExamAttendanceListComponent_mat_header_cell_58_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](59, BNAExamAttendanceListComponent_mat_cell_59_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](60, 40);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](61, BNAExamAttendanceListComponent_mat_header_cell_61_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](62, BNAExamAttendanceListComponent_mat_cell_62_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](63, 41);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](64, BNAExamAttendanceListComponent_mat_header_cell_64_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](65, BNAExamAttendanceListComponent_mat_cell_65_Template, 2, 1, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](66, 42);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](67, BNAExamAttendanceListComponent_mat_header_cell_67_Template, 2, 0, "mat-header-cell", 34);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](68, BNAExamAttendanceListComponent_mat_cell_68_Template, 3, 4, "mat-cell", 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](69, 43);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](70, BNAExamAttendanceListComponent_mat_header_cell_70_Template, 2, 0, "mat-header-cell", 44);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](71, BNAExamAttendanceListComponent_mat_cell_71_Template, 7, 3, "mat-cell", 45);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](72, BNAExamAttendanceListComponent_mat_header_row_72_Template, 1, 0, "mat-header-row", 46);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](73, BNAExamAttendanceListComponent_mat_row_73_Template, 1, 0, "mat-row", 47);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](74, "mat-paginator", 48);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("page", function BNAExamAttendanceListComponent_Template_mat_paginator_page_74_listener($event) {
+              return ctx.pageChanged($event);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngModel", ctx.searchText);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("dataSource", ctx.dataSource);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("length", ctx.paging.length)("showFirstLastButtons", ctx.masterData.paging.showFirstLastButtons)("pageSize", ctx.paging.pageSize)("pageSizeOptions", ctx.masterData.paging.pageSizeOptions);
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgModel, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButton, _angular_material_icon__WEBPACK_IMPORTED_MODULE_10__.MatIcon, _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterLink, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatRowDef, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_11__.MatPaginator, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_4__.MatRow],
+        pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.DatePipe],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    77229:
+    /*!*********************************************************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/bnaexamattendance/new-bnaexamattendance/new-bnaexamattendance.component.ts ***!
+      \*********************************************************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "NewBNAExamAttendanceComponent": function NewBNAExamAttendanceComponent() {
+          return (
+            /* binding */
+            _NewBNAExamAttendanceComponent
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/assets/data/master-data */
+      65960);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+      /* harmony import */
+
+
+      var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! @angular/material/snack-bar */
+      77001);
+      /* harmony import */
+
+
+      var src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! src/app/core/service/confirm.service */
+      39182);
+      /* harmony import */
+
+
+      var src_app_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/basic-setup/service/codevalue.service */
+      88509);
+      /* harmony import */
+
+
+      var _service_attendance_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../../service/attendance.service */
+      73224);
+      /* harmony import */
+
+
+      var _service_bnaexamattendance_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../../service/bnaexamattendance.service */
+      19811);
+      /* harmony import */
+
+
+      var src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/course-management/service/traineenomination.service */
+      22247);
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/forms */
+      3679);
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/router */
+      39895);
+      /* harmony import */
+
+
+      var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/material/form-field */
+      98295);
+      /* harmony import */
+
+
+      var _angular_material_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @angular/material/select */
+      67441);
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @angular/common */
+      38583);
+      /* harmony import */
+
+
+      var _angular_material_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! @angular/material/core */
+      5015);
+      /* harmony import */
+
+
+      var _angular_material_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @angular/material/input */
+      83166);
+      /* harmony import */
+
+
+      var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @angular/material/datepicker */
+      43220);
+      /* harmony import */
+
+
+      var _angular_material_table__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      /*! @angular/material/table */
+      32091);
+      /* harmony import */
+
+
+      var _angular_material_button__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! @angular/material/button */
+      51095);
+      /* harmony import */
+
+
+      var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      /*! @angular/material/checkbox */
+      7539);
+      /* harmony import */
+
+
+      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+      /*! @angular/material/icon */
+      76627);
+
+      function NewBNAExamAttendanceComponent_mat_option_29_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r20 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r20.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r20.text, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_option_37_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r21 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r21.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r21.text, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_option_45_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r22 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r22.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r22.text, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_option_51_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r23 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r23.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r23.text, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_66_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, " Ser: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_67_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var i_r25 = ctx.index;
+
+          var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", (ctx_r7.paging.pageIndex - 1) * ctx_r7.paging.pageSize + i_r25 + 1, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_69_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Trainee PNO");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_70_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r26 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"]("", element_r26.traineePNo, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_72_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Name");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_73_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var element_r27 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"]("", element_r27.traineeName, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_75_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Attendance Remarks");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_76_mat_option_3_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-option", 51);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var dropdown_r30 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("value", dropdown_r30.value);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", dropdown_r30.text, " ");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_76_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "mat-form-field", 21);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "mat-select", 53);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](3, NewBNAExamAttendanceComponent_mat_cell_76_mat_option_3_Template, 2, 2, "mat-option", 23);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx_r13.selectedbnaattendanceremark);
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_78_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 52);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Attendance");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_cell_79_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r34 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "mat-checkbox", 54, 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("change", function NewBNAExamAttendanceComponent_mat_cell_79_Template_mat_checkbox_change_1_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵrestoreView"](_r34);
+
+            var ctx_r33 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+            return ctx_r33.onCheckboxChange($event);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngClass", "tbl-checkbox");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_cell_81_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-header-cell", 56);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](1, "Actions");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+      }
+
+      var _c0 = function _c0(a1) {
+        return ["/attendance-management/update-attendance", a1];
+      };
+
+      function NewBNAExamAttendanceComponent_mat_cell_82_Template(rf, ctx) {
+        if (rf & 1) {
+          var _r39 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵgetCurrentView"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "mat-cell", 56);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "button", 57);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "mat-icon", 58);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](3, "edit");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](4, "button", 59);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("click", function NewBNAExamAttendanceComponent_mat_cell_82_Template_button_click_4_listener($event) {
+            return $event.stopPropagation();
+          })("click", function NewBNAExamAttendanceComponent_mat_cell_82_Template_button_click_4_listener() {
+            var restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵrestoreView"](_r39);
+
+            var row_r35 = restoredCtx.$implicit;
+
+            var ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵnextContext"]();
+
+            return ctx_r38.deleteItem(row_r35);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](5, "mat-icon", 60);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](6, "delete");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var row_r35 = ctx.$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpureFunction1"](1, _c0, row_r35.attendanceId));
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_header_row_83_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](0, "mat-header-row");
+        }
+      }
+
+      function NewBNAExamAttendanceComponent_mat_row_84_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](0, "mat-row");
+        }
+      }
+
+      var _NewBNAExamAttendanceComponent = /*#__PURE__*/function () {
+        function _NewBNAExamAttendanceComponent(snackBar, confirmService, CodeValueService, attendanceService, BNAExamAttendanceService, traineeNominationService, fb, router, route) {
+          _classCallCheck(this, _NewBNAExamAttendanceComponent);
+
+          this.snackBar = snackBar;
+          this.confirmService = confirmService;
+          this.CodeValueService = CodeValueService;
+          this.attendanceService = attendanceService;
+          this.BNAExamAttendanceService = BNAExamAttendanceService;
+          this.traineeNominationService = traineeNominationService;
+          this.fb = fb;
+          this.router = router;
+          this.route = route;
+          this.masterData = src_assets_data_master_data__WEBPACK_IMPORTED_MODULE_0__.MasterData;
+          this.validationErrors = [];
+          this.displayedColumns = ['ser', 'traineePNo', 'traineeName', 'attendanceStatus', 'bnaAttendanceRemarksId', 'actions'];
+          this.paging = {
+            pageIndex: this.masterData.paging.pageIndex,
+            pageSize: this.masterData.paging.pageSize,
+            length: 1
+          };
+        }
+
+        _createClass(_NewBNAExamAttendanceComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            var _this33 = this;
+
+            var id = this.route.snapshot.paramMap.get('bnaExamAttendanceId');
+
+            if (id) {
+              this.pageTitle = 'Edit BNA Exam Attendance';
+              this.destination = "Edit";
+              this.buttonText = "Update";
+              this.BNAExamAttendanceService.find(+id).subscribe(function (res) {
+                _this33.BNAExamAttendanceForm.patchValue({
+                  bnaExamAttendanceId: res.bnaExamAttendanceId,
+                  bnaSemesterDurationId: res.bnaSemesterDurationId,
+                  bnaSemesterId: res.bnaSemesterId,
+                  bnaBatchId: res.bnaBatchId,
+                  baseSchoolNameId: res.baseSchoolNameId,
+                  courseNameId: res,
+                  classPeriodId: res,
+                  bnaExamScheduleId: res.bnaExamScheduleId,
+                  bnaSubjectNameId: res.bnaSubjectNameId,
+                  traineeId: res.traineeId,
+                  examTypeId: res.examTypeId,
+                  examDate: res.examDate,
+                  isApproved: res.isApproved,
+                  aprovedUser: res.aprovedUser,
+                  approvedDate: res.approvedDate,
+                  status: res.status,
+                  menuPosition: res.menuPosition,
+                  isActive: res.isActive
+                });
+              });
+            } else {
+              this.pageTitle = 'Create BNA Exam Attendance';
+              this.destination = "Add";
+              this.buttonText = "Save";
+            }
+
+            this.intitializeForm();
+            this.getselectedbnasemesterduration();
+            this.getselectedbnasemester();
+            this.getselectedbnabatch();
+            this.getselectebnaexamschedule();
+            this.getselectedbnasubjectname();
+            this.getselectedexamtype();
+            this.getselectedbaseschools();
+          }
+        }, {
+          key: "intitializeForm",
+          value: function intitializeForm() {
+            this.BNAExamAttendanceForm = this.fb.group({
+              bnaExamAttendanceId: [0],
+              bnaSemesterDurationId: [''],
+              baseSchoolNameId: [''],
+              courseNameId: [''],
+              classPeriodId: [''],
+              examTypeId: [''],
+              examDate: [''],
+              traineeList: this.fb.array([this.createTraineeList(null)]) // bnaSemesterId:[''],
+              // bnaBatchId:[''],
+              // bnaExamScheduleId:[''],
+              // bnaSubjectNameId:[''],    
+              //traineeId:[''],
+              // isApproved:[true],
+              // aprovedUser:[],
+              // approvedDate:[],
+              // status:[],
+              // isActive: [true],    
+
+            });
+          }
+        }, {
+          key: "createTraineeList",
+          value: function createTraineeList(traineeInfo) {
+            if (traineeInfo) {
+              // console.log(traineeInfo); 
+              this.traineeForm.patchValue(traineeInfo); //  console.log('6');
+              //  console.log(traineeInfo)
+              // traineeInfo.forEach(item => {
+              //   this.traineeForm.patchValue({ [item]: traineeInfo[item] });
+              //   console.log(this.traineeForm)
+              // })
+            } else {
+              this.traineeForm = this.fb.group({
+                attendanceStatus: [''],
+                bnaAttendanceRemarksId: [''],
+                courseDuration: [''],
+                courseDurationId: [''],
+                courseName: [''],
+                courseNameId: [''],
+                familyAllowId: [''],
+                indexNo: [''],
+                isActive: [''],
+                menuPosition: [''],
+                rankName: [''],
+                status: [''],
+                traineeCourseStatus: [''],
+                traineeCourseStatusId: [''],
+                traineeId: [''],
+                traineeName: [''],
+                traineeNominationId: [''],
+                traineePNo: [''],
+                withdrawnDate: [''],
+                withdrawnDoc: [''],
+                withdrawnDocId: [''],
+                withdrawnRemarks: ['']
+              });
+            } //   console.log(this.traineeForm); 
+
+
+            return this.traineeForm;
+          } // getSelectedLocationType(){
+          //   this.CodeValueService.getSelectedCodeValueByType(this.masterData.codevaluetype.LocationType).subscribe(res=>{
+          //     this.selectedLocationType=res;      
+          //   })
+          // }
+
+        }, {
+          key: "onBaseSchoolNameSelectionChangeGetCourse",
+          value: function onBaseSchoolNameSelectionChangeGetCourse(baseSchoolNameId) {
+            var _this34 = this;
+
+            this.attendanceService.getCourseByBaseSchoolNameId(baseSchoolNameId).subscribe(function (res) {
+              _this34.selectedCourse = res;
+            });
+          }
+        }, {
+          key: "getselectedbaseschools",
+          value: function getselectedbaseschools() {
+            var _this35 = this;
+
+            this.attendanceService.getselectedbaseschools().subscribe(function (res) {
+              _this35.selectedbaseschools = res;
+            });
+          }
+        }, {
+          key: "onCourseNameSelectionChangeGetClassPeriod",
+          value: function onCourseNameSelectionChangeGetClassPeriod() {
+            var baseSchoolNameId = this.BNAExamAttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.BNAExamAttendanceForm.value['courseNameId'];
+            console.log(baseSchoolNameId + " -" + courseNameId);
+
+            if (baseSchoolNameId != null && courseNameId != null) {//  this.attendanceService.getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameId(baseSchoolNameId,courseNameId).subscribe(res=>{
+              //    this.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId=res;     
+              //  //  console.log( this.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId); 
+              //  });
+            }
+          }
+        }, {
+          key: "onClassPeriodSelectionChangeGetCourseDuration",
+          value: function onClassPeriodSelectionChangeGetCourseDuration() {
+            var _this36 = this;
+
+            var baseSchoolNameId = this.BNAExamAttendanceForm.value['baseSchoolNameId'];
+            var courseNameId = this.BNAExamAttendanceForm.value['courseNameId'];
+            var classPeriodId = this.BNAExamAttendanceForm.value['classPeriodId'];
+            console.log(baseSchoolNameId + " -" + courseNameId + "- " + classPeriodId);
+
+            if (baseSchoolNameId != null && courseNameId != null && classPeriodId != null) {
+              this.attendanceService.getSelectedCourseDurationByParameterRequestFromClassRoutine(baseSchoolNameId, courseNameId, classPeriodId).subscribe(function (res) {
+                _this36.selectedCourseDurationByParameterRequest = res; //console.log(this.selectedCourseDurationByParameterRequest);  
+
+                _this36.traineeNominationService.getTraineeNominationByCourseDurationId(_this36.selectedCourseDurationByParameterRequest).subscribe(function (res) {
+                  _this36.traineeNominationListForAttendance = res; //this.CourseModuleForm.get('courseNameId').setValue(item.value); 
+
+                  _this36.BNAExamAttendanceForm.get('traineeList').setValue(res); //this.traineeLists = this.BNAExamAttendanceForm.get('traineeLists') as FormArray; 
+
+
+                  console.log(_this36.BNAExamAttendanceForm.value); // this.traineeNominationListForAttendance.push(baseSchoolNameId,courseNameId,classPeriodId)
+                  //res.filter(x=>x.courseDurationId,) 
+                  // console.log(this.traineeNominationListForAttendance);  
+                });
+              });
+            }
+          }
+        }, {
+          key: "getselectedbnasemesterduration",
+          value: function getselectedbnasemesterduration() {
+            var _this37 = this;
+
+            this.BNAExamAttendanceService.getselectedbnasemesterduration().subscribe(function (res) {
+              _this37.selectedbnasemesterduration = res;
+            });
+          }
+        }, {
+          key: "getselectedbnasemester",
+          value: function getselectedbnasemester() {
+            var _this38 = this;
+
+            this.BNAExamAttendanceService.getselectedbnasemester().subscribe(function (res) {
+              _this38.selectedbnasemester = res;
+            });
+          }
+        }, {
+          key: "getselectedbnabatch",
+          value: function getselectedbnabatch() {
+            var _this39 = this;
+
+            this.BNAExamAttendanceService.getselectedbnabatch().subscribe(function (res) {
+              _this39.selectedbnabatch = res;
+            });
+          }
+        }, {
+          key: "getselectebnaexamschedule",
+          value: function getselectebnaexamschedule() {
+            var _this40 = this;
+
+            this.BNAExamAttendanceService.getselectebnaexamschedule().subscribe(function (res) {
+              _this40.selectebnaexamschedule = res;
+            });
+          }
+        }, {
+          key: "getselectedbnasubjectname",
+          value: function getselectedbnasubjectname() {
+            var _this41 = this;
+
+            this.BNAExamAttendanceService.getselectedbnasubjectname().subscribe(function (res) {
+              _this41.selectedbnasubjectname = res;
+            });
+          }
+        }, {
+          key: "getselectedexamtype",
+          value: function getselectedexamtype() {
+            var _this42 = this;
+
+            this.BNAExamAttendanceService.getselectedexamtype().subscribe(function (res) {
+              _this42.selectedexamtype = res;
+            });
+          }
+        }, {
+          key: "onSubmit",
+          value: function onSubmit() {
+            var _this43 = this;
+
+            var id = this.BNAExamAttendanceForm.get('bnaExamAttendanceId').value;
+
+            if (id) {
+              this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(function (result) {
+                console.log(result);
+
+                if (result) {
+                  _this43.BNAExamAttendanceService.update(+id, _this43.BNAExamAttendanceForm.value).subscribe(function (response) {
+                    _this43.router.navigateByUrl('/attendance-management/bnaexamattendance-list');
+
+                    _this43.snackBar.open('Information Updated Successfully ', '', {
+                      duration: 2000,
+                      verticalPosition: 'bottom',
+                      horizontalPosition: 'right',
+                      panelClass: 'snackbar-success'
+                    });
+                  }, function (error) {
+                    _this43.validationErrors = error;
+                  });
+                }
+              });
+            } else {
+              this.BNAExamAttendanceService.submit(this.BNAExamAttendanceForm.value).subscribe(function (response) {
+                _this43.router.navigateByUrl('/attendance-management/bnaexamattendance-list');
+
+                _this43.snackBar.open('Information Inserted Successfully ', '', {
+                  duration: 2000,
+                  verticalPosition: 'bottom',
+                  horizontalPosition: 'right',
+                  panelClass: 'snackbar-success'
+                });
+              }, function (error) {
+                _this43.validationErrors = error;
+              });
+            }
+          }
+        }]);
+
+        return _NewBNAExamAttendanceComponent;
+      }();
+
+      _NewBNAExamAttendanceComponent.ɵfac = function NewBNAExamAttendanceComponent_Factory(t) {
+        return new (t || _NewBNAExamAttendanceComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__.MatSnackBar), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](src_app_core_service_confirm_service__WEBPACK_IMPORTED_MODULE_1__.ConfirmService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](src_app_basic_setup_service_codevalue_service__WEBPACK_IMPORTED_MODULE_2__.CodeValueService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_service_attendance_service__WEBPACK_IMPORTED_MODULE_3__.AttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_service_bnaexamattendance_service__WEBPACK_IMPORTED_MODULE_4__.BNAExamAttendanceService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](src_app_course_management_service_traineenomination_service__WEBPACK_IMPORTED_MODULE_5__.TraineeNominationService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__.ActivatedRoute));
+      };
+
+      _NewBNAExamAttendanceComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineComponent"]({
+        type: _NewBNAExamAttendanceComponent,
+        selectors: [["app-new-bnaexamattendance"]],
+        decls: 91,
+        vars: 14,
+        consts: [[1, "content"], [1, "container-fluid"], [1, "block-header"], [1, "row"], [1, "col-xs-12", "col-sm-12", "col-md-12", "col-lg-12"], [1, "breadcrumb", "breadcrumb-style"], [1, "breadcrumb-item"], [1, "page-title"], [1, "breadcrumb-item", "bcrumb-1"], ["routerLink", "/admin/dashboard/main"], [1, "fas", "fa-home"], [1, "breadcrumb-item", "bcrumb-2"], ["href", "#", "onClick", "return false;"], [1, "breadcrumb-item", "active"], [1, "row", "clearfix"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12"], [1, "card"], [1, "header"], [1, "body"], [1, "m-4", 3, "formGroup", "ngSubmit"], [1, "col-xl-6", "col-lg-6", "col-md-6", "col-sm-12", "mb-2"], ["appearance", "outline", 1, "example-full-width", "mb-3"], ["formControlName", "baseSchoolNameId", 3, "selectionChange"], [3, "value", 4, "ngFor", "ngForOf"], ["formControlName", "courseNameId", 3, "selectionChange"], ["value", "0"], ["formControlName", "classPeriodId", 3, "selectionChange"], ["formControlName", "examTypeId"], [1, "col-xl-6", "col-lg-6", "col-md-12", "col-sm-12", "mb-2"], ["matInput", "", "formControlName", "examDate", 3, "matDatepicker"], ["matSuffix", "", 3, "for"], ["datepicker", ""], [1, "text-center"], ["formGroupName", "traineeList", 1, "container", "mt-2"], ["matSort", "", 1, "mat-cell", 3, "dataSource"], ["table", ""], ["matColumnDef", "ser"], ["mat-sort-header", "", 4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "traineePNo"], ["matColumnDef", "traineeName"], ["matColumnDef", "bnaAttendanceRemarksId"], ["matColumnDef", "attendanceStatus"], ["matColumnDef", "actions"], ["class", "pr-0", 4, "matHeaderCellDef"], ["class", "pr-0", 4, "matCellDef"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [1, "col-xl-12", "col-lg-12", "col-md-12", "col-sm-12", "mb-2"], ["mat-raised-button", "", "color", "primary", 1, "btn-space", 3, "disabled"], ["type", "button", "mat-button", "", "routerLink", "/attendance-management/bnaexamattendance-list"], [3, "value"], ["mat-sort-header", ""], ["formControlName", "bnaAttendanceRemarksId"], ["formControlName", "attendanceStatus", 3, "ngClass", "change"], ["checkBox", ""], [1, "pr-0"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-edit", 3, "routerLink"], ["aria-label", "Edit", 1, "col-white"], ["mat-icon-button", "", "color", "accent", 1, "btn-tbl-delete", 3, "click"], ["aria-label", "Delete", 1, "col-white"]],
+        template: function NewBNAExamAttendanceComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](0, "section", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](1, "div", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](2, "div", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](3, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](4, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](5, "ul", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](6, "li", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](7, "h4", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](9, "li", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](10, "a", 9);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](11, "i", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](12, "li", 11);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](13, "a", 12);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](14, "BNA Exam Attendance");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](15, "li", 13);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](17, "div", 14);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](18, "div", 15);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](19, "div", 16);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](20, "div", 17);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](21, "div", 18);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](22, "form", 19);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("ngSubmit", function NewBNAExamAttendanceComponent_Template_form_ngSubmit_22_listener() {
+              return ctx.onSubmit();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](23, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](24, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](25, "mat-form-field", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](26, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](27, "School Name");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](28, "mat-select", 22);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("selectionChange", function NewBNAExamAttendanceComponent_Template_mat_select_selectionChange_28_listener($event) {
+              return ctx.onBaseSchoolNameSelectionChangeGetCourse($event.value);
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](29, NewBNAExamAttendanceComponent_mat_option_29_Template, 2, 2, "mat-option", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](30, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](31, "mat-form-field", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](32, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](33, "Course Name");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](34, "mat-select", 24);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("selectionChange", function NewBNAExamAttendanceComponent_Template_mat_select_selectionChange_34_listener() {
+              return ctx.onCourseNameSelectionChangeGetClassPeriod();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](35, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](36, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](37, NewBNAExamAttendanceComponent_mat_option_37_Template, 2, 2, "mat-option", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](38, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](39, "mat-form-field", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](40, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](41, "Class Period");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](42, "mat-select", 26);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("selectionChange", function NewBNAExamAttendanceComponent_Template_mat_select_selectionChange_42_listener() {
+              return ctx.onClassPeriodSelectionChangeGetCourseDuration();
+            });
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](43, "mat-option", 25);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](44, "--Select--");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](45, NewBNAExamAttendanceComponent_mat_option_45_Template, 2, 2, "mat-option", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](46, "div", 20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](47, "mat-form-field", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](48, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](49, "Exam Type ");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](50, "mat-select", 27);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](51, NewBNAExamAttendanceComponent_mat_option_51_Template, 2, 2, "mat-option", 23);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](52, "div", 28);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](53, "mat-form-field", 21);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](54, "mat-label");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](55, "Exam Date");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](56, "input", 29);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](57, "mat-datepicker-toggle", 30);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelement"](58, "mat-datepicker", null, 31);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](60, "h4", 32);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](61, "Trainee List");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](62, "div", 33);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](63, "mat-table", 34, 35);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](65, 36);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](66, NewBNAExamAttendanceComponent_mat_header_cell_66_Template, 2, 0, "mat-header-cell", 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](67, NewBNAExamAttendanceComponent_mat_cell_67_Template, 2, 1, "mat-cell", 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](68, 39);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](69, NewBNAExamAttendanceComponent_mat_header_cell_69_Template, 2, 0, "mat-header-cell", 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](70, NewBNAExamAttendanceComponent_mat_cell_70_Template, 2, 1, "mat-cell", 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](71, 40);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](72, NewBNAExamAttendanceComponent_mat_header_cell_72_Template, 2, 0, "mat-header-cell", 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](73, NewBNAExamAttendanceComponent_mat_cell_73_Template, 2, 1, "mat-cell", 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](74, 41);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](75, NewBNAExamAttendanceComponent_mat_header_cell_75_Template, 2, 0, "mat-header-cell", 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](76, NewBNAExamAttendanceComponent_mat_cell_76_Template, 4, 1, "mat-cell", 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](77, 42);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](78, NewBNAExamAttendanceComponent_mat_header_cell_78_Template, 2, 0, "mat-header-cell", 37);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](79, NewBNAExamAttendanceComponent_mat_cell_79_Template, 3, 1, "mat-cell", 38);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerStart"](80, 43);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](81, NewBNAExamAttendanceComponent_mat_header_cell_81_Template, 2, 0, "mat-header-cell", 44);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](82, NewBNAExamAttendanceComponent_mat_cell_82_Template, 7, 3, "mat-cell", 45);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementContainerEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](83, NewBNAExamAttendanceComponent_mat_header_row_83_Template, 1, 0, "mat-header-row", 46);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](84, NewBNAExamAttendanceComponent_mat_row_84_Template, 1, 0, "mat-row", 47);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](85, "div", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](86, "div", 48);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](87, "button", 49);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](88);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementStart"](89, "button", 50);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtext"](90, "Cancel");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵelementEnd"]();
+          }
+
+          if (rf & 2) {
+            var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵreference"](59);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](ctx.pageTitle);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](ctx.destination);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("formGroup", ctx.BNAExamAttendanceForm);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.selectedbaseschools);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.selectedCourse);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.selectedClassPeriodByBaseSchoolNameIdAndCourseNameId);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("ngForOf", ctx.selectedexamtype);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("matDatepicker", _r4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("for", _r4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("dataSource", ctx.traineeNominationListForAttendance);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](20);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵproperty"]("disabled", !ctx.BNAExamAttendanceForm.valid);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate"](ctx.buttonText);
+          }
+        },
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_9__.RouterLinkWithHref, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormGroupDirective, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_10__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_10__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_11__.MatSelect, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormControlName, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgForOf, _angular_material_core__WEBPACK_IMPORTED_MODULE_13__.MatOption, _angular_material_input__WEBPACK_IMPORTED_MODULE_14__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.DefaultValueAccessor, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_15__.MatDatepickerInput, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_15__.MatDatepickerToggle, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_10__.MatSuffix, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_15__.MatDatepicker, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormGroupName, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatRowDef, _angular_material_button__WEBPACK_IMPORTED_MODULE_17__.MatButton, _angular_router__WEBPACK_IMPORTED_MODULE_9__.RouterLink, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatCell, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__.MatCheckbox, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgClass, _angular_material_icon__WEBPACK_IMPORTED_MODULE_19__.MatIcon, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatRow],
+        styles: [""]
+      });
+      /***/
+    },
+
+    /***/
+    16226:
+    /*!*************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/models/attendancePagination.ts ***!
+      \*************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "AttendancePagination": function AttendancePagination() {
+          return (
+            /* binding */
+            _AttendancePagination
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _AttendancePagination = function _AttendancePagination() {
+        _classCallCheck(this, _AttendancePagination);
+
+        this.items = [];
+      };
+      /***/
+
+    },
+
+    /***/
+    34125:
+    /*!********************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/models/bnaexamattendancePagination.ts ***!
+      \********************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "BNAExamAttendancePagination": function BNAExamAttendancePagination() {
+          return (
+            /* binding */
+            _BNAExamAttendancePagination
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _BNAExamAttendancePagination = function _BNAExamAttendancePagination() {
+        _classCallCheck(this, _BNAExamAttendancePagination);
+
+        this.items = [];
+      };
+      /***/
+
+    },
+
+    /***/
+    73224:
+    /*!************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/service/attendance.service.ts ***!
+      \************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "AttendanceService": function AttendanceService() {
+          return (
+            /* binding */
+            _AttendanceService
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      91841);
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/environments/environment */
+      92340);
+      /* harmony import */
+
+
+      var _models_attendancePagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../models/attendancePagination */
+      16226);
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      5207);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+
+      var _AttendanceService = /*#__PURE__*/function () {
+        function _AttendanceService(http) {
+          _classCallCheck(this, _AttendanceService);
+
+          this.http = http;
+          this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl;
+          this.Attendances = [];
+          this.AttendancePagination = new _models_attendancePagination__WEBPACK_IMPORTED_MODULE_1__.AttendancePagination();
+        }
+
+        _createClass(_AttendanceService, [{
+          key: "getAttendanceListForUpdate",
+          value: function getAttendanceListForUpdate(pageNumber, pageSize, searchText, baseSchoolNameId, courseNameId, classPeriodId) {
+            var _this44 = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString());
+            params = params.append('baseSchoolNameId', baseSchoolNameId.toString());
+            params = params.append('courseNameId', courseNameId.toString());
+            params = params.append('classPeriodId', classPeriodId.toString()); // attendance/get-attendancesForUpdate?PageSize=5&PageNumber=1&baseSchoolNameId=20&courseNameId=1065&classPeriodId=28
+
+            return this.http.get(this.baseUrl + '/attendance/get-attendancesForUpdate', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (response) {
+              _this44.Attendances = [].concat(_toConsumableArray(_this44.Attendances), _toConsumableArray(response.body.items));
+              _this44.AttendancePagination = response.body;
+              return _this44.AttendancePagination;
+            }));
+          }
+        }, {
+          key: "getSelectedClassPeriodForAttendanceInstructorBySpRequest",
+          value: function getSelectedClassPeriodForAttendanceInstructorBySpRequest(traineeId) {
+            return this.http.get(this.baseUrl + '/class-period/get-selectedClassPeriodForAttendanceInstructorSpRequest?traineeId=' + traineeId);
+          }
+        }, {
+          key: "getSelectedCourseDurationByParameterRequestFromClassRoutine",
+          value: function getSelectedCourseDurationByParameterRequestFromClassRoutine(baseSchoolNameId, courseNameId, classPeriodId) {
+            return this.http.get(this.baseUrl + '/course-duration/get-selectedCourseDurationByParameterRequestFromRoutine?baseSchoolNameId=' + baseSchoolNameId + '&courseNameId=' + courseNameId + '&classPeriodId=' + classPeriodId);
+          }
+        }, {
+          key: "getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameId",
+          value: function getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameId(baseSchoolNameId, courseNameId, courseDurationId, date) {
+            return this.http.get(this.baseUrl + '/class-period/get-selectedClassPeriodByParameterRequest?baseSchoolNameId=' + baseSchoolNameId + '&courseNameId=' + courseNameId + '&courseDurationId=' + courseDurationId + '&date=' + date);
+          }
+        }, {
+          key: "getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendances",
+          value: function getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameIdforAttendances(baseSchoolNameId, courseNameId, date) {
+            return this.http.get(this.baseUrl + '/class-period/get-selectedClassPeriodByParameterRequestForAttendances?baseSchoolNameId=' + baseSchoolNameId + '&courseNameId=' + courseNameId + '&date=' + date);
+          } // getSelectedClassPeriodByBaseSchoolNameIdAndCourseNameIdAndDate(baseSchoolNameId,courseNameId,date){
+          //   return this.http.get<SelectedModel[]>(this.baseUrl + '/class-period/get-selectedClassPeriodByParameterRequest?baseSchoolNameId='+baseSchoolNameId+'&courseNameId='+courseNameId);
+          //class-period/get-selectedClassPeriodByParameterRequestForAttendances?baseSchoolNameId=20&courseNameId=1065&date=2%2F12%2F2022
+          //  }
+
+        }, {
+          key: "getCourseByBaseSchoolNameId",
+          value: function getCourseByBaseSchoolNameId(baseSchoolNameId) {
+            return this.http.get(this.baseUrl + '/course-name/get-selectedCourseByBaseNameId?baseSchoolNameId=' + baseSchoolNameId);
+          }
+        }, {
+          key: "getselectedclassroutine",
+          value: function getselectedclassroutine() {
+            return this.http.get(this.baseUrl + '/class-routine/get-selectedClassRoutines');
+          }
+        }, {
+          key: "getselectedbaseschools",
+          value: function getselectedbaseschools() {
+            return this.http.get(this.baseUrl + '/base-School-name/get-selectedSchools');
+          }
+        }, {
+          key: "getselectedcoursename",
+          value: function getselectedcoursename() {
+            return this.http.get(this.baseUrl + '/course-name/get-selectedCourseNames');
+          }
+        }, {
+          key: "getselectedbnasubjectname",
+          value: function getselectedbnasubjectname() {
+            return this.http.get(this.baseUrl + '/bna-subject-name/get-selectedBnaSubjectNames');
+          }
+        }, {
+          key: "getselectedclassperiod",
+          value: function getselectedclassperiod() {
+            return this.http.get(this.baseUrl + '/class-period/get-selectedClassPeriod');
+          }
+        }, {
+          key: "getselectedbnaattendanceremark",
+          value: function getselectedbnaattendanceremark() {
+            return this.http.get(this.baseUrl + '/bna-attendance-remark/get-selectedBnaAttendanceRemarks');
+          }
+        }, {
+          key: "getAttendances",
+          value: function getAttendances(pageNumber, pageSize, searchText) {
+            var _this45 = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString());
+            return this.http.get(this.baseUrl + '/attendance/get-attendances', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (response) {
+              _this45.Attendances = [].concat(_toConsumableArray(_this45.Attendances), _toConsumableArray(response.body.items));
+              _this45.AttendancePagination = response.body;
+              return _this45.AttendancePagination;
+            }));
+          }
+        }, {
+          key: "updateAttendanceList",
+          value: function updateAttendanceList(model) {
+            console.log(model);
+            var httpOptions = {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders({
+                'Content-Type': 'application/json'
+              })
+            };
+            return this.http.post(this.baseUrl + '/attendance/approved-attendancelist', model, httpOptions).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (attendanceUpdate) {
+              if (attendanceUpdate) {
+                console.log(attendanceUpdate);
+                return attendanceUpdate;
+              }
+            }));
+          }
+        }, {
+          key: "find",
+          value: function find(id) {
+            return this.http.get(this.baseUrl + '/attendance/get-attendanceDetail/' + id);
+          }
+        }, {
+          key: "update",
+          value: function update(id, model) {
+            return this.http.put(this.baseUrl + '/attendance/update-attendance/' + id, model);
+          }
+        }, {
+          key: "submit",
+          value: function submit(model) {
+            console.log(model);
+            var httpOptions = {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders({
+                'Content-Type': 'application/json'
+              })
+            };
+            return this.http.post(this.baseUrl + '/attendance/save-attendancelist', model, httpOptions).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (Attendance) {
+              if (Attendance) {
+                console.log(Attendance);
+                return Attendance;
+              }
+            }));
+          }
+        }, {
+          key: "submitAttendance",
+          value: function submitAttendance(model) {
+            console.log(model);
+            var httpOptions = {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders({
+                'Content-Type': 'application/json'
+              })
+            };
+            return this.http.post(this.baseUrl + '/attendance/save-attendancelistnstructor', model, httpOptions).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (Attendance) {
+              if (Attendance) {
+                console.log(Attendance);
+                return Attendance;
+              }
+            }));
+          }
+        }, {
+          key: "delete",
+          value: function _delete(id) {
+            return this.http["delete"](this.baseUrl + '/attendance/delete-attendance/' + id);
+          }
+        }]);
+
+        return _AttendanceService;
+      }();
+
+      _AttendanceService.ɵfac = function AttendanceService_Factory(t) {
+        return new (t || _AttendanceService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient));
+      };
+
+      _AttendanceService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+        token: _AttendanceService,
+        factory: _AttendanceService.ɵfac,
+        providedIn: 'root'
+      });
+      /***/
+    },
+
+    /***/
+    19811:
+    /*!*******************************************************************************!*\
+      !*** ./src/app/bnaattendance-management/service/bnaexamattendance.service.ts ***!
+      \*******************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "BNAExamAttendanceService": function BNAExamAttendanceService() {
+          return (
+            /* binding */
+            _BNAExamAttendanceService
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      91841);
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/environments/environment */
+      92340);
+      /* harmony import */
+
+
+      var _models_bnaexamattendancePagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../models/bnaexamattendancePagination */
+      34125);
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      5207);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+
+      var _BNAExamAttendanceService = /*#__PURE__*/function () {
+        function _BNAExamAttendanceService(http) {
+          _classCallCheck(this, _BNAExamAttendanceService);
+
+          this.http = http;
+          this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl;
+          this.BNAExamAttendances = [];
+          this.BNAExamAttendancePagination = new _models_bnaexamattendancePagination__WEBPACK_IMPORTED_MODULE_1__.BNAExamAttendancePagination();
+        }
+
+        _createClass(_BNAExamAttendanceService, [{
+          key: "getselectedbnasemesterduration",
+          value: function getselectedbnasemesterduration() {
+            return this.http.get(this.baseUrl + '/bna-semester-duration/get-selectedBnaSemesterDurations');
+          }
+        }, {
+          key: "getselectedbnasemester",
+          value: function getselectedbnasemester() {
+            return this.http.get(this.baseUrl + '/bna-semester/get-selectedBnaSemesters');
+          }
+        }, {
+          key: "getselectedbnabatch",
+          value: function getselectedbnabatch() {
+            return this.http.get(this.baseUrl + '/bna-batch/get-selectedBnaBatchs');
+          }
+        }, {
+          key: "getselectebnaexamschedule",
+          value: function getselectebnaexamschedule() {
+            return this.http.get(this.baseUrl + '/bna-exam-schedule/get-selectedBnaExamSchedules');
+          }
+        }, {
+          key: "getselectedbnasubjectname",
+          value: function getselectedbnasubjectname() {
+            return this.http.get(this.baseUrl + '/bna-subject-name/get-selectedBnaSubjectNames');
+          }
+        }, {
+          key: "getselectedexamtype",
+          value: function getselectedexamtype() {
+            return this.http.get(this.baseUrl + '/exam-type/get-selectedExamType');
+          }
+        }, {
+          key: "getBNAExamAttendances",
+          value: function getBNAExamAttendances(pageNumber, pageSize, searchText) {
+            var _this46 = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString());
+            return this.http.get(this.baseUrl + '/bna-exam-attendance/get-bnaExamAttendances', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (response) {
+              _this46.BNAExamAttendances = [].concat(_toConsumableArray(_this46.BNAExamAttendances), _toConsumableArray(response.body.items));
+              _this46.BNAExamAttendancePagination = response.body;
+              return _this46.BNAExamAttendancePagination;
+            }));
+          }
+        }, {
+          key: "find",
+          value: function find(id) {
+            return this.http.get(this.baseUrl + '/bna-exam-attendance/get-bnaExamAttendanceDetail/' + id);
+          }
+        }, {
+          key: "update",
+          value: function update(id, model) {
+            return this.http.put(this.baseUrl + '/bna-exam-attendance/update-bnaExamAttendance/' + id, model);
+          }
+        }, {
+          key: "submit",
+          value: function submit(model) {
+            return this.http.post(this.baseUrl + '/bna-exam-attendance/save-bnaExamAttendance', model).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_3__.map)(function (BNAExamAttendance) {
+              if (BNAExamAttendance) {
+                console.log(BNAExamAttendance);
+                return BNAExamAttendance;
+              }
+            }));
+          }
+        }, {
+          key: "delete",
+          value: function _delete(id) {
+            return this.http["delete"](this.baseUrl + '/bna-exam-attendance/delete-bnaExamAttendance/' + id);
+          }
+        }]);
+
+        return _BNAExamAttendanceService;
+      }();
+
+      _BNAExamAttendanceService.ɵfac = function BNAExamAttendanceService_Factory(t) {
+        return new (t || _BNAExamAttendanceService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient));
+      };
+
+      _BNAExamAttendanceService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+        token: _BNAExamAttendanceService,
+        factory: _BNAExamAttendanceService.ɵfac,
+        providedIn: 'root'
+      });
+      /***/
+    },
+
+    /***/
+    310:
+    /*!*************************************************************************!*\
+      !*** ./src/app/course-management/models/traineenominationPagination.ts ***!
+      \*************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "TraineeNominationPagination": function TraineeNominationPagination() {
+          return (
+            /* binding */
+            _TraineeNominationPagination
+          );
+        }
+        /* harmony export */
+
+      });
+
+      var _TraineeNominationPagination = function _TraineeNominationPagination() {
+        _classCallCheck(this, _TraineeNominationPagination);
+
+        this.items = [];
+      };
+      /***/
+
+    },
+
+    /***/
+    22247:
+    /*!************************************************************************!*\
+      !*** ./src/app/course-management/service/traineenomination.service.ts ***!
+      \************************************************************************/
+
+    /***/
+    function _(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export */
+
+
+      __webpack_require__.d(__webpack_exports__, {
+        /* harmony export */
+        "TraineeNominationService": function TraineeNominationService() {
+          return (
+            /* binding */
+            _TraineeNominationService
+          );
+        }
+        /* harmony export */
+
+      });
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common/http */
+      91841);
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! src/environments/environment */
+      92340);
+      /* harmony import */
+
+
+      var _models_traineenominationPagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ../models/traineenominationPagination */
+      310);
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! rxjs */
+      5207);
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      37716);
+
+      var _TraineeNominationService = /*#__PURE__*/function () {
+        function _TraineeNominationService(http) {
+          _classCallCheck(this, _TraineeNominationService);
+
+          this.http = http;
+          this.baseUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl;
+          this.TraineeNominations = [];
+          this.TraineeNominationPagination = new _models_traineenominationPagination__WEBPACK_IMPORTED_MODULE_1__.TraineeNominationPagination();
+        } //autocomplete
+        //trainee-bio-data-general-info/get-autocompleteTraineeByPno?pNo=345&courseDurationId=3026&courseNameId=1023&traineeId=1032
+
+
+        _createClass(_TraineeNominationService, [{
+          key: "getSelectedTraineeByparameterRequest",
+          value: function getSelectedTraineeByparameterRequest(pno, courseDurationId, courseNameId) {
+            return this.http.get(this.baseUrl + '/trainee-bio-data-general-info/get-autocompleteTraineeByPno?pNo=' + pno + '&courseDurationId=' + courseDurationId + '&courseNameId=' + courseNameId).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (response) {
+              return response.map(function (item) {
+                return item;
+              });
+            }));
+          } // getSelectedTraineeByPno(pno){
+          //   return this.http.get<SelectedModel[]>(this.baseUrl + '/trainee-bio-data-general-info/get-autocompleteTraineeByPno?pNo='+pno+'&courseDurationId='+courseDurationId+'&courseNameId='+courseNameId)
+          //     .pipe(
+          //       map((response:[]) => response.map(item => item))
+          //     )
+          // }
+
+        }, {
+          key: "getSelectedTraineeByPno",
+          value: function getSelectedTraineeByPno(pno) {
+            return this.http.get(this.baseUrl + '/trainee-bio-data-general-info/get-autocompleteTraineeByPno?pNo=' + pno).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (response) {
+              return response.map(function (item) {
+                return item;
+              });
+            }));
+          }
+        }, {
+          key: "getTraineeNominationByCourseDurationId",
+          value: function getTraineeNominationByCourseDurationId(courseDurationId) {
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationsForAttendanceByCourseDurationId?courseDurationId=' + courseDurationId);
+          }
+        }, {
+          key: "getTestTraineeNominationByCourseDurationId",
+          value: function getTestTraineeNominationByCourseDurationId(courseDurationId) {
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationsForAttendanceByCourseDurationId?courseDurationId=' + courseDurationId);
+          }
+        }, {
+          key: "getNewTraineeNominationByCourseDurationId",
+          value: function getNewTraineeNominationByCourseDurationId(courseDurationId) {
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationsForAttendanceByCourseDurationId?courseDurationId=' + courseDurationId);
+          }
+        }, {
+          key: "getselectedcoursename",
+          value: function getselectedcoursename() {
+            return this.http.get(this.baseUrl + '/course-name/get-selectedCourseNames');
+          }
+        }, {
+          key: "getSelectedTrainee",
+          value: function getSelectedTrainee() {
+            return this.http.get(this.baseUrl + '/trainee-bio-data-general-info/get-selectedTraineeByPno');
+          }
+        }, {
+          key: "getselectedcourseduration",
+          value: function getselectedcourseduration() {
+            return this.http.get(this.baseUrl + '/course-duration/get-selectedCourseDurations');
+          }
+        }, {
+          key: "getselectedTraineeCourseStatus",
+          value: function getselectedTraineeCourseStatus() {
+            return this.http.get(this.baseUrl + '/trainee-course-status/get-selectedTraineeCourseStatuses');
+          }
+        }, {
+          key: "getselectedWithdrawnDoc",
+          value: function getselectedWithdrawnDoc() {
+            return this.http.get(this.baseUrl + '/withdrawn-docs/get-selectedWithDrawnDocs');
+          }
+        }, {
+          key: "getTraineeNominationsByCourseDurationId",
+          value: function getTraineeNominationsByCourseDurationId(pageNumber, pageSize, searchText, courseDurationId) {
+            var _this47 = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString());
+            params = params.append('courseDurationId', courseDurationId.toString());
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationsByCourseDurationId', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (response) {
+              _this47.TraineeNominations = [].concat(_toConsumableArray(_this47.TraineeNominations), _toConsumableArray(response.body.items));
+              _this47.TraineeNominationPagination = response.body;
+              return _this47.TraineeNominationPagination;
+            }));
+          }
+        }, {
+          key: "getTraineeNominations",
+          value: function getTraineeNominations(pageNumber, pageSize, searchText) {
+            var _this48 = this;
+
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpParams();
+            params = params.append('searchText', searchText.toString());
+            params = params.append('pageNumber', pageNumber.toString());
+            params = params.append('pageSize', pageSize.toString());
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominations', {
+              observe: 'response',
+              params: params
+            }).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (response) {
+              _this48.TraineeNominations = [].concat(_toConsumableArray(_this48.TraineeNominations), _toConsumableArray(response.body.items));
+              _this48.TraineeNominationPagination = response.body;
+              return _this48.TraineeNominationPagination;
+            }));
+          }
+        }, {
+          key: "findByCourseDuration",
+          value: function findByCourseDuration(courseDurationId) {
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationDetailByCourseDurationId?courseDurationId=' + courseDurationId);
+          }
+        }, {
+          key: "find",
+          value: function find(id) {
+            return this.http.get(this.baseUrl + '/trainee-nomination/get-traineeNominationDetail/' + id);
+          }
+        }, {
+          key: "update",
+          value: function update(id, model) {
+            return this.http.put(this.baseUrl + '/trainee-nomination/update-traineeNomination/' + id, model);
+          }
+        }, {
+          key: "updateTraineeNominationList",
+          value: function updateTraineeNominationList(model) {
+            return this.http.post(this.baseUrl + '/trainee-nomination/update-traineeNominationList', model).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (TraineeNomination) {
+              if (TraineeNomination) {
+                console.log(TraineeNomination);
+                return TraineeNomination;
+              }
+            }));
+          }
+        }, {
+          key: "submit",
+          value: function submit(model) {
+            return this.http.post(this.baseUrl + '/trainee-nomination/save-traineeNomination', model).pipe((0, rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(function (TraineeNomination) {
+              if (TraineeNomination) {
+                console.log(TraineeNomination);
+                return TraineeNomination;
+              }
+            }));
+          }
+        }, {
+          key: "delete",
+          value: function _delete(id) {
+            return this.http["delete"](this.baseUrl + '/trainee-nomination/delete-traineeNomination/' + id);
+          }
+        }]);
+
+        return _TraineeNominationService;
+      }();
+
+      _TraineeNominationService.ɵfac = function TraineeNominationService_Factory(t) {
+        return new (t || _TraineeNominationService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient));
+      };
+
+      _TraineeNominationService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+        token: _TraineeNominationService,
+        factory: _TraineeNominationService.ɵfac,
+        providedIn: 'root'
+      });
+      /***/
+    }
+  }]);
+})();

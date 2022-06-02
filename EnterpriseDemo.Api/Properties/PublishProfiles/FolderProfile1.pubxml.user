@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\SMSPublish</_PublishTargetUrl>
+    <History>True|2022-04-24T04:59:27.2056712Z;False|2022-03-30T11:39:31.8029958+06:00;True|2022-03-28T08:52:33.6158606+06:00;True|2022-03-26T21:37:22.7730816+06:00;True|2022-03-14T22:23:46.1344721+06:00;True|2022-03-13T22:28:36.0926562+06:00;True|2022-03-13T14:38:44.4834045+06:00;True|2022-03-06T12:36:10.0481197+06:00;True|2022-02-14T12:15:10.1835993+06:00;True|2022-02-11T11:42:57.8459576+06:00;True|2022-02-08T12:10:21.1536645+06:00;True|2022-02-06T12:42:03.1414545+06:00;True|2022-02-05T10:50:09.1543261+06:00;True|2022-02-03T12:54:32.2752602+06:00;</History>
+  </PropertyGroup>
+</Project>

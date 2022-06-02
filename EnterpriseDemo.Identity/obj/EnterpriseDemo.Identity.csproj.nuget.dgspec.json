@@ -1,0 +1,291 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Identity\\EnterpriseDemo.Identity.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemo.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemo.Application.csproj",
+        "projectName": "EnterpriseDemo.Application",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemo.Application.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj"
+              },
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\EnterpriseDemo.Shared.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\EnterpriseDemo.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
+        "projectName": "EnterpriseDemo.Domain",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Identity\\EnterpriseDemo.Identity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Identity\\EnterpriseDemo.Identity.csproj",
+        "projectName": "EnterpriseDemo.Identity",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Identity\\EnterpriseDemo.Identity.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Identity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemo.Application.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemo.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.14.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\EnterpriseDemo.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\EnterpriseDemo.Shared.csproj",
+        "projectName": "EnterpriseDemo.Shared",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\EnterpriseDemo.Shared.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

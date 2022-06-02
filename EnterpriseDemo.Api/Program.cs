@@ -1,25 +1,65 @@
+using EnterpriseDemo.Api.Extensions;
+using EnterpriseDemo.Api.Middleware;
+using EnterpriseDemo.Application;
+using EnterpriseDemo.Identity;
+using EnterpriseDemo.Persistence;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// add service to container
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
 
-var app = builder.Build();
+builder.Services.ConfigureApplicationServices();
+builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureIdentityServices(builder.Configuration);
+builder.Services.AddSwaggerDocumentation();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.Services.AddCors(o =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    o.AddPolicy("CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
+// configure the http request pipeline
+var app = builder.Build();
+//if (env.IsDevelopment())
+//{
+//    app.UseDeveloperExceptionPage();
+//}
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+//app.UseAuthentication();
+app.UseSwaggerDocumention();
+
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//                 Path.Combine(Directory.GetCurrentDirectory(), "Content")
+//             ),
+//    RequestPath = "/content"
+//});
+//app.MapFallbackToController("Index", "Fallback");
+//app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
+
+
+

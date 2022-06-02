@@ -1,0 +1,12 @@
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\bin\Debug\net6.0\SchoolManagement.Domain.deps.json
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\bin\Debug\net6.0\SchoolManagement.Domain.dll
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\bin\Debug\net6.0\ref\SchoolManagement.Domain.dll
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\bin\Debug\net6.0\SchoolManagement.Domain.pdb
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.csproj.AssemblyReference.cache
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.AssemblyInfo.cs
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.dll
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\ref\SchoolManagement.Domain.dll
+C:\Users\subrato\Desktop\EnterpriseDemo\SchoolManagement.Domain\obj\Debug\net6.0\SchoolManagement.Domain.pdb

@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\Users\**" />
+    <EmbeddedResource Remove="Features\Users\**" />
+    <None Remove="Features\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\Persistence\ILeaveTypeRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+  
+    <ProjectReference Include="..\EnterpriseDemo.Domain\EnterpriseDemo.Domain.csproj" />
+  
+    <ProjectReference Include="..\EnterpriseDemo.Shared\EnterpriseDemo.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+</Project>

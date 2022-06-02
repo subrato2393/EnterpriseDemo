@@ -1,0 +1,521 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\SchoolManagement.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\SchoolManagement.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\SchoolManagement.Api.csproj",
+        "projectName": "SchoolManagement.Api",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\SchoolManagement.Api.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\SchoolManagement.Application.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\SchoolManagement.Application.csproj"
+              },
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\SchoolManagement.Identity.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\SchoolManagement.Identity.csproj"
+              },
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\SchoolManagement.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\SchoolManagement.Infrastructure.csproj"
+              },
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\SchoolManagement.Persistence.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\SchoolManagement.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\SchoolManagement.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\SchoolManagement.Application.csproj",
+        "projectName": "SchoolManagement.Application",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\SchoolManagement.Application.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\SchoolManagement.Domain.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\SchoolManagement.Domain.csproj"
+              },
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\SchoolManagement.Shared.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\SchoolManagement.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\SchoolManagement.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\SchoolManagement.Domain.csproj",
+        "projectName": "SchoolManagement.Domain",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\SchoolManagement.Domain.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\SchoolManagement.Identity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\SchoolManagement.Identity.csproj",
+        "projectName": "SchoolManagement.Identity",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\SchoolManagement.Identity.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Identity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.14.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\SchoolManagement.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\SchoolManagement.Infrastructure.csproj",
+        "projectName": "SchoolManagement.Infrastructure",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\SchoolManagement.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.25.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\SchoolManagement.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\SchoolManagement.Persistence.csproj",
+        "projectName": "SchoolManagement.Persistence",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\SchoolManagement.Persistence.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj": {
+                "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Application\\EnterpriseDemoEnterpriseDemo.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\SchoolManagement.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\SchoolManagement.Shared.csproj",
+        "projectName": "SchoolManagement.Shared",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\SchoolManagement.Shared.csproj",
+        "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\SchoolManagement.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

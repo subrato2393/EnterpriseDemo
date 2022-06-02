@@ -1,13 +1,58 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>de9527b7-6835-4dd1-8230-23f39c36d9c0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Content\files\inter-service-mark\**" />
+    <Content Remove="wwwroot\Content\files\inter-service-mark\**" />
+    <EmbeddedResource Remove="wwwroot\Content\files\inter-service-mark\**" />
+    <None Remove="wwwroot\Content\files\inter-service-mark\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\common-es2015.js" />
+    <Content Remove="wwwroot\common-es5.js" />
+    <Content Remove="wwwroot\Content\images\profile\1.jpeg" />
+    <Content Remove="wwwroot\Content\images\profile\10b61703-001c-4d5c-824f-d0c4eb014c64_icon.png" />
+    <Content Remove="wwwroot\Content\images\profile\903c2e67-d678-4b6c-a45a-14f08211e055_images.jpg" />
+    <Content Remove="wwwroot\Content\images\profile\995a0ade-0038-407f-9ee5-c0c39cd000c7_233.png" />
+    <Content Remove="wwwroot\Content\images\profile\9d382ded-fba6-4490-9f91-5aec4e203d02_233.png" />
+    <Content Remove="wwwroot\Content\images\profile\a567bfca-a0e1-41cc-977b-69c0734b1896_233.png" />
+    <Content Remove="wwwroot\Content\images\profile\b4b272c9-15e1-4b11-a0ad-8a01874f45fe_233.png" />
+    <Content Remove="wwwroot\Content\images\profile\c1d42bf9-c2c4-419c-97a2-f38a4e67de30_4.jpg" />
+    <Content Remove="wwwroot\Content\images\profile\d519f0c7-9e16-48f3-b77e-57a12f11f99c_3.png" />
+    <Content Remove="wwwroot\Content\images\profile\d875925a-1c69-42c1-8ccb-b0f0e26bc964_1.jpeg" />
+    <Content Remove="wwwroot\Content\images\profile\db2a059e-425e-4d7a-a47c-2ea91b0b0946_233.png" />
+    <Content Remove="wwwroot\Content\images\profile\f5bd730d-9989-4198-8b20-d5b75bc8f232_11.png" />
+    <Content Remove="wwwroot\Content\images\profile\f67c3377-97a2-4735-86cf-2b995a9582c1_download (1).jpg" />
+    <Content Remove="wwwroot\Content\images\profile\f9d52e46-8e68-44c1-9a60-30c7d80906cb_233.png" />
+    <Content Remove="wwwroot\data-table.eot" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\files\reading-materials\" />
+    <Folder Include="wwwroot\Content\files\" />
+    <Folder Include="wwwroot\Content\images\profile\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnterpriseDemo.Application\EnterpriseDemo.Application.csproj" />
+    <ProjectReference Include="..\EnterpriseDemo.Identity\EnterpriseDemo.Identity.csproj" />
+    <ProjectReference Include="..\EnterpriseDemo.Infrastructure\EnterpriseDemo.Infrastructure.csproj" />
+    <ProjectReference Include="..\EnterpriseDemo.Persistence\EnterpriseDemo.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
