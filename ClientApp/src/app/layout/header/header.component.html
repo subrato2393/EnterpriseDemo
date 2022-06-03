@@ -4,28 +4,27 @@
       <a href="#" onClick="return false;" class="navbar-toggle collapsed"
         (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
       <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
-      <a class="navbar-brand" routerLink={{homePage}}>
+      <!-- <a class="navbar-brand" routerLink={{homePage}}>
         <img src="assets/images/logo.png" alt="" />
         <span class="logo-name">Smart</span>
-      </a>
+      </a> -->
     </div>
     <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
-      <ul class="float-start collapse-menu-icon">
+      <!-- <ul class="float-start collapse-menu-icon">
         <li>
           <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
             <mat-icon>menu</mat-icon>
           </button>
         </li>
-      </ul>
+      </ul> -->
       <ul class="nav navbar-nav navbar-right">
-        <!-- Full Screen Button -->
-        <li class="fullscreen">
+         <!-- <li class="fullscreen">
           <button mat-icon-button (click)="callFullscreen()" class=" nav-notification-icons">
             <mat-icon>fullscreen</mat-icon>
           </button>
-        </li>
+        </li> -->
         <!-- #END# Full Screen Button -->
-        <li class="nav-item" ngbDropdown>
+        <!-- <li class="nav-item" ngbDropdown>
           <a ngbDropdownToggle class="lang-dropdown">
             <img *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
             <img *ngIf="flagvalue === undefined" src="{{defaultFlag}}" height="16">
@@ -37,14 +36,14 @@
               <img src="{{item.flag}}" class="flag-img" height="12"> <span class="align-middle">{{item.text}}</span>
             </a>
           </div>
-        </li>
+        </li> -->
         <!-- #START# Notifications-->
         <li class="nav-item" ngbDropdown>
-          <button mat-icon-button ngbDropdownToggle class="nav-notification-icons">
+          <!-- <button mat-icon-button ngbDropdownToggle class="nav-notification-icons">
             <mat-icon>notifications_none</mat-icon>
             <span class="label-count bg-orange"></span>
-          </button>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
+          </button> -->
+          <!-- <div ngbDropdownMenu class="notification-dropdown pullDown">
             <div class="noti-list" style="position: relative; max-width: 600px; max-height: 250px;" [perfectScrollbar]>
               <ul class="menu">
                 <li>
@@ -65,9 +64,10 @@
             </div>
             <a class="text-center d-block border-top py-1" href="#" onClick="return false;">Read
               All Notifications</a>
-          </div>
+          </div> -->
         </li>
         <!-- #END# Notifications-->
+        <!--logout-->
         <li class="nav-item user_profile" ngbDropdown>
           <a href="#" onClick="return false;" ngbDropdownToggle role="button" class="nav-notification-icons pt-0">
             <img src={{userImg}} class="rounded-circle" width="32" height="32" alt="User">
@@ -102,13 +102,13 @@
               </ul>
             </div>
           </div>
-        </li>
+        </li> 
         <!-- #END# Tasks -->
-        <li class="float-end">
+        <!-- <li class="float-end">
           <button mat-icon-button (click)="toggleRightSidebar()" class="nav-notification-icons js-right-sidebar">
             <mat-icon id="settingBtn">settings</mat-icon>
           </button>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
