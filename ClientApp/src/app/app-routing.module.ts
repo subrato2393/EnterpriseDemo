@@ -32,6 +32,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('./teacher/teacher.module').then((m) => m.TeacherModule),
       },
+      {
+        path: 'product-management',
+        canActivate: [AuthGuard],
+        data: {
+          role: Role.Admin,
+        },
+        loadChildren: () =>
+          import('./product-management/product-management.module').then((m) => m.ProductManagementModule),
+      },
     ],
   },
   {

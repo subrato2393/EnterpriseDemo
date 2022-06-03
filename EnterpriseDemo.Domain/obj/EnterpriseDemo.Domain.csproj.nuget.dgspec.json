@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {}
+    "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {
+    "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
         "projectName": "EnterpriseDemo.Domain",
-        "projectPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
+        "projectPath": "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Domain\\EnterpriseDemo.Domain.csproj",
         "packagesPath": "C:\\Users\\subrato\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Domain\\obj\\",
+        "outputPath": "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\subrato\\AppData\\Roaming\\NuGet\\NuGet.Config",

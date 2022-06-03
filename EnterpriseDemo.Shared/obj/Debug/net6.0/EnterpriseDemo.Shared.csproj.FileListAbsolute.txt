@@ -10,3 +10,14 @@ C:\Users\subrato\Desktop\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\E
 C:\Users\subrato\Desktop\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\ref\EnterpriseDemo.Shared.dll
 C:\Users\subrato\Desktop\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.pdb
 C:\Users\subrato\Desktop\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.csproj.AssemblyReference.cache
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\bin\Debug\net6.0\EnterpriseDemo.Shared.deps.json
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\bin\Debug\net6.0\EnterpriseDemo.Shared.dll
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\bin\Debug\net6.0\ref\EnterpriseDemo.Shared.dll
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\bin\Debug\net6.0\EnterpriseDemo.Shared.pdb
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.AssemblyInfoInputs.cache
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.AssemblyInfo.cs
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.csproj.CoreCompileInputs.cache
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.dll
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\ref\EnterpriseDemo.Shared.dll
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.pdb

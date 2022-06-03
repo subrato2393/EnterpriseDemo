@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LZc3UpYun72Rx4CYbvz4AuSbq0jX48eMWLK7u1nNSqgTvBK9Rl1dMxaF+wu4ZY57HKo7joPWCpFLzGOKraswPw==",
+  "dgSpecHash": "OOIzkNlWdWiLwEJCvqu7BGzKvhsifo+ZV345VmRydUiWK3F39jT1v+KFcgYR/8hhSskuR/LLMNA3SEs3FsWQKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\subrato\\Desktop\\EnterpriseDemo\\EnterpriseDemo.Infrastructure\\EnterpriseDemo.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\subrato\\Desktop\\Enterprise\\EnterpriseDemo\\EnterpriseDemo.Infrastructure\\EnterpriseDemo.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\subrato\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\subrato\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

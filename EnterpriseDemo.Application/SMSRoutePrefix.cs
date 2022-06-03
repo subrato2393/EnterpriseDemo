@@ -7,7 +7,8 @@ namespace EnterpriseDemo.Application
         private const string SMSRoutePrefixBase = ApiRoutePrefix.RoutePrefixBase + "sms/";
         public const string Board = SMSRoutePrefixBase + "board";
         public const string Category = SMSRoutePrefixBase + "category";
+        public const string Product = SMSRoutePrefixBase + "product";
     }
 }
- 
+  
  

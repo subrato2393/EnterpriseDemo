@@ -13,6 +13,47 @@ export const ROUTES: RouteInfo[] = [
     role: ['All'],
     submenu: [],
   },
+//Product Management
+{
+  path: '',
+  title: 'Product Management',
+  moduleName: 'product-management',
+  iconType: 'material-icons-two-tone',
+  icon: 'person',
+  class: 'menu-toggle',
+  groupTitle: false,
+  badge: '',
+  badgeClass: '',
+  role: ['Admin'],
+  submenu: [
+    {
+      path: '/product-management/category-list',
+      title: 'Category List',
+      moduleName: 'product-management',
+      iconType: '',
+      icon: '',
+      class: 'ml-menu',
+      groupTitle: false,
+      badge: '',
+      badgeClass: '',
+      role: [''],
+      submenu: [],
+    },
+    {
+      path: '/product-management/add-category',
+      title: 'Add Category',
+      moduleName: 'product-management',
+      iconType: '',
+      icon: '',
+      class: 'ml-menu',
+      groupTitle: false,
+      badge: '',
+      badgeClass: '',
+      role: [''],
+      submenu: [],
+    },
+  ],
+},
 
   // Admin Modules
 
