@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { NewCategoryComponent } from './category/new-category/new-category.component';
+import {NewProductComponent} from './product/new-product/new-product.component';
+import {ProductListComponent} from './product/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -9,7 +11,18 @@ const routes: Routes = [
     redirectTo: 'signin',
     pathMatch: 'full'
   },
-  // product-management/category-list
+  {
+    path: 'product-list',
+    component: ProductListComponent,
+  },
+  { path: 'update-product/:productId', 
+  component: NewProductComponent 
+  },
+  {
+    path: 'add-product',
+    component: NewProductComponent,
+  },
+
   {
     path: 'category-list',
     component: CategoryListComponent,

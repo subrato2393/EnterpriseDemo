@@ -16,11 +16,15 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { NewCategoryComponent } from './category/new-category/new-category.component';
+import {NewProductComponent} from './product/new-product/new-product.component';
+import {ProductListComponent} from './product/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     CategoryListComponent,
     NewCategoryComponent,
+    NewProductComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,

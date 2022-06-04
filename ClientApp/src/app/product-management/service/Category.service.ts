@@ -4,6 +4,7 @@ import {environment} from '../../../../src/environments/environment';
 import {ICategoryPagination,CategoryPagination } from '../models/CategoryPagination'
 import { Category } from '../models/Category';
 import { map } from 'rxjs';
+import {SelectedModel} from '../../core/models/selectedModel'
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,10 @@ export class CategoryService {
   Categorys: Category[] = [];
   CategoryPagination = new CategoryPagination();
   constructor(private http: HttpClient) { }
+
+  getSelectedCategory(){
+    return this.http.get<SelectedModel[]>(this.baseUrl + '/category/get-selectedcategories');
+  }
 
   getCategories(pageNumber, pageSize, searchText) { 
 
