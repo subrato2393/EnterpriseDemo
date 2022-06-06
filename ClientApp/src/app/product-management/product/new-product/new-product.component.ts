@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../service/Product.service';
@@ -61,19 +61,64 @@ export class NewProductComponent implements OnInit {
   intitializeForm() {
     this.ProductForm = this.fb.group({
       productId: [0],
-      name: ['', Validators.required],
-      code: ['', Validators.required],
-      qty: ['', Validators.required],
-      price: ['', Validators.required],
-      status: ['', Validators.required],
-      categoryId: ['']
+      // name: ['', Validators.required],
+      // code: ['', Validators.required],
+      // qty: ['', Validators.required],
+      // price: ['', Validators.required],
+      // status: ['', Validators.required],
+      categoryId: [''],
+      product:  this.fb.array([
+        this.createProductForm()
+      ]), 
     })
   }
+    private createProductForm() {
+      return this.fb.group({
+        name: [''],
+        code:[''],
+        qty:[''],
+        price:[''],
+        status:[''],
+      });
+    }
   getSelectedCategory(){
     this.categoryService.getSelectedCategory().subscribe(res=>{
      this.selectedCategory=res;
     })
   }
+  addProduct(){
+    const control=<FormArray>this.ProductForm.controls['product'];
+    control.push(this.createProductForm()); 
+  }
+  removeProduct(index){
+      const control = <FormArray>this.ProductForm.controls["product"];
+      while (control.length) {
+        control.removeAt(index);
+      }
+     // control.clearValidators();
+  }
+  //multiple add
+  // coursePlanCreates() : FormArray {  
+  //   return this.ProductForm.get("courseplanlist") as FormArray  
+  // }  
+  //multiple add
+  // newCoursePlan(): FormGroup {  
+  //   return this.fb.group({  
+  //     coursePlanName: [''],  
+  //     value: [''],   
+  //   })  
+  // }  
+   //multiple add
+  // addCoursePlan() {  
+  //   this.coursePlanCreates().push(this.newCoursePlan());  
+  //   console.log(this.coursePlanCreates().value);
+  // }  
+  //multiple add   
+  // removeCoursePlan(i:number) {    
+  //   this.coursePlanCreates().removeAt(i);  
+  // }  
+
+
   onSubmit() {
     const id = this.ProductForm.get('productId').value;  
     console.log(id);

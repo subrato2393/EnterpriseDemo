@@ -35,53 +35,36 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Name</mat-label>
-                      <input matInput formControlName="name" required>
-                      <mat-error *ngIf="ProductForm.get('name').hasError('required')">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
+                  <div formArrayName="product">
+                     <div *ngFor="let unit of ProductForm.get('product')['controls']; let i = index" formGroupName="{{i}}" class="margin-top">
+                        <div class="row pt-2">
+                          <div class="col-md-3">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Name</mat-label>
+                              <input matInput formControlName="name" required>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-3">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Code</mat-label>
+                              <input matInput formControlName="code" required>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-3">
+                            <mat-form-field class="example-full-width mb-3" appearance="outline">
+                              <mat-label>Qty</mat-label>
+                              <input matInput formControlName="qty" required>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-2 remove-padding-right">
+                             <a (click)="removeProduct(i)"><span class="btn btn-sm btn-danger">Remove</span></a>
+                          </div>
+                        </div>
+                        <div class="col-md-12 pt-2">
+                          <a (click)="addProduct()"><span class="btn btn-sm btn-success">Add</span></a>
+                       </div>
+                     </div>
                   </div>
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Code</mat-label>
-                      <input matInput formControlName="code" required>
-                      <mat-error *ngIf="ProductForm.get('code').hasError('required')">
-                        Code is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Qty</mat-label>
-                      <input matInput formControlName="qty" required>
-                      <mat-error *ngIf="ProductForm.get('qty').hasError('required')">
-                        Qty is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Price</mat-label>
-                      <input matInput formControlName="price" required>
-                      <mat-error *ngIf="ProductForm.get('price').hasError('required')">
-                        Price is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Status</mat-label>
-                      <input matInput formControlName="status" required>
-                      <mat-error *ngIf="ProductForm.get('status').hasError('required')">
-                        Status is required
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-
                 </div>
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
