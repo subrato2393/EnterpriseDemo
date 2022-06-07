@@ -6,7 +6,7 @@ namespace EnterpriseDemo.Application.Features.Products.Requests.Commands
 {
     public class CreateProductCommand : IRequest<BaseCommandResponse>
     {
-        public CreateProductDto ProductDto { get; set; }
+        public CreateProductListDto? ProductListDto { get; set; }
 
     }
 }

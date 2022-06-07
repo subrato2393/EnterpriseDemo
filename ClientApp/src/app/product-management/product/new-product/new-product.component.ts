@@ -61,11 +61,6 @@ export class NewProductComponent implements OnInit {
   intitializeForm() {
     this.ProductForm = this.fb.group({
       productId: [0],
-      // name: ['', Validators.required],
-      // code: ['', Validators.required],
-      // qty: ['', Validators.required],
-      // price: ['', Validators.required],
-      // status: ['', Validators.required],
       categoryId: [''],
       product:  this.fb.array([
         this.createProductForm()
@@ -92,32 +87,8 @@ export class NewProductComponent implements OnInit {
   }
   removeProduct(index){
       const control = <FormArray>this.ProductForm.controls["product"];
-      while (control.length) {
-        control.removeAt(index);
-      }
-     // control.clearValidators();
+      control.removeAt(index);
   }
-  //multiple add
-  // coursePlanCreates() : FormArray {  
-  //   return this.ProductForm.get("courseplanlist") as FormArray  
-  // }  
-  //multiple add
-  // newCoursePlan(): FormGroup {  
-  //   return this.fb.group({  
-  //     coursePlanName: [''],  
-  //     value: [''],   
-  //   })  
-  // }  
-   //multiple add
-  // addCoursePlan() {  
-  //   this.coursePlanCreates().push(this.newCoursePlan());  
-  //   console.log(this.coursePlanCreates().value);
-  // }  
-  //multiple add   
-  // removeCoursePlan(i:number) {    
-  //   this.coursePlanCreates().removeAt(i);  
-  // }  
-
 
   onSubmit() {
     const id = this.ProductForm.get('productId').value;  

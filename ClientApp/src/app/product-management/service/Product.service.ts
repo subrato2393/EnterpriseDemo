@@ -38,7 +38,7 @@ export class ProductService {
     return this.http.put(this.baseUrl + '/product/update-product/'+id, model);
   }
   submit(model: any) {
-    return this.http.post(this.baseUrl + '/product/save-product', model);
+    return this.http.post(this.baseUrl + '/product/save-product-list', model);
   } 
   delete(id:number){
     return this.http.delete(this.baseUrl + '/product/delete-product/'+id);

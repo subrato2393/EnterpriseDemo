@@ -15,7 +15,23 @@
 
                 
 /*                 [1. Common ]                   			*/
+//my css code
+.margin {
+    margin-right: 15px;
+    margin-top: 15px;
+}
 
+a.btn.btn-sm.btn-success.radius {
+    border-radius: 30px;
+}
+
+a.btn.btn-sm.btn-danger.margin.radius {
+    border-radius: 30px;
+}
+.card.bgcolor {
+    background-color: #ced8f3;
+}
+//
 mat-header-cell.mat-sort-header.mat-header-cell.cdk-header-cell.tblCell.ng-tns-c250-3.cdk-column-name.mat-column-name.ng-star-inserted {
     max-width: 100px;
     text-align: center;

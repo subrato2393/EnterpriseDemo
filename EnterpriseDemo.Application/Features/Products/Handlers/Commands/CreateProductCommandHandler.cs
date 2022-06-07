@@ -22,27 +22,21 @@ namespace EnterpriseDemo.Application.Features.Products.Handlers.Commands
         public async Task<BaseCommandResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
-            var validator = new CreateProductDtoValidator();
-            var validationResult = await validator.ValidateAsync(request.ProductDto);
+            var productList = request.ProductListDto;
 
-            if (validationResult.IsValid == false)
+            var products = productList.Product.Select(x => new Product()
             {
-                response.Success = false;
-                response.Message = "Creation Failed";
-                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
-            }
-            else
-            {
-                var Product = _mapper.Map<Product>(request.ProductDto);
+                CategoryId=productList.CategoryId,
+                ProductId = productList.ProductId.Value,
+                Code = x.Code,
+                Name=x.Name,
+                Price=x.Price,
+                Qty=x.Qty,
+                Status=0
+            });
 
-                Product = await _unitOfWork.Repository<Product>().Add(Product);
-
-                await _unitOfWork.Save();
-
-                response.Success = true;
-                response.Message = "Creation Successful";
-                response.Id = Product.ProductId;
-            }
+            await _unitOfWork.Repository<Product>().AddRangeAsync(products);
+            await _unitOfWork.Save();
 
             return response;
         }
