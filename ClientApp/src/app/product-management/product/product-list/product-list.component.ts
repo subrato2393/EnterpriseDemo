@@ -5,7 +5,7 @@ import { Product } from '../../models/Product';
 import { ProductService } from '../../service/Product.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
-// import { ConfirmService } from 'src/app/core/service/confirm.service';
+import { ConfirmService } from 'src/app/core/service/confirm.service';
 import {MasterData} from '../../../../../src/assets/data/master-data';
 import { MatSnackBar } from '@angular/material/snack-bar';
  
@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
     length: 1
   }
   searchText="";
-  displayedColumns: string[] = [ 'ser', 'name','code','qty','price','status','actions'];
+  displayedColumns: string[] = [ 'ser','categoryName', 'name','code','qty','price','status','actions'];
   dataSource: MatTableDataSource<Product> = new MatTableDataSource();
 
   selection = new SelectionModel<Product>(true, []);
@@ -62,9 +62,9 @@ export class ProductListComponent implements OnInit {
 
   deleteItem(row) {
     const id = row.productId; 
- //   this.confirmService.confirm('Confirm delete message', 'Are You Sure Delete This  Item').subscribe(result => {
-    //  console.log(result);
-     // if (result) {
+  //  this.confirmService.confirm('Confirm delete message', 'Are You Sure Delete This  Item').subscribe(result => {
+  //    console.log(result);
+  //    if (result) {
         this.productService.delete(id).subscribe(() => {
           this.getProducts();
           this.snackBar.open('Information Deleted Successfully ', '', {
@@ -74,7 +74,7 @@ export class ProductListComponent implements OnInit {
             panelClass: 'snackbar-danger'
           });
         })
-    //  }
-    //})    
-  }
+     }
+  //   })    
+  // }
 }

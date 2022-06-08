@@ -6,7 +6,7 @@ namespace EnterpriseDemo.Application.DTOs.Product
 {
     public interface IProductDto
     {
-        //public int ProductId { get; set; }
+     //   public int ProductId { get; set; }
         //public string? Name { get; set; }
         //public string? Code { get; set; }
         //public string? Qty { get; set; }

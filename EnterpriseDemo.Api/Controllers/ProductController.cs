@@ -19,23 +19,22 @@ public class ProductController : ControllerBase
         _mediator = mediator;
     }
 
-    //[HttpGet]
-    //[Route("get-products")]
-    //public async Task<ActionResult<List<ProductDto>>> Get([FromQuery] QueryParams queryParams)
-    //{
-    //    var Products = await _mediator.Send(new GetProductListRequest { QueryParams = queryParams });
-    //    return Ok(Products);
-    //}
+    [HttpGet]
+    [Route("get-products")]
+    public async Task<ActionResult<List<ProductDto>>> Get([FromQuery] QueryParams queryParams)
+    {
+        var Products = await _mediator.Send(new GetProductListRequest { QueryParams = queryParams });
+        return Ok(Products);
+    }
 
-    
 
-    //[HttpGet]
-    //[Route("get-productdetail/{id}")]
-    //public async Task<ActionResult<ProductDto>> Get(int id)
-    //{
-    //    var Products = await _mediator.Send(new GetProductDetailRequest { ProductId = id });
-    //    return Ok(Products);
-    //}
+    [HttpGet]
+    [Route("get-productdetail/{id}")]
+    public async Task<ActionResult<ProductDto>> Get(int id)
+    {
+        var Products = await _mediator.Send(new GetProductDetailRequest { ProductId = id });
+        return Ok(Products);
+    }
 
     [HttpPost]
     [ProducesResponseType(200)]
@@ -51,17 +50,17 @@ public class ProductController : ControllerBase
         return Ok(response);
     }
 
-    //[HttpPut]
-    //[ProducesResponseType(StatusCodes.Status204NoContent)]
-    //[ProducesResponseType(StatusCodes.Status404NotFound)]
-    //[ProducesDefaultResponseType]
-    //[Route("update-product/{id}")]
-    //public async Task<ActionResult> Put([FromBody] ProductDto Product)
-    //{
-    //    var command = new UpdateProductCommand { ProductDto = Product };
-    //    await _mediator.Send(command);
-    //    return NoContent();
-    //}
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    [Route("update-product/{id}")]
+    public async Task<ActionResult> Put([FromBody] ProductDto Product)
+    {
+        var command = new UpdateProductCommand { ProductDto = Product };
+        await _mediator.Send(command);
+        return NoContent();
+    }
 
     [HttpDelete]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

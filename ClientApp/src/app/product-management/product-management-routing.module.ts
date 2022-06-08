@@ -4,6 +4,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { NewCategoryComponent } from './category/new-category/new-category.component';
 import {NewProductComponent} from './product/new-product/new-product.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
+import {UpdateProductComponent} from './product/update-product/update-product.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     component: ProductListComponent,
   },
   { path: 'update-product/:productId', 
-  component: NewProductComponent 
+  component: UpdateProductComponent 
   },
   {
     path: 'add-product',

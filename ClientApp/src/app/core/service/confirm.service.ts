@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/modals/confirm-dialog/confirm-dialog.component';
 
@@ -7,9 +7,9 @@ import { ConfirmDialogComponent } from 'src/app/modals/confirm-dialog/confirm-di
   providedIn: 'root'
 })
 export class ConfirmService {
-  //bsModelRef: BsModalRef;
+  bsModelRef: BsModalRef;
 
-  constructor(/*private modalService: BsModalService*/) { }
+  constructor(private modalService: BsModalService) { }
 
   confirm(title = 'Confirmation', 
     message = 'Are you sure you want to do this?', 
@@ -23,21 +23,21 @@ export class ConfirmService {
           btnCancelText
         }
       }
-    // this.bsModelRef = this.modalService.show(ConfirmDialogComponent, config);
+     this.bsModelRef = this.modalService.show(ConfirmDialogComponent, config);
     
     return new Observable<boolean>(this.getResult());
   }
 
   private getResult() {
     return (observer) => {
-      // const subscription = this.bsModelRef.onHidden.subscribe(() => {
-      //   observer.next(this.bsModelRef.content.result);
-      //   observer.complete();
-      // });
+      const subscription = this.bsModelRef.onHidden.subscribe(() => {
+        observer.next(this.bsModelRef.content.result);
+        observer.complete();
+      });
 
       return {
         unsubscribe() {
-          // subscription.unsubscribe();
+          subscription.unsubscribe();
         }
       }
     }

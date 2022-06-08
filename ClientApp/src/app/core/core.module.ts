@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RightSidebarService } from './service/rightsidebar.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './service/auth.service';
+import { ConfirmService } from './service/confirm.service';
 import { DynamicScriptLoaderService } from './service/dynamic-script-loader.service';
 import { throwIfAlreadyLoaded } from './guard/module-import.guard';
 
@@ -12,6 +13,7 @@ import { throwIfAlreadyLoaded } from './guard/module-import.guard';
   providers: [
     RightSidebarService,
     AuthGuard,
+    ConfirmService,
     AuthService,
     DynamicScriptLoaderService,
   ],

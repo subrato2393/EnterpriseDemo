@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../service/Category.service';
-import { ConfirmService } from '../../../core/service/confirm.service';
+//import { ConfirmService } from '../../../core/service/confirm.service';
 
 @Component({
   selector: 'app-new-category',
@@ -17,7 +17,7 @@ export class NewCategoryComponent implements OnInit {
   CategoryForm: FormGroup;
   validationErrors: string[] = [];
 
-  constructor(private snackBar: MatSnackBar,private confirmService: ConfirmService,private categoryService: CategoryService,private fb: FormBuilder, private router: Router,  private route: ActivatedRoute) { }
+  constructor(private snackBar: MatSnackBar,/*private confirmService: ConfirmService,*/private categoryService: CategoryService,private fb: FormBuilder, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('categoryId'); 

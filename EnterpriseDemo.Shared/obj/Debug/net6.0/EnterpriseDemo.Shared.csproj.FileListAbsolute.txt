@@ -21,3 +21,4 @@ C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Deb
 C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.dll
 C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\ref\EnterpriseDemo.Shared.dll
 C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.pdb
+C:\Users\subrato\Desktop\Enterprise\EnterpriseDemo\EnterpriseDemo.Shared\obj\Debug\net6.0\EnterpriseDemo.Shared.csproj.AssemblyReference.cache

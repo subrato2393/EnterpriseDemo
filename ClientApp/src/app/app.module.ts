@@ -25,11 +25,12 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ClickOutsideModule } from 'ng-click-outside';
-import {
+import { 
   HttpClientModule,
   HTTP_INTERCEPTORS,
   HttpClient,
 } from '@angular/common/http';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -49,6 +50,7 @@ export function createTranslateLoader(http: HttpClient): any {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

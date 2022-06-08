@@ -18,13 +18,15 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { NewCategoryComponent } from './category/new-category/new-category.component';
 import {NewProductComponent} from './product/new-product/new-product.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
+import {UpdateProductComponent} from './product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
     CategoryListComponent,
     NewCategoryComponent,
     NewProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,

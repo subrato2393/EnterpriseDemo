@@ -10,11 +10,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { SelectedModel } from '../../../core/models/selectedModel';
 
 @Component({
-  selector: 'app-new-product',
-  templateUrl: './new-product.component.html',
-  styleUrls: ['./new-product.component.sass']
+  selector: 'app-update-product',
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.sass']
 })
-export class NewProductComponent implements OnInit {
+export class UpdateProductComponent implements OnInit {
   pageTitle: string;
   destination:string;
   btnText:string;
@@ -24,7 +24,7 @@ export class NewProductComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,
     private categoryService: CategoryService,
-   // private confirmService: ConfirmService,
+    // private confirmService: ConfirmService,
     private productService: ProductService,
     private fb: FormBuilder, 
     private router: Router, 
@@ -62,33 +62,38 @@ export class NewProductComponent implements OnInit {
     this.ProductForm = this.fb.group({
       productId: [0],
       categoryId: [''],
-      product:  this.fb.array([
-        this.createProductForm()
-      ]), 
+      name: [''],
+      code:[''],
+      qty:[''],
+      price:[''],
+      status:[''],
+      // product:  this.fb.array([
+      //   this.createProductForm()
+      // ]), 
     })
   }
-    private createProductForm() {
-      return this.fb.group({
-        name: [''],
-        code:[''],
-        qty:[''],
-        price:[''],
-        status:[''],
-      });
-    }
+    // private createProductForm() {
+    //   return this.fb.group({
+    //     name: [''],
+    //     code:[''],
+    //     qty:[''],
+    //     price:[''],
+    //     status:[''],
+    //   });
+    // }
   getSelectedCategory(){
     this.categoryService.getSelectedCategory().subscribe(res=>{
      this.selectedCategory=res;
     })
   }
-  addProduct(){
-    const control=<FormArray>this.ProductForm.controls['product'];
-    control.push(this.createProductForm()); 
-  }
-  removeProduct(index){
-      const control = <FormArray>this.ProductForm.controls["product"];
-      control.removeAt(index);
-  }
+  // addProduct(){
+  //   const control=<FormArray>this.ProductForm.controls['product'];
+  //   control.push(this.createProductForm()); 
+  // }
+  // removeProduct(index){
+  //     const control = <FormArray>this.ProductForm.controls["product"];
+  //     control.removeAt(index);
+  // }
 
   onSubmit() {
     const id = this.ProductForm.get('productId').value;  

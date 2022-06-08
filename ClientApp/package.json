@@ -52,6 +52,7 @@
     "ng-pick-datetime": "^7.0.0",
     "ng2-charts": "^2.4.2",
     "ng2-dragula": "^2.1.1",
+    "ngx-bootstrap": "^7.1.0",
     "ngx-color-picker": "^11.0.0",
     "ngx-dropzone-wrapper": "^10.0.1",
     "ngx-echarts": "^5.1.2",

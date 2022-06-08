@@ -21,7 +21,8 @@ namespace EnterpriseDemo.Application.Profiles
             #endregion
 
             #region Product Mappings
-           // CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<ProductDto, Product>().ReverseMap()
+             .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name));
             CreateMap<Product, CreateProductListDto>().ReverseMap();
             #endregion
         }
