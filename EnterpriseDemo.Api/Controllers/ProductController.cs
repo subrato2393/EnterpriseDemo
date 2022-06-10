@@ -25,8 +25,18 @@ public class ProductController : ControllerBase
     {
         var Products = await _mediator.Send(new GetProductListRequest { QueryParams = queryParams });
         return Ok(Products);
+    } 
+      
+    [HttpGet]
+    [Route("get-products-by-categoryid")]
+    public async Task<ActionResult<List<ProductDto>>> GetProductByCategoryId(int categoryId)
+    {
+        var products = await _mediator.Send(new GetProductsByCategoryIdRequest
+        {
+            CategoryId = categoryId
+        }); 
+        return Ok(products);
     }
-
 
     [HttpGet]
     [Route("get-productdetail/{id}")]

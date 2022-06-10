@@ -44,4 +44,8 @@ export class ProductService {
     return this.http.delete(this.baseUrl + '/product/delete-product/'+id);
   }
 
+  getProductByCategoryId(id: number) {
+    return this.http.get<Product[]>(this.baseUrl + '/product/get-products-by-categoryid?categoryId=' + id);
+  }
+
 }

@@ -18,7 +18,7 @@ public class CategoryController : ControllerBase
     {
         _mediator = mediator;
     }
-
+     
     [HttpGet]
     [Route("get-categories")]
     public async Task<ActionResult<List<CategoryDto>>> Get([FromQuery] QueryParams queryParams)
@@ -27,7 +27,6 @@ public class CategoryController : ControllerBase
         return Ok(Categorys);
     }
 
-    
 
     [HttpGet]
     [Route("get-categorydetail/{id}")]

@@ -5,6 +5,7 @@ import { NewCategoryComponent } from './category/new-category/new-category.compo
 import {NewProductComponent} from './product/new-product/new-product.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {UpdateProductComponent} from './product/update-product/update-product.component';
+import {ProductAcceptanceComponent} from '../product-management/productacceptance/productacceptance/productacceptance.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'add-category',
     component: NewCategoryComponent,
+  },
+  {
+    path: 'product-acceptance',
+    component: ProductAcceptanceComponent,
   },
 ];
 
