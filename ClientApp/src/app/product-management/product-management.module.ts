@@ -20,6 +20,8 @@ import {NewProductComponent} from './product/new-product/new-product.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {UpdateProductComponent} from './product/update-product/update-product.component';
 import {ProductAcceptanceComponent} from '../product-management/productacceptance/productacceptance/productacceptance.component';
+import { MatDialogModule,MatDialogRef  } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,9 @@ import {ProductAcceptanceComponent} from '../product-management/productacceptanc
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
+    // MatDialogRef,
+    // MatDialog,
     ProductManagementRoutingModule,
     FormsModule,  
     ReactiveFormsModule,

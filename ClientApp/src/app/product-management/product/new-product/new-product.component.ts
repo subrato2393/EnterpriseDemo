@@ -8,13 +8,16 @@ import { CategoryService } from '../../service/Category.service';
 import { Category } from '../../models/Category';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SelectedModel } from '../../../core/models/selectedModel';
+import { NewCategoryComponent } from '../../category/new-category/new-category.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.sass']
 })
-export class NewProductComponent implements OnInit {
+export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements OnInit {
   pageTitle: string;
   destination:string;
   btnText:string;
@@ -24,12 +27,15 @@ export class NewProductComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,
     private categoryService: CategoryService,
+    public dialog: MatDialog,
    // private confirmService: ConfirmService,
     private productService: ProductService,
     private fb: FormBuilder, 
     private router: Router, 
     private route: ActivatedRoute)
-      { }
+      {
+        super();
+       }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('productId'); 
@@ -67,6 +73,7 @@ export class NewProductComponent implements OnInit {
       ]), 
     })
   }
+  
     private createProductForm() {
       return this.fb.group({
         name: [''],
@@ -88,6 +95,38 @@ export class NewProductComponent implements OnInit {
   removeProduct(index){
       const control = <FormArray>this.ProductForm.controls["product"];
       control.removeAt(index);
+  }
+
+  addNew() {
+    let tempDirection;
+    if (localStorage.getItem('isRtl') === 'true') {
+      tempDirection = 'rtl';
+    } else {
+      tempDirection = 'ltr';
+    }
+    const dialogRef = this.dialog.open(NewCategoryComponent, {
+      data: {
+       /// teachers: this.teachers,
+        action: 'add',
+      },
+      direction: tempDirection,
+    });
+    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        // After dialog is closed we're doing frontend updates
+        // For add we're just pushing a new row inside DataServicex
+        // this.exampleDatabase.dataChange.value.unshift(
+        //   this.teachersService.getDialogData()
+        // );
+        // this.refreshTable();
+        // this.showNotification(
+        //   'snackbar-success',
+        //   'Add Record Successfully...!!!',
+        //   'bottom',
+        //   'center'
+        // );
+      }
+    });
   }
 
   onSubmit() {

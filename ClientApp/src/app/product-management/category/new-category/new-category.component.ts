@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../service/Category.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 //import { ConfirmService } from '../../../core/service/confirm.service';
 
 @Component({
@@ -17,7 +18,17 @@ export class NewCategoryComponent implements OnInit {
   CategoryForm: FormGroup;
   validationErrors: string[] = [];
 
-  constructor(private snackBar: MatSnackBar,/*private confirmService: ConfirmService,*/private categoryService: CategoryService,private fb: FormBuilder, private router: Router,  private route: ActivatedRoute) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<NewCategoryComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private categoryService: CategoryService,
+    private fb: FormBuilder, 
+    private router: Router,  
+    private route: ActivatedRoute) 
+    { 
+      
+    }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('categoryId'); 

@@ -31,6 +31,9 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+// import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule,MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -50,9 +53,11 @@ export function createTranslateLoader(http: HttpClient): any {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
   imports: [
+    // MatDialog,
+    // MatDialogRef ,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -70,6 +75,7 @@ export function createTranslateLoader(http: HttpClient): any {
     // core & shared
     CoreModule,
     SharedModule,
+    MatDialogModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
