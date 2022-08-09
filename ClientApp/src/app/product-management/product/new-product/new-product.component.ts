@@ -107,13 +107,14 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-       /// teachers: this.teachers,
+        teachers: this.selectedCategory,
         action: 'add',
       },
       direction: tempDirection,
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
+      this.getSelectedCategory();
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
         // this.exampleDatabase.dataChange.value.unshift(
@@ -152,6 +153,7 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
       //})
     }  else {
       this.productService.submit(this.ProductForm.value).subscribe(response => {
+
         this.router.navigateByUrl('/product-management/product-list');
         this.snackBar.open('Information Inserted Successfully ', '', {
           duration: 2000,

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../../service/Category.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-//import { ConfirmService } from '../../../core/service/confirm.service';
+import { SelectedModel } from 'src/app/core/models/selectedModel';
 
 @Component({
   selector: 'app-form-dialog',
@@ -18,17 +18,16 @@ export class FormDialogComponent implements OnInit {
   CategoryForm: FormGroup;
   validationErrors: string[] = [];
   dialogTitle: string;
-
-  // constructor( @Optional() private dialogRef: MatDialogRef, @Optional() @Inject(MAT_DIALOG_DATA) public IrId: any) {}
+  selectedCategory:SelectedModel[];
 
   constructor(
-   // @Optional() private dialogRef: MatDialogRef,
     private snackBar: MatSnackBar,
     @Optional() public dialogRef: MatDialogRef<FormDialogComponent>,
     @Optional()  @Inject(MAT_DIALOG_DATA) public data: any,
     private categoryService: CategoryService,
     private fb: FormBuilder, 
     private router: Router,  
+    
     private route: ActivatedRoute) 
     { 
       
@@ -44,11 +43,8 @@ export class FormDialogComponent implements OnInit {
       this.categoryService.find(+id).subscribe(
         res => {
           this.CategoryForm.patchValue({          
-
             categoryId: res.categoryId,
             name: res.name,
-            //menuPosition: res.menuPosition,
-          
           });          
         }
       );
@@ -65,22 +61,24 @@ export class FormDialogComponent implements OnInit {
       name: ['', Validators.required]
     })
   }
+  getSelectedCategory(){
+    this.categoryService.getSelectedCategory().subscribe(res=>{
+     this.selectedCategory=res;
+     console.log(this.selectedCategory);
+    })
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
-  // public confirmAdd(): void {
-  //   this.categoryService.addTeachers(this.proForm.getRawValue());
-  // }
+
   submit() {
     // emppty stuff
   }
   onSubmit() {
     const id = this.CategoryForm.get('categoryId').value;  
-    console.log(id);
+    console.log(id+"88888");
     if (id) {
-     // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
        console.log(this.CategoryForm.value);
-   //     if (result) {
           this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
             this.router.navigateByUrl('/product-management/category-list');
             this.snackBar.open('Information Updated Successfully ', '', {
@@ -92,8 +90,6 @@ export class FormDialogComponent implements OnInit {
           }, error => {
             this.validationErrors = error;
           })
-      //  }
-      //})
     }  else {
       this.categoryService.submit(this.CategoryForm.value).subscribe(response => {
         this.router.navigateByUrl('/product-management/add-product');
