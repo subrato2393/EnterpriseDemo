@@ -2,16 +2,16 @@ import { Component,Inject, OnInit,Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../../../service/Category.service';
+import { CategoryService } from '../../service/Category.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SelectedModel } from 'src/app/core/models/selectedModel';
+import { SelectedModel } from '../../../core/models/selectedModel';
 
 @Component({
-  selector: 'app-form-dialog',
-  templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  selector: 'app-category-popup',
+  templateUrl: './category-popup.component.html',
+  styleUrls: ['./category-popup.component.sass']
 })
-export class FormDialogComponent implements OnInit {
+export class CategoryPopupComponent implements OnInit {
   pageTitle: string;
   destination:string;
   btnText:string;
@@ -22,7 +22,7 @@ export class FormDialogComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    @Optional() public dialogRef: MatDialogRef<FormDialogComponent>,
+    @Optional() public dialogRef: MatDialogRef<CategoryPopupComponent>,
     @Optional()  @Inject(MAT_DIALOG_DATA) public data: any,
     private categoryService: CategoryService,
     private fb: FormBuilder, 
@@ -35,7 +35,7 @@ export class FormDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('categoryId'); 
-    this.dialogTitle = 'New Teachers';
+    this.dialogTitle = 'New Category';
     if (id) {
       this.pageTitle = 'Edit Category';
       this.destination = "Edit";

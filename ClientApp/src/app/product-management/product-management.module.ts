@@ -21,9 +21,9 @@ import {ProductListComponent} from './product/product-list/product-list.componen
 import {UpdateProductComponent} from './product/update-product/update-product.component';
 import {ProductAcceptanceComponent} from '../product-management/productacceptance/productacceptance/productacceptance.component';
 import { MatDialogModule,MatDialogRef  } from '@angular/material/dialog';
-import{FormDialogComponent} from './product/dialogs/form-dialog/form-dialog.component';
+// import{FormDialogComponent} from './product/dialogs/form-dialog/form-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import {CategoryPopupComponent} from './category/category-popup/category-popup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ProductListComponent,
     UpdateProductComponent,
     ProductAcceptanceComponent,
-    FormDialogComponent
+    CategoryPopupComponent
   ],
   imports: [
     CommonModule,
