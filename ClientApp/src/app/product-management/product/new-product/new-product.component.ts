@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../service/Product.service';
-// import { ConfirmService } from '../../../core/service/confirm.service';
 import { CategoryService } from '../../service/Category.service';
 import { Category } from '../../models/Category';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -29,7 +28,6 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
   constructor(private snackBar: MatSnackBar,
     private categoryService: CategoryService,
     public dialog: MatDialog,
-   // private confirmService: ConfirmService,
     private productService: ProductService,
     private fb: FormBuilder, 
     private router: Router, 
@@ -114,19 +112,7 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-      this.getSelectedCategory();
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataServicex
-        // this.exampleDatabase.dataChange.value.unshift(
-        //   this.teachersService.getDialogData()
-        // );
-        // this.refreshTable();
-        // this.showNotification(
-        //   'snackbar-success',
-        //   'Add Record Successfully...!!!',
-        //   'bottom',
-        //   'center'
-        // );
+        this.getSelectedCategory();
       }
     });
   }

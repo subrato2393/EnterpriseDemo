@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../service/Category.service';
-// import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-//import { ConfirmService } from '../../../core/service/confirm.service';
 
 @Component({
   selector: 'app-new-category',
@@ -18,13 +16,8 @@ export class NewCategoryComponent implements OnInit {
   CategoryForm: FormGroup;
   validationErrors: string[] = [];
 
-  // constructor( @Optional() private dialogRef: MatDialogRef, @Optional() @Inject(MAT_DIALOG_DATA) public IrId: any) {}
-
   constructor(
-   // @Optional() private dialogRef: MatDialogRef,
     private snackBar: MatSnackBar,
-    // @Optional() public dialogRef: MatDialogRef<NewCategoryComponent>,
-    // @Optional()  @Inject(MAT_DIALOG_DATA) public data: any,
     private categoryService: CategoryService,
     private fb: FormBuilder, 
     private router: Router,  
@@ -44,9 +37,7 @@ export class NewCategoryComponent implements OnInit {
           this.CategoryForm.patchValue({          
 
             categoryId: res.categoryId,
-            name: res.name,
-            //menuPosition: res.menuPosition,
-          
+            name: res.name    
           });          
         }
       );

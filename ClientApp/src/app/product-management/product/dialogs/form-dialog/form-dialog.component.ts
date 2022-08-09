@@ -43,8 +43,10 @@ export class FormDialogComponent implements OnInit {
       this.categoryService.find(+id).subscribe(
         res => {
           this.CategoryForm.patchValue({          
+
             categoryId: res.categoryId,
             name: res.name,
+          
           });          
         }
       );
@@ -72,13 +74,15 @@ export class FormDialogComponent implements OnInit {
   }
 
   submit() {
-    // emppty stuff
+
   }
   onSubmit() {
     const id = this.CategoryForm.get('categoryId').value;  
     console.log(id+"88888");
     if (id) {
+     // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
        console.log(this.CategoryForm.value);
+   //     if (result) {
           this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
             this.router.navigateByUrl('/product-management/category-list');
             this.snackBar.open('Information Updated Successfully ', '', {
@@ -90,9 +94,12 @@ export class FormDialogComponent implements OnInit {
           }, error => {
             this.validationErrors = error;
           })
+      //  }
+      //})
     }  else {
       this.categoryService.submit(this.CategoryForm.value).subscribe(response => {
         this.router.navigateByUrl('/product-management/add-product');
+        this.getSelectedCategory();
         this.snackBar.open('Information Inserted Successfully ', '', {
           duration: 2000,
           verticalPosition: 'bottom',
