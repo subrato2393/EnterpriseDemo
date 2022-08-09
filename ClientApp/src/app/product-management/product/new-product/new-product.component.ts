@@ -11,6 +11,7 @@ import { SelectedModel } from '../../../core/models/selectedModel';
 import { NewCategoryComponent } from '../../category/new-category/new-category.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { FormDialogComponent } from '../dialogs/form-dialog/form-dialog.component';
 
 @Component({
   selector: 'app-new-product',
@@ -104,7 +105,7 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
     } else {
       tempDirection = 'ltr';
     }
-    const dialogRef = this.dialog.open(NewCategoryComponent, {
+    const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
        /// teachers: this.teachers,
         action: 'add',

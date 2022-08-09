@@ -21,6 +21,8 @@ import {ProductListComponent} from './product/product-list/product-list.componen
 import {UpdateProductComponent} from './product/update-product/update-product.component';
 import {ProductAcceptanceComponent} from '../product-management/productacceptance/productacceptance/productacceptance.component';
 import { MatDialogModule,MatDialogRef  } from '@angular/material/dialog';
+import{FormDialogComponent} from './product/dialogs/form-dialog/form-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -30,10 +32,12 @@ import { MatDialogModule,MatDialogRef  } from '@angular/material/dialog';
     NewProductComponent,
     ProductListComponent,
     UpdateProductComponent,
-    ProductAcceptanceComponent
+    ProductAcceptanceComponent,
+    FormDialogComponent
   ],
   imports: [
     CommonModule,
+    MatDatepickerModule,
     MatDialogModule,
     // MatDialogRef,
     // MatDialog,
