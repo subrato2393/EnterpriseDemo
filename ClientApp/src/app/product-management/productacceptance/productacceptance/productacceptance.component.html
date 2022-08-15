@@ -47,7 +47,7 @@
                 <th><h5>Qty</h5></th>
                 <th><h5>Price</h5></th>
               </tr>
-              <tr>
+              <!-- <tr> -->
                 <tr *ngFor="let unit of CategoryForm.get('productList')['controls']; let i = index" [formGroup]="unit">
                   <th class="cl-srl" scope="row">{{i+1}}</th>
 
@@ -55,7 +55,7 @@
                     {{loadDataDynamicFormWithoutInput(i,'categoryId')}}
                   </td>
                   
-                  <td>
+                  <td class="tdName">
                     <mat-form-field class="example-full-width name" appearance="outline">
                       <input class="nametxt" matInput type="text" formControlName="name" >
                     </mat-form-field>
@@ -63,17 +63,17 @@
                       <input matInput  type="text" formControlName="name"/>
                     </mat-form-field> -->
                   </td>
-                  <td  class="tdName">
+                  <td class="tdName">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <input matInput  type="text" formControlName="code"/>
                     </mat-form-field>
                   </td>
-                  <td>
+                  <td class="tdName">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <input matInput  type="text" formControlName="qty"/>
                     </mat-form-field>
                   </td>
-                  <td>
+                  <td class="tdName">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <input matInput  type="text" formControlName="price"/>
                     </mat-form-field>
