@@ -9,11 +9,13 @@ namespace EnterpriseDemo.Domain
         public Category()
         {
             Products = new HashSet<Product>();
+            Acceptances = new HashSet<Acceptance>();
         }
 
         public int CategoryId { get; set; }
         public string? Name { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Acceptance> Acceptances { get; set; }
     }
 }

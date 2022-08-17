@@ -23,7 +23,7 @@ namespace EnterpriseDemo.Application.Features.Products.Handlers.Queries
 
         public async Task<List<ProductDto>> Handle(GetProductsByCategoryIdRequest request, CancellationToken cancellationToken)
         { 
-            var products = _productRepository.FilterWithInclude(x => x.CategoryId == request.CategoryId && x.Status == 0).ToList();
+            var products = _productRepository.FilterWithInclude(x => x.CategoryId == request.CategoryId && x.Status == 0, "Category").ToList();
             var productDtos = _mapper.Map<List<ProductDto>>(products);
 
             return productDtos;

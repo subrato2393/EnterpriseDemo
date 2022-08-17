@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using EnterpriseDemo.Shared.Models;
 using EnterpriseDemo.Application.DTOs.Product;
 
 namespace EnterpriseDemo.Application.Features.Products.Requests.Queries

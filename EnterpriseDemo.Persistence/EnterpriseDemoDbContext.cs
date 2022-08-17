@@ -28,10 +28,19 @@ namespace EnterpriseDemo.Persistence
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_Product_Category");
             });
+            modelBuilder.Entity<Acceptance>(entity =>
+            {
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Acceptances)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_Acceptance_Category");
+            });
 
         }
         public virtual DbSet<Board> Boards { get; set; } = null!;
         public virtual DbSet<Category> Category { get; set; } = null!;
         public virtual DbSet<Product> Product { get; set; } = null!;
-    } 
+        public virtual DbSet<Acceptance> Acceptance { get; set; }
+
+    }
 }

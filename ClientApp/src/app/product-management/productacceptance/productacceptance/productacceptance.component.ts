@@ -61,6 +61,7 @@ export class ProductAcceptanceComponent implements OnInit {
       code:[''],
       qty:[''],
       price:[''],
+      categoryName:['']
     });
   } 
 
@@ -108,24 +109,24 @@ export class ProductAcceptanceComponent implements OnInit {
   onSubmit() {
     const id = this.CategoryForm.get('categoryId').value;  
     console.log(id);
-    if (id) {
+    // if (id) {
      // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
        // console.log(this.CategoryForm.value);
    //     if (result) {
-          this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
-            this.router.navigateByUrl('/product-management/category-list');
-            this.snackBar.open('Information Updated Successfully ', '', {
-              duration: 2000,
-              verticalPosition: 'bottom',
-              horizontalPosition: 'right',
-              panelClass: 'snackbar-success'
-            });
-          }, error => {
-            this.validationErrors = error;
-          })
+          // this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
+          //   this.router.navigateByUrl('/product-management/category-list');
+          //   this.snackBar.open('Information Updated Successfully ', '', {
+          //     duration: 2000,
+          //     verticalPosition: 'bottom',
+          //     horizontalPosition: 'right',
+          //     panelClass: 'snackbar-success'
+          //   });
+          // }, error => {
+          //   this.validationErrors = error;
+          // })
       //  }
       //})
-    }  else {
+    // }  else {
       this.categoryService.submit(this.CategoryForm.value).subscribe(response => {
         this.router.navigateByUrl('/product-management/category-list');
         this.snackBar.open('Information Inserted Successfully ', '', {
@@ -140,4 +141,4 @@ export class ProductAcceptanceComponent implements OnInit {
     }
  
   }
-}
+//}
