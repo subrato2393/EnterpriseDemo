@@ -97,33 +97,36 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
   }
 
   addNew() {
-    let tempDirection;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
+    console.log("print");
+    // let tempDirection;
+    // if (localStorage.getItem('isRtl') === 'true') {
+    //   tempDirection = 'rtl';
+    // } else {
+    //   tempDirection = 'ltr';
+    // }
     const dialogRef = this.dialog.open(CategoryPopupComponent, {
-      data: {
-        teachers: this.selectedCategory,
-        action: 'add',
-      },
-      direction: tempDirection,
+      // {
+        data: this.getSelectedCategory(),
+      ///  sele:
+      //  action: 'add',
+    //  },
+  
+     // direction: tempDirection,
     });
+    console.log("print1");
+    this.getSelectedCategory();
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
+    if (result === 1) {
         this.getSelectedCategory();
       }
     });
+    this.getSelectedCategory();
   }
 
   onSubmit() {
     const id = this.ProductForm.get('productId').value;  
     console.log(id);
     if (id) {
-     // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
-       // console.log(this.ProductForm.value);
-   //     if (result) {
           this.productService.update(+id,this.ProductForm.value).subscribe(response => {
             this.router.navigateByUrl('/product-management/product-list');
             this.snackBar.open('Information Updated Successfully ', '', {
@@ -135,8 +138,6 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
           }, error => {
             this.validationErrors = error;
           })
-      //  }
-      //})
     }  else {
       this.productService.submit(this.ProductForm.value).subscribe(response => {
 

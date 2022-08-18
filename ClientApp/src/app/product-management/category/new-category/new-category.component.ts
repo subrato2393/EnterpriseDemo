@@ -59,9 +59,6 @@ export class NewCategoryComponent implements OnInit {
     const id = this.CategoryForm.get('categoryId').value;  
     console.log(id);
     if (id) {
-     // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
-       // console.log(this.CategoryForm.value);
-   //     if (result) {
           this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
             this.router.navigateByUrl('/product-management/category-list');
             this.snackBar.open('Information Updated Successfully ', '', {
@@ -73,8 +70,6 @@ export class NewCategoryComponent implements OnInit {
           }, error => {
             this.validationErrors = error;
           })
-      //  }
-      //})
     }  else {
       this.categoryService.submit(this.CategoryForm.value).subscribe(response => {
         this.router.navigateByUrl('/product-management/category-list');

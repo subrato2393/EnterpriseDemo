@@ -5,7 +5,6 @@ import { Category } from '../../models/Category';
 import { CategoryService } from '../../service/Category.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
-// import { ConfirmService } from 'src/app/core/service/confirm.service';
 import{MasterData} from 'src/assets/data/master-data';
 import { MatSnackBar } from '@angular/material/snack-bar';
  
@@ -63,9 +62,6 @@ export class CategoryListComponent implements OnInit {
 
   deleteItem(row) {
     const id = row.categoryId; 
-  //  this.confirmService.confirm('Confirm delete message', 'Are You Sure Delete This  Item').subscribe(result => {
-  //    console.log(result);
-   //  if (result) {
         this.categoryService.delete(id).subscribe(() => {
           this.getCategories();
           this.snackBar.open('Information Deleted Successfully ', '', {
@@ -74,8 +70,6 @@ export class CategoryListComponent implements OnInit {
             horizontalPosition: 'right',
             panelClass: 'snackbar-danger'
           });
-        })
-    // }
-  //  })    
+        })  
   }
 }

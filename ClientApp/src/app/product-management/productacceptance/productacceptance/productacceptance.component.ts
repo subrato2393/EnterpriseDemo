@@ -31,24 +31,6 @@ export class ProductAcceptanceComponent implements OnInit {
       this.pageTitle = 'Create Acceptance';
       this.destination = "Add";
       this.btnText = 'Save';
-    // if (id) {
-    //   this.pageTitle = 'Edit Acceptance';
-    //   this.destination = "Edit";
-    //   this.btnText = 'Update';
-    //   this.acceptanceService.find(+id).subscribe(
-    //     res => {
-    //       this.AcceptanceForm.patchValue({          
-
-    //         acceptanceId: res.acceptanceId,
-    //         name: res.name,
-    //       });          
-    //     }
-    //   );
-    // } else {
-    //   this.pageTitle = 'Create Acceptance';
-    //   this.destination = "Add";
-    //   this.btnText = 'Save';
-    // }
     this.intitializeForm();
     this.getSelectedCategory();
   }
@@ -88,8 +70,6 @@ export class ProductAcceptanceComponent implements OnInit {
       control.push(this.createProductForm());
     }
     this.AcceptanceForm.patchValue({ productList: this.productList });
-   // console.log("value...");
-    //console.log(this.traineeList)
   }
 
   removeList() {
@@ -117,24 +97,6 @@ export class ProductAcceptanceComponent implements OnInit {
   onSubmit() {
     const id = this.AcceptanceForm.get('acceptanceId').value;  
     console.log(id);
-    // if (id) {
-     // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
-        console.log(this.AcceptanceForm.value);
-   //     if (result) {
-          // this.acceptanceService.update(+id,this.AcceptanceForm.value).subscribe(response => {
-          //   this.router.navigateByUrl('/product-management/acceptance-list');
-          //   this.snackBar.open('Information Updated Successfully ', '', {
-          //     duration: 2000,
-          //     verticalPosition: 'bottom',
-          //     horizontalPosition: 'right',
-          //     panelClass: 'snackbar-success'
-          //   });
-          // }, error => {
-          //   this.validationErrors = error;
-          // })
-      //  }
-      //})
-    // }  else {
       this.acceptanceService.submit(this.AcceptanceForm.value).subscribe(response => {
         this.router.navigateByUrl('/product-management/acceptance-list');
         this.snackBar.open('Information Inserted Successfully ', '', {
@@ -149,4 +111,3 @@ export class ProductAcceptanceComponent implements OnInit {
     }
  
   }
-//}
