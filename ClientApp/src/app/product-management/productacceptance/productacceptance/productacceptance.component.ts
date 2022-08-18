@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../../service/Category.service';
+import { AcceptanceService } from '../../service/Acceptance.service';
 import { SelectedModel } from 'src/app/core/models/selectedModel';
 import { ProductService } from '../../service/Product.service';
 import {ProductList} from '../../models/ProductList';
+import { CategoryService } from '../../service/Category.service';
 
 @Component({
   selector: 'app-productacceptance',
@@ -17,82 +18,86 @@ export class ProductAcceptanceComponent implements OnInit {
   pageTitle: string;
   destination:string;
   btnText:string;
-  CategoryForm: FormGroup;
+  AcceptanceForm: FormGroup;
   validationErrors: string[] = [];
-  selectedCategory:SelectedModel[];
+  selectedAcceptance:SelectedModel[];
   productList:ProductList[];
   isShown: boolean = false ;
 
-  constructor(private snackBar: MatSnackBar,/*private confirmService: ConfirmService,*/private categoryService: CategoryService,private productService: ProductService,private fb: FormBuilder, private router: Router,  private route: ActivatedRoute) { }
+  constructor(private snackBar: MatSnackBar,private categoryService: CategoryService,/*private confirmService: ConfirmService,*/private acceptanceService: AcceptanceService,private productService: ProductService,private fb: FormBuilder, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('categoryId'); 
-    if (id) {
-      this.pageTitle = 'Edit Category';
-      this.destination = "Edit";
-      this.btnText = 'Update';
-      this.categoryService.find(+id).subscribe(
-        res => {
-          this.CategoryForm.patchValue({          
-
-            categoryId: res.categoryId,
-            name: res.name,
-          });          
-        }
-      );
-    } else {
-      this.pageTitle = 'Create Category';
+    const id = this.route.snapshot.paramMap.get('acceptanceId'); 
+      this.pageTitle = 'Create Acceptance';
       this.destination = "Add";
       this.btnText = 'Save';
-    }
+    // if (id) {
+    //   this.pageTitle = 'Edit Acceptance';
+    //   this.destination = "Edit";
+    //   this.btnText = 'Update';
+    //   this.acceptanceService.find(+id).subscribe(
+    //     res => {
+    //       this.AcceptanceForm.patchValue({          
+
+    //         acceptanceId: res.acceptanceId,
+    //         name: res.name,
+    //       });          
+    //     }
+    //   );
+    // } else {
+    //   this.pageTitle = 'Create Acceptance';
+    //   this.destination = "Add";
+    //   this.btnText = 'Save';
+    // }
     this.intitializeForm();
     this.getSelectedCategory();
   }
   intitializeForm() {
-    this.CategoryForm = this.fb.group({
-      categoryId: [0],
+    this.AcceptanceForm = this.fb.group({
+      acceptanceId: [0],
       productList: this.fb.array([this.createProductForm()]),
     })
   }
   private createProductForm() {
     return this.fb.group({
-      categoryId:[''],
       name: [''],
       code:[''],
-      qty:[''],
+      qty:[],
       price:[''],
-      categoryName:['']
+      categoryName:[''],
+      acceptanceName:[''],
+      isActive:[]
     });
   } 
 
   loadDataDynamicFormWithoutInput(index: number, type: string) {
-    return (this.CategoryForm.get('productList') as FormArray).at(index).get(type).value;
+    return (this.AcceptanceForm.get('productList') as FormArray).at(index).get(type).value;
   }
   getSelectedCategory(){
     this.categoryService.getSelectedCategory().subscribe(res=>{
-     this.selectedCategory=res;
+     this.selectedAcceptance=res;
     })
   }
   loadProductListDynamicForm() {
-    const control = <FormArray>this.CategoryForm.controls["productList"];
+    const control = <FormArray>this.AcceptanceForm.controls["productList"];
     console.log("productlist");
     console.log(this.productList)
     for (let i = 0; i < this.productList.length; i++) {
       control.push(this.createProductForm());
     }
-    this.CategoryForm.patchValue({ productList: this.productList });
+    this.AcceptanceForm.patchValue({ productList: this.productList });
    // console.log("value...");
     //console.log(this.traineeList)
   }
 
   removeList() {
-    const control = <FormArray>this.CategoryForm.controls["productList"];
+    const control = <FormArray>this.AcceptanceForm.controls["productList"];
     while (control.length) {
       control.removeAt(control.length - 1);
     }
     control.clearValidators();
   }
-  onCategorySelectionChange(dropdown){
+  onAcceptanceSelectionChange(dropdown){
     if (dropdown.isUserInput) {
       this.isShown=true;
       console.log(dropdown.source.value);
@@ -107,14 +112,14 @@ export class ProductAcceptanceComponent implements OnInit {
   }
 
   onSubmit() {
-    const id = this.CategoryForm.get('categoryId').value;  
+    const id = this.AcceptanceForm.get('acceptanceId').value;  
     console.log(id);
     // if (id) {
      // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
-       // console.log(this.CategoryForm.value);
+       // console.log(this.AcceptanceForm.value);
    //     if (result) {
-          // this.categoryService.update(+id,this.CategoryForm.value).subscribe(response => {
-          //   this.router.navigateByUrl('/product-management/category-list');
+          // this.acceptanceService.update(+id,this.AcceptanceForm.value).subscribe(response => {
+          //   this.router.navigateByUrl('/product-management/acceptance-list');
           //   this.snackBar.open('Information Updated Successfully ', '', {
           //     duration: 2000,
           //     verticalPosition: 'bottom',
@@ -127,8 +132,8 @@ export class ProductAcceptanceComponent implements OnInit {
       //  }
       //})
     // }  else {
-      this.categoryService.submit(this.CategoryForm.value).subscribe(response => {
-        this.router.navigateByUrl('/product-management/category-list');
+      this.acceptanceService.submit(this.AcceptanceForm.value).subscribe(response => {
+        this.router.navigateByUrl('/product-management/acceptance-list');
         this.snackBar.open('Information Inserted Successfully ', '', {
           duration: 2000,
           verticalPosition: 'bottom',

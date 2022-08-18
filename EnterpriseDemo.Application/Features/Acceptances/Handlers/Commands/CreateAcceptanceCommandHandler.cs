@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using EnterpriseDemo.Application.DTOs.Acceptance.Validators;
 using EnterpriseDemo.Application.Contracts.Persistence;
-using EnterpriseDemo.Domain;
 using MediatR;
 using EnterpriseDemo.Application.Responses;
 using EnterpriseDemo.Application.Features.Acceptances.Requests.Commands;
+using EnterpriseDemo.Domain;
 
 namespace EnterpriseDemo.Application.Features.Acceptances.Handlers.Commands
 {
@@ -24,19 +23,29 @@ namespace EnterpriseDemo.Application.Features.Acceptances.Handlers.Commands
             var response = new BaseCommandResponse();
             var AcceptanceList = request.AcceptanceListDto;
 
-            //var Acceptances = AcceptanceList.Acceptance.Select(x => new Acceptance()
-            //{
-            //    CategoryId=AcceptanceList.CategoryId,
-            //    AcceptanceId = AcceptanceList.AcceptanceId.Value,
-            //    Code = x.Code,
-            //    Name=x.Name,
-            //    Price=x.Price,
-            //    Qty=x.Qty,
-            //    Status=0
-            //});
+            var Acceptances = AcceptanceList.ProductList.Select(x => new Acceptance()
+            {
+                CategoryId =2 ,
+                AcceptanceId = x.AcceptanceId,
+                Code = x.Code,
+                Name = x.Name,
+                Price = x.Price,
+                AcceptanceName =x.AcceptanceName,
+                
+                //Qty = x.Qty,
+                //IsActive = x.IsActive,
 
-            //await _unitOfWork.Repository<Acceptance>().AddRangeAsync(Acceptances);
-            //await _unitOfWork.Save();
+            });
+
+            await _unitOfWork.Repository<Acceptance>().AddRangeAsync(Acceptances);
+            try
+            {
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             return response;
         }

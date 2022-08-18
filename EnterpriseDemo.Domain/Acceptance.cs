@@ -3,7 +3,7 @@ using EnterpriseDemo.Domain.Common;
 
 namespace EnterpriseDemo.Domain
 {
-    public class Acceptance: BaseDomainEntity
+    public class Acceptance
     {
         public int AcceptanceId { get; set; }
         public int? CategoryId { get; set; }

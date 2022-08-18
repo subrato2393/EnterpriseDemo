@@ -1,6 +1,6 @@
 ﻿namespace EnterpriseDemo.Application.DTOs.Acceptance
 {
-    public class AcceptanceDto : IAcceptanceDto
+    public class AcceptanceDto
     {
         public int AcceptanceId { get; set; }
         public string? Name { get; set; }

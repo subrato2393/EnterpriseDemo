@@ -1,14 +1,14 @@
 ﻿namespace EnterpriseDemo.Application.DTOs.Acceptance
 {
-    public class AcceptanceListDto : IAcceptanceDto
+    public class AcceptanceListDto
     {
-        public int AcceptanceId { get; set; }
-        public int? CategoryId { get; set; }
-        public string? AcceptanceName { get; set; }
+       public int AcceptanceId { get; set; }
         public string? Name { get; set; }
         public string? Code { get; set; }
-        public int? Qty { get; set; }
-        public string? Price { get; set; }
-        public bool? IsActive { get; set; }
+        public string? Qty { get; set; }
+        public string? Price { get; set; } 
+        public string? CategoryName { get; set; }
+        public string? AcceptanceName { get; set; }
+        public object? IsActive { get; set; }
     }
 }

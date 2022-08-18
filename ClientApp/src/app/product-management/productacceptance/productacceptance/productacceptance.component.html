@@ -11,7 +11,7 @@
               <a routerLink="/admin/dashboard/main"><i class="fas fa-home"></i></a>
             </li>
             <li class="breadcrumb-item bcrumb-2">
-              <a href="#" onClick="return false;">Category</a>
+              <a href="#" onClick="return false;">Acceptance</a>
             </li>
             <li class="breadcrumb-item active">{{destination}}</li>
           </ul>
@@ -22,14 +22,14 @@
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="body">
-            <form class="m-4" [formGroup]="CategoryForm" (ngSubmit)="onSubmit()">
+            <form class="m-4" [formGroup]="AcceptanceForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-xl-6 col-lg-4 col-md-43 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width mb-3" appearance="outline">
                     <mat-label>Category</mat-label> 
-                    <mat-select formControlName="categoryId">
+                    <mat-select formControlName="acceptanceId">
                       <mat-option value="0">--Select--</mat-option>
-                      <mat-option (onSelectionChange)="onCategorySelectionChange($event)" *ngFor="let dropdown of selectedCategory" [value]="dropdown">
+                      <mat-option (onSelectionChange)="onAcceptanceSelectionChange($event)" *ngFor="let dropdown of selectedAcceptance" [value]="dropdown">
                         {{dropdown.text}}
                       </mat-option>
                     </mat-select>
@@ -46,8 +46,10 @@
                 <th><h5>Code</h5></th>
                 <th><h5>Qty</h5></th>
                 <th><h5>Price</h5></th>
+                <th><h5>Is Active</h5></th>
+                <th><h5>Acceptance Name</h5></th>
               </tr>
-                <tr *ngFor="let unit of CategoryForm.get('productList')['controls']; let i = index" [formGroup]="unit">
+                <tr *ngFor="let unit of AcceptanceForm.get('productList')['controls']; let i = index" [formGroup]="unit">
                   <th class="cl-srl" scope="row">{{i+1}}</th>
 
                   <td> 
@@ -74,6 +76,17 @@
                       <input matInput  type="text" formControlName="price"/>
                     </mat-form-field>
                     </td>
+                    <td class="tdName">
+                      <input type="checkbox" formControlName="isActive">
+                      <!-- <mat-form-field class="example-full-width" appearance="outline">
+                        <input matInput  type="checkbox" formControlName="isActive"/>
+                      </mat-form-field> -->
+                      </td>
+                      <td class="tdName">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <input matInput  type="text" formControlName="acceptanceName"/>
+                        </mat-form-field>
+                      </td>
                   </tr>
             </table>
             </div>
@@ -86,7 +99,7 @@
                       <thead>
                         <tr>
                           <th><h5>Ser</h5></th>
-                          <th><h5>CategoryId</h5></th>
+                          <th><h5>AcceptanceId</h5></th>
                           <th><h5>Name</h5></th>
                           <th><h5>Code</h5></th>
                           <th><h5>Qty</h5></th>
@@ -94,11 +107,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let unit of CategoryForm.get('productList')['controls']; let i = index" [formGroup]="unit">
+                        <tr *ngFor="let unit of AcceptanceForm.get('productList')['controls']; let i = index" [formGroup]="unit">
                           <th class="cl-srl" scope="row">{{i+1}}</th>
 
                           <td> 
-                            {{loadDataDynamicFormWithoutInput(i,'categoryId')}}
+                            {{loadDataDynamicFormWithoutInput(i,'acceptanceId')}}
                           </td>
                           
                           <td>
@@ -133,9 +146,9 @@
               </div>
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                  <button class="btn-space" [disabled]="!CategoryForm.valid " mat-raised-button
+                  <button class="btn-space" [disabled]="!AcceptanceForm.valid " mat-raised-button
                     color="primary">{{btnText}}</button>
-                  <button type="button" mat-button routerLink="/product-management/category-list">Cancel</button>
+                  <button type="button" mat-button routerLink="/product-management/acceptance-list">Cancel</button>
                 </div>
               </div>
             </form>
