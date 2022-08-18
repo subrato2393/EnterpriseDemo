@@ -27,14 +27,14 @@ namespace EnterpriseDemo.Application.Features.Products.Handlers.Commands
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult);
 
-            var Product = await _unitOfWork.Repository<Product>().Get(request.ProductDto.ProductId);
+            var product = await _unitOfWork.Repository<Product>().Get(request.ProductDto.ProductId);
 
-            if (Product is null)
-                throw new NotFoundException(nameof(Product), request.ProductDto.ProductId);
+            if (product is null)
+                throw new NotFoundException(nameof(product), request.ProductDto.ProductId);
 
-            _mapper.Map(request.ProductDto, Product);
+            _mapper.Map(request.ProductDto, product);
 
-            await _unitOfWork.Repository<Product>().Update(Product);
+            await _unitOfWork.Repository<Product>().Update(product);
             await _unitOfWork.Save();
 
             return Unit.Value;

@@ -11,7 +11,7 @@ namespace EnterpriseDemo.Domain
         public string? Name { get; set; }
         public string? Code { get; set; }
         public int? Qty { get; set; }
-        public string? Price { get; set; }
+        public double? Price { get; set; }
         public bool? IsActive { get; set; }
 
         public virtual Category? Category { get; set; }

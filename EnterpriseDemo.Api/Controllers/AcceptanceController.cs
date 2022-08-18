@@ -20,11 +20,11 @@ public class AcceptanceController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [Route("save-acceptance-list")]
-    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateAcceptanceListDto Acceptance)
+    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateAcceptanceListDto acceptance)
     {
         var command = new CreateAcceptanceCommand 
         { 
-            AcceptanceListDto = Acceptance
+            AcceptanceListDto = acceptance 
         };
         var response = await _mediator.Send(command);
         return Ok(response);

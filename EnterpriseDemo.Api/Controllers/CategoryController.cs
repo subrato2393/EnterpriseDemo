@@ -23,8 +23,8 @@ public class CategoryController : ControllerBase
     [Route("get-categories")]
     public async Task<ActionResult<List<CategoryDto>>> Get([FromQuery] QueryParams queryParams)
     {
-        var Categorys = await _mediator.Send(new GetCategoryListRequest { QueryParams = queryParams });
-        return Ok(Categorys);
+        var categories = await _mediator.Send(new GetCategoryListRequest { QueryParams = queryParams });
+        return Ok(categories);
     }
 
 
@@ -32,17 +32,17 @@ public class CategoryController : ControllerBase
     [Route("get-categorydetail/{id}")]
     public async Task<ActionResult<CategoryDto>> Get(int id)
     {
-        var Categorys = await _mediator.Send(new GetCategoryDetailRequest { CategoryId = id });
-        return Ok(Categorys);
+        var categories = await _mediator.Send(new GetCategoryDetailRequest { CategoryId = id });
+        return Ok(categories);
     }
 
     [HttpPost]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [Route("save-category")]
-    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateCategoryDto Category)
+    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateCategoryDto category)
     {
-        var command = new CreateCategoryCommand { CategoryDto = Category };
+        var command = new CreateCategoryCommand { CategoryDto = category };
         var response = await _mediator.Send(command);
         return Ok(response);
     }
@@ -52,9 +52,9 @@ public class CategoryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
     [Route("update-category/{id}")]
-    public async Task<ActionResult> Put([FromBody] CategoryDto Category)
+    public async Task<ActionResult> Put([FromBody] CategoryDto category)
     {
-        var command = new UpdateCategoryCommand { CategoryDto = Category };
+        var command = new UpdateCategoryCommand { CategoryDto = category };
         await _mediator.Send(command);
         return NoContent();
     }

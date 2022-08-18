@@ -27,14 +27,14 @@ namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult);
 
-            var Category = await _unitOfWork.Repository<Category>().Get(request.CategoryDto.CategoryId);
+            var category = await _unitOfWork.Repository<Category>().Get(request.CategoryDto.CategoryId);
 
-            if (Category is null)
-                throw new NotFoundException(nameof(Category), request.CategoryDto.CategoryId);
+            if (category is null)
+                throw new NotFoundException(nameof(category), request.CategoryDto.CategoryId);
 
-            _mapper.Map(request.CategoryDto, Category);
+            _mapper.Map(request.CategoryDto, category);
 
-            await _unitOfWork.Repository<Category>().Update(Category);
+            await _unitOfWork.Repository<Category>().Update(category);
             await _unitOfWork.Save();
 
             return Unit.Value;

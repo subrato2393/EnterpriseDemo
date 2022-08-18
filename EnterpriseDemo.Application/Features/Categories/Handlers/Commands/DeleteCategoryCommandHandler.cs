@@ -20,12 +20,12 @@ namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands
 
         public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var Category = await _unitOfWork.Repository<Category>().Get(request.CategoryId);
+            var category = await _unitOfWork.Repository<Category>().Get(request.CategoryId);
 
-            if (Category == null)
-                throw new NotFoundException(nameof(Category), request.CategoryId);
+            if (category == null)
+                throw new NotFoundException(nameof(category), request.CategoryId);
 
-            await _unitOfWork.Repository<Category>().Delete(Category);
+            await _unitOfWork.Repository<Category>().Delete(category);
             await _unitOfWork.Save();
 
             return Unit.Value;

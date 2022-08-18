@@ -21,32 +21,22 @@ namespace EnterpriseDemo.Application.Features.Acceptances.Handlers.Commands
         public async Task<BaseCommandResponse> Handle(CreateAcceptanceCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
-            var AcceptanceList = request.AcceptanceListDto;
+            var acceptanceList = request.AcceptanceListDto;
 
-            var Acceptances = AcceptanceList.ProductList.Select(x => new Acceptance()
+            var acceptances = acceptanceList.ProductList.Select(x => new Acceptance()
             {
-                CategoryId =2 ,
+                CategoryId = acceptanceList.CategoryId ,
                 AcceptanceId = x.AcceptanceId,
                 Code = x.Code,
                 Name = x.Name,
                 Price = x.Price,
                 AcceptanceName =x.AcceptanceName,
-                
-                //Qty = x.Qty,
-                //IsActive = x.IsActive,
-
+                Qty =x.Qty,
+                IsActive =x.IsActive
             });
 
-            await _unitOfWork.Repository<Acceptance>().AddRangeAsync(Acceptances);
-            try
-            {
-                await _unitOfWork.Save();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-
+            await _unitOfWork.Repository<Acceptance>().AddRangeAsync(acceptances);
+            await _unitOfWork.Save();
             return response;
         }
     }

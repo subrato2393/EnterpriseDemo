@@ -23,8 +23,8 @@ public class ProductController : ControllerBase
     [Route("get-products")]
     public async Task<ActionResult<List<ProductDto>>> Get([FromQuery] QueryParams queryParams)
     {
-        var Products = await _mediator.Send(new GetProductListRequest { QueryParams = queryParams });
-        return Ok(Products);
+        var products = await _mediator.Send(new GetProductListRequest { QueryParams = queryParams });
+        return Ok(products);
     } 
       
     [HttpGet]
@@ -42,8 +42,8 @@ public class ProductController : ControllerBase
     [Route("get-productdetail/{id}")]
     public async Task<ActionResult<ProductDto>> Get(int id)
     {
-        var Products = await _mediator.Send(new GetProductDetailRequest { ProductId = id });
-        return Ok(Products);
+        var products = await _mediator.Send(new GetProductDetailRequest { ProductId = id });
+        return Ok(products);
     }
 
     [HttpPost]
@@ -65,9 +65,9 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
     [Route("update-product/{id}")]
-    public async Task<ActionResult> Put([FromBody] ProductDto Product)
+    public async Task<ActionResult> Put([FromBody] ProductDto product)
     {
-        var command = new UpdateProductCommand { ProductDto = Product };
+        var command = new UpdateProductCommand { ProductDto = product };
         await _mediator.Send(command);
         return NoContent();
     }

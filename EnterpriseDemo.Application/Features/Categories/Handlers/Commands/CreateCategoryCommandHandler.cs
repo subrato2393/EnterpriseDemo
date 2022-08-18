@@ -1,19 +1,12 @@
 ﻿using AutoMapper;
 using EnterpriseDemo.Application.DTOs.Category.Validators;
-using EnterpriseDemo.Application.Exceptions;
 using EnterpriseDemo.Application.Contracts.Persistence;
 using EnterpriseDemo.Domain;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using EnterpriseDemo.Application.Responses; 
-using System.Linq;
+using EnterpriseDemo.Application.Responses;
 using EnterpriseDemo.Application.Features.Categories.Requests.Commands;
 
-namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands 
+namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, BaseCommandResponse>
     {
@@ -38,11 +31,11 @@ namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands
                 response.Message = "Creation Failed";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
-            else
+            else 
             {
-                var Category = _mapper.Map<Category>(request.CategoryDto);
+                var category = _mapper.Map<Category>(request.CategoryDto);
 
-                Category = await _unitOfWork.Repository<Category>().Add(Category);
+                category = await _unitOfWork.Repository<Category>().Add(category);
                 try
                 {
                     await _unitOfWork.Save();
@@ -54,7 +47,7 @@ namespace EnterpriseDemo.Application.Features.Categories.Handlers.Commands
 
                 response.Success = true;
                 response.Message = "Creation Successful";
-                response.Id = Category.CategoryId;
+                response.Id = category.CategoryId;
             }
 
             return response;

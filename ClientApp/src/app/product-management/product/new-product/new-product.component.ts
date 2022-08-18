@@ -77,8 +77,8 @@ export class NewProductComponent extends UnsubscribeOnDestroyAdapter  implements
       return this.fb.group({
         name: [''],
         code:[''],
-        qty:[''],
-        price:[''],
+        qty:[],
+        price:[],
         status:[''],
       });
     }

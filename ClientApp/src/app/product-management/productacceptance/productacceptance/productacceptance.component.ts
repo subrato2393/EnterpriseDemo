@@ -55,6 +55,8 @@ export class ProductAcceptanceComponent implements OnInit {
   intitializeForm() {
     this.AcceptanceForm = this.fb.group({
       acceptanceId: [0],
+      categoryId:[''],
+      categoryIds:[''],
       productList: this.fb.array([this.createProductForm()]),
     })
   }
@@ -63,7 +65,7 @@ export class ProductAcceptanceComponent implements OnInit {
       name: [''],
       code:[''],
       qty:[],
-      price:[''],
+      price:[],
       categoryName:[''],
       acceptanceName:[''],
       isActive:[]
@@ -97,10 +99,11 @@ export class ProductAcceptanceComponent implements OnInit {
     }
     control.clearValidators();
   }
-  onAcceptanceSelectionChange(dropdown){
+  onCategorySelectionChange(dropdown){
     if (dropdown.isUserInput) {
       this.isShown=true;
       console.log(dropdown.source.value);
+      this.AcceptanceForm.get('categoryId').setValue(dropdown.source.value.value);
       this.productService.getProductByCategoryId(dropdown.source.value.value).subscribe(res => {
         this.productList = res;
         console.log("trainee List");
@@ -116,7 +119,7 @@ export class ProductAcceptanceComponent implements OnInit {
     console.log(id);
     // if (id) {
      // this.confirmService.confirm('Confirm Update message', 'Are You Sure Update This  Item').subscribe(result => {
-       // console.log(this.AcceptanceForm.value);
+        console.log(this.AcceptanceForm.value);
    //     if (result) {
           // this.acceptanceService.update(+id,this.AcceptanceForm.value).subscribe(response => {
           //   this.router.navigateByUrl('/product-management/acceptance-list');

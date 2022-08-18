@@ -27,9 +27,9 @@
                 <div class="col-xl-6 col-lg-4 col-md-43 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width mb-3" appearance="outline">
                     <mat-label>Category</mat-label> 
-                    <mat-select formControlName="acceptanceId">
+                    <mat-select formControlName="categoryIds">
                       <mat-option value="0">--Select--</mat-option>
-                      <mat-option (onSelectionChange)="onAcceptanceSelectionChange($event)" *ngFor="let dropdown of selectedAcceptance" [value]="dropdown">
+                      <mat-option (onSelectionChange)="onCategorySelectionChange($event)" *ngFor="let dropdown of selectedAcceptance" [value]="dropdown">
                         {{dropdown.text}}
                       </mat-option>
                     </mat-select>
